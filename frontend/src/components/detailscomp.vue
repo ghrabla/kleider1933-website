@@ -1,4 +1,5 @@
 <template>
+ 
   <div class="details-all">
     <!-- <div class="image"> -->
     <img src="../assets/image/so3.png" alt="" class="image" />
@@ -18,7 +19,7 @@
         </a>
       </div>
       <div class="command-div">
-        <a href="" class="command"><i class="fa fa-check"></i> command now </a>
+        <a href="#" class="command" @click="showModal=true;"><i class="fa fa-check"></i> command now </a>
       </div>
     </div>
     <div>
@@ -29,22 +30,88 @@
       />
     </div>
   </div>
+
+ <div class="popup-all"  
+        v-if="showModal" >
+    <h3 class="add-title">command now <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h3>
+
+    <label for="">Full name*</label>
+    <input type="text" placeholder="Full name" class="input-pop">
+     <label for="">Phone number*</label>
+    <input type="text" placeholder="Phone number" class="input-pop">
+     <label for="">Email*</label>
+    <input type="text" placeholder="Email" class="input-pop">
+     <label for="">City*</label>
+    <input type="text" placeholder="City" class="input-pop">
+     <label for="">Adresse*</label>
+    <input type="text" placeholder="Adresse" class="input-pop">
+     <label for="">Postale code*</label>
+    <input type="text" placeholder="Postale code" class="input-pop">
+    <button>send</button>
+  </div>
+
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      showModal: false,
+    };
   },
   methods: {
+     
     sweetalertpanier() {
      Swal.fire('Saved!', '', 'success')
     },
+   
   },
 };
 </script>
 
 <style>
+.add-title{
+  text-align: center;
+  padding: 17px;
+
+}
+button{
+  display: block;
+  padding: 15px 50px;
+  background-color: black;
+  color: white;
+  margin-top: 15px;
+  margin-left: 40%;
+  text-align: center;
+  border-radius: 10px;
+
+}
+.popup-all{
+  font-family: sans-serif;
+    position: absolute;
+    top: 11%;
+    right: 20%;
+    z-index: 99;
+    background-color: #E5E5E5;
+    padding: 0px 35px 20px;
+    border-radius: 10px;
+}
+.input-pop{
+    padding: 15px 480px 15px 10px;
+    border-radius: 10px;
+    border: solid 1px;
+    border-color: #b1b1b1;
+    margin-bottom: 20px;
+}
+.image-inp{
+   padding: 15px 200px;
+}
+.popup-all label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
 .image {
   width: 30%;
 }

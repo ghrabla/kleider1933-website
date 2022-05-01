@@ -45,15 +45,16 @@
    </div>
 </div>
   <div class="container1">
-  <h2>products Table</h2>
+  <!-- <h2>Responsive Tables Using LI <small>Triggers on 767px</small></h2> -->
+  <h2>orders Table</h2>
   <ul class="responsive-table">
     <li class="table-header">
-      <div class="col col-1"><i class="fa fa-snowflake-o" aria-hidden="true"></i> Name</div>
-      <div class="col col-3"><i class="fa fa-usd" aria-hidden="true"></i> Price</div>
-      <div class="col col-4"><i class="fa fa-audio-description" aria-hidden="true"></i> Title</div>
-      <div class="col col-5"><i class="fa fa-product-hunt" aria-hidden="true"></i> Gender</div>
-      <div class="col col-6"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Type</div>
-      <div class="col col-7"><i class="fa fa-image" aria-hidden="true"></i> Image</div>
+      <div class="col col-1"><i class="fa fa-user-o" aria-hidden="true"></i> Name</div>
+      <div class="col col-3"><i class="fa fa-mobile" aria-hidden="true"></i> Phone</div>
+      <div class="col col-4"><i class="fa fa-map-marker" aria-hidden="true"></i> City</div>
+      <div class="col col-5"><i class="fa fa-location-arrow" aria-hidden="true"></i> Adresse</div>
+      <div class="col col-6"><i class="fa fa-expand" aria-hidden="true"></i> Postal</div>
+      <div class="col col-7"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</div>
       <div class="col col-8"><i class="fa fa-cog fa-spin fa-fw"></i> Action</div>
     </li>
     
@@ -66,7 +67,7 @@
         <div  class="col col-1" data-label="First name">kamal</div>
         <div  class="col col-1" data-label="First name">kamal</div>
         <div class="col col-8 action-icon" data-label="Action">
-          <i  class="fa-solid fa-pen" @click="showModal=true;" ></i>
+          <i  class="fa-solid fa-pen" ></i>
           <i  class="fa-solid fa-trash-can" ></i>
           <i class="fa-solid fa-info"></i>
         </div>
@@ -74,76 +75,12 @@
     </li>
   </ul>
 </div>
-
-
-  <div class="popup-all" v-if="showModal" >
-    <h2>update product <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
-    <label for="">Name*</label>
-    <input type="text" placeholder="product name" class="input-pop">
-     <label for="">Title*</label>
-    <input type="text" placeholder="product Title" class="input-pop">
-     <label for="">Description*</label>
-    <input type="text" placeholder="product Description" class="input-pop">
-     <label for="">Type*</label>
-    <input type="text" placeholder="product Type" class="input-pop">
-     <label for="">Price*</label>
-    <input type="text" placeholder="product Price" class="input-pop">
-     <label for="">image*</label>
-    <input type="file" placeholder="product name" class="image">
-    <button>valide</button>
-  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  methods: {},
-};
-</script>
+
 
 
 <style>
-button{
-  display: block;
-  padding: 15px 50px;
-  background-color: black;
-  color: white;
-  margin-top: 15px;
-  margin-left: 40%;
-  text-align: center;
-  border-radius: 10px;
-
-}
-.popup-all{
-  font-family: sans-serif;
-    position: absolute;
-    top: 11%;
-    right: 20%;
-    z-index: 99;
-    background-color: #E5E5E5;
-    padding: 0px 35px 20px;
-    border-radius: 10px;
-}
-.input-pop{
-    padding: 15px 480px 15px 10px;
-    border-radius: 10px;
-    border: solid 1px;
-    border-color: #b1b1b1;
-    margin-bottom: 20px;
-}
-.image{
-   padding: 15px 200px;
-}
-.popup-all label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
 .search-profile{
       display: flex;
     justify-content: space-between;
@@ -264,16 +201,16 @@ h2 {
     flex-basis: 15%;
   }
   .col-4 {
-    flex-basis: 18%;
+    flex-basis: 10%;
   }
   .col-5 {
     flex-basis: 20%;
   }
   .col-6 {
-    flex-basis: 19%;
+    flex-basis: 15%;
   }
   .col-7 {
-    flex-basis: 21%;
+    flex-basis: 15%;
   }
   .col-8 {
     flex-basis: 15%;

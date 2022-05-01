@@ -4,7 +4,7 @@
          <router-link to="/productdashboard"> <img src="../assets/products.svg" alt="" class="pro"></router-link>
        </div>
        <div class="orders">
-          <img src="../assets/orders.svg" alt="" class="ord">
+          <router-link to="/Ordersdashboard"><img src="../assets/orders.svg" alt="" class="ord"></router-link>
        </div>
    </div>
 

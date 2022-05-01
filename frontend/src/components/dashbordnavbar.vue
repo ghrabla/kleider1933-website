@@ -25,10 +25,8 @@
     </div>
   </nav>
 
-  <div class="popup-all"  
-        v-if="showModal" >
+  <div class="popup-all" v-if="showModal" >
     <h2>Add product <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
-
     <label for="">Name*</label>
     <input type="text" placeholder="product name" class="input-pop">
      <label for="">Title*</label>
