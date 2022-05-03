@@ -24,22 +24,27 @@
      
     </div>
   </nav>
-
+<div class="close-div" v-if="showModal"  @click="showModal=false;"></div>
   <div class="popup-all" v-if="showModal" >
     <h2>Add product <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
     <label for="">Name*</label>
-    <input type="text" placeholder="product name" class="input-pop">
-     <label for="">Title*</label>
-    <input type="text" placeholder="product Title" class="input-pop">
-     <label for="">Description*</label>
-    <input type="text" placeholder="product Description" class="input-pop">
-     <label for="">Type*</label>
-    <input type="text" placeholder="product Type" class="input-pop">
+    <input type="text" placeholder="product name" class="input-pop" v-model="product.name">
      <label for="">Price*</label>
-    <input type="text" placeholder="product Price" class="input-pop">
+    <input type="text" placeholder="product Price" class="input-pop" v-model="product.price">
+     <label for="">Title*</label>
+    <input type="text" placeholder="product Title" class="input-pop" v-model="product.title">
+    <label for="">Gender*</label>
+  <select name="gender" id="gender" v-model="product.gender">
+  <option value="" selected disabled>Please select a gender</option>
+  <option value="man">man</option>
+  <option value="woman">woman</option>
+  <option value="kid">kid</option>
+</select>
+     <label for="">Type*</label>
+    <input type="text" placeholder="product Type" class="input-pop" v-model="product.type">
      <label for="">image*</label>
-    <input type="file" placeholder="product name" class="image">
-    <button>valide</button>
+    <input type="file" placeholder="product name" class="image"  v-bind="product.image">
+    <button @click="addproduct()">valide</button>
   </div>
 
 </template>
@@ -49,13 +54,73 @@ export default {
   data() {
     return {
       showModal: false,
+       products : [],
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',},
     };
   },
-  methods: {},
+   created() {
+        this.getproducts();
+    },
+  methods: {
+     getproducts(){
+            axios.get('http://localhost/kleider1933-website/backend/API/products/read.php')
+                .then(response => this.products = response.data)
+                .catch(err => console.log(err));
+        },
+     addproduct(){
+            if(this.product.name !== '' && this.product.price !== ''){
+                axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
+                    name : this.product.name,
+                    price : this.product.price,
+                    title : this.product.title,
+                    gender : this.product.gender,
+                    type : this.product.type,
+                    image : this.product.image
+                    
+                })
+                .then(response => {
+                    Swal.fire(
+                        'Added !',
+                        'success'
+                    ).then(() => {
+                        this.getproducts();
+                    })
+                })
+                .catch(err => console.log(err));
+            }else{
+                Swal.fire({
+                    title : 'Please fill all the fields !',
+                    type : 'warning'
+                }).then(() => {
+                    $('#addproduct').modal('show')
+                })
+            }
+        },
+  },
 };
 </script>
 
 <style>
+
+.close-div{
+  width: 100%;
+    height: 200vh;
+    background-color: #1b1b1b42;
+    position: absolute;
+    z-index: 88;
+}
+select{
+  padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: black;
+}
+option{
+  padding: 10px;
+}
+body{
+  font-family: "lato", sans-serif;
+}
 button{
   display: block;
   padding: 15px 50px;
