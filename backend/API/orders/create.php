@@ -13,34 +13,40 @@
   if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
 
   include_once '../../config/Database.php';
-  include_once '../../models/product.php';
+  include_once '../../models/order.php';
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
 
   // Instantiate blog post object
-  $product = new product($db);
+  $order = new order($db);
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
   
 
-  $product->name = $data->name;
-  $product->price = $data->price;
-  $product->title = $data->title;
-  $product->gender = $data->gender;
-  $product->type = $data->type;
-  $product->image = $data->image;
+  $order->name = $data->name;
+  $order->price = $data->price;
+  $order->title = $data->title;
+  $order->gender = $data->gender;
+  $order->type = $data->type;
+  $order->image = $data->image;
+  $order->fullname = $data->fullname;
+  $order->phone = $data->phone;
+  $order->email = $data->email;
+  $order->city = $data->city;
+  $order->adresse = $data->adresse;
+  $order->postale = $data->postale;
   
 
-  // Create product
-  if($product->create()) {
+  // Create order
+  if($order->create()) {
     echo json_encode(
-      array('message' => 'product Created','response'=>true)
+      array('message' => 'order Created','response'=>true)
     );
   } else {
     echo json_encode(
-      array('message' => 'product Not Created' , 'response'=>false)
+      array('message' => 'order Not Created' , 'response'=>false)
     );
   }

@@ -1,9 +1,9 @@
 <?php
-class product
+class order
 {
   // DB Stuff
   private $conn;
-  private $table = 'products';
+  private $table = 'orders';
 
   public $id;
   // Properties
@@ -12,7 +12,14 @@ class product
   public $title;
   public $gender;
   public $type;
+
   public $image;
+  public $fullname;
+  public $phone;
+  public $email;
+  public $city;
+  public $adresse;
+  public $postale;
   
 
 
@@ -26,7 +33,7 @@ class product
   public function read()
   {
     // Create query
-    $query = "SELECT * FROM products ORDER BY price";
+    $query = "SELECT * FROM orders ";
     // Prepare statement
     $stmt = $this->conn->prepare($query);
     // Execute query
@@ -34,45 +41,11 @@ class product
 
     return $stmt;
   }
-  public function read_man()
-  {
-    // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "man"';
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-  public function read_woman()
-  {
-    // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "woman"';
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-  public function read_kid()
-  {
-    // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "kid"';
-    // Prepare statement
-    $stmt = $this->conn->prepare($query);
-    // Execute query
-    $stmt->execute();
-
-    return $stmt;
-  }
-
   // Get Single Category
   public function read_single()
   {
     // Create query
-    $query = "SELECT * FROM products WHERE id= :id";
+    $query = "SELECT * FROM orders WHERE id= :id";
 
     //Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -93,6 +66,12 @@ class product
     $this->gender = $row['gender'];
     $this->type = $row['type'];
     $this->image = $row['image'];
+    $this->fullname = $row['fullname'];
+    $this->phone = $row['phone'];
+    $this->email = $row['email'];
+    $this->city = $row['city'];
+    $this->adresse = $row['adresse'];
+    $this->postale = $row['postale'];
   }
 
 
@@ -110,7 +89,13 @@ class product
       title = :title,
       gender = :gender,
       type = :type,
-      image = :image
+      image = :image,
+      fullname = :fullname,
+      phone = :phone,
+      email = :email,
+      city = :city,
+      adresse = :adresse,
+      postale = :postale
       ';
 
     // Prepare Statement
@@ -123,6 +108,12 @@ class product
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->type = htmlspecialchars(strip_tags($this->type));
     $this->image = htmlspecialchars(strip_tags($this->image));
+    $this->fullname = htmlspecialchars(strip_tags($this->fullname));
+    $this->phone = htmlspecialchars(strip_tags($this->phone));
+    $this->email = htmlspecialchars(strip_tags($this->email));
+    $this->city = htmlspecialchars(strip_tags($this->city));
+    $this->adresse = htmlspecialchars(strip_tags($this->adresse));
+    $this->postale = htmlspecialchars(strip_tags($this->postale));
     // Bind data
     $stmt->bindParam(':name', $this->name);
     $stmt->bindParam(':price', $this->price);
@@ -130,6 +121,12 @@ class product
     $stmt->bindParam(':gender', $this->gender);
     $stmt->bindParam(':type', $this->type);
     $stmt->bindParam(':image', $this->image);
+    $stmt->bindParam(':fullname', $this->fullname);
+    $stmt->bindParam(':phone', $this->phone);
+    $stmt->bindParam(':email', $this->email);
+    $stmt->bindParam(':city', $this->city);
+    $stmt->bindParam(':adresse', $this->adresse);
+    $stmt->bindParam(':postale', $this->postale);
     // Execute query
     if ($stmt->execute()) {
       return true;
@@ -155,26 +152,44 @@ class product
     title = :title,
     gender = :gender,
     type = :type,
-    image = :image WHERE  id= :id';
+    image = :image,
+    fullname = :fullname,
+    phone = :phone,
+    email = :email,
+    city = :city,
+    adresse = :adresse,
+    postale = :postale WHERE  id= :id';
 
     // Prepare Statement
     $stmt = $this->conn->prepare($query);
-
+    
+    $this->id = htmlspecialchars(strip_tags($this->id));
     $this->name = htmlspecialchars(strip_tags($this->name));
     $this->price = htmlspecialchars(strip_tags($this->price));
     $this->title = htmlspecialchars(strip_tags($this->title));
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->type = htmlspecialchars(strip_tags($this->type));
     $this->image = htmlspecialchars(strip_tags($this->image));
-    $this->id = htmlspecialchars(strip_tags($this->id));
+    $this->fullname = htmlspecialchars(strip_tags($this->fullname));
+    $this->phone = htmlspecialchars(strip_tags($this->phone));
+    $this->email = htmlspecialchars(strip_tags($this->email));
+    $this->city = htmlspecialchars(strip_tags($this->city));
+    $this->adresse = htmlspecialchars(strip_tags($this->adresse));
+    $this->postale = htmlspecialchars(strip_tags($this->postale));
     // Bind data
+    $stmt->bindParam(':id', $this->id);
     $stmt->bindParam(':name', $this->name);
     $stmt->bindParam(':price', $this->price);
     $stmt->bindParam(':title', $this->title);
     $stmt->bindParam(':gender', $this->gender);
     $stmt->bindParam(':type', $this->type);
     $stmt->bindParam(':image', $this->image);
-    $stmt->bindParam(':id', $this->id);
+    $stmt->bindParam(':fullname', $this->fullname);
+    $stmt->bindParam(':phone', $this->phone);
+    $stmt->bindParam(':email', $this->email);
+    $stmt->bindParam(':city', $this->city);
+    $stmt->bindParam(':adresse', $this->adresse);
+    $stmt->bindParam(':postale', $this->postale);
 
     // Execute query
     if ($stmt->execute()) {

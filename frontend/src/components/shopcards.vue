@@ -236,7 +236,7 @@
 		function FilterProduct() {
 			for(let i of li){
 				const name = i.querySelector('strong');
-				const x = name.textContent;
+				const x = name.innerHTML;
 				i.setAttribute("data-category", x);
 			}
 

@@ -22,183 +22,7 @@
 		</header>
 		<div class="product-field">
 			<ul class="items">
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/wa1.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$45.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz1.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$35.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/wa2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$40.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$42.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/wa3.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$46.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz4.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$55.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$25.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/samsung.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Mobile</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$20.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so1.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$15.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$22.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/one.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Mobile</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$33.78</h4>
-				</li>
-				<li data-category="" data-price="">
+				<li data-category="" data-price="" v-for="product in products" :key="product.id">
 					<picture>
 						<img src="../assets/image/so3.png" alt="">
 					</picture>
@@ -208,19 +32,92 @@
 						   <span><i class="far fa-share-square"></i></span>
 						   <span><i class="fas fa-shopping-basket"></i></span>
 						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
+						<strong>{{product.type}}</strong>
+						<span>{{product.title}}</span>
+						<router-link to="/details" @click="getCookie"><small>Buy now</small></router-link>
 					</div>
-					<h4>$44.78</h4>
+					<h4>${{product.price}}</h4>
 				</li>
+
+				<li data-category="" data-price="" >
+					<picture>
+						<img src="../assets/image/so3.png" alt="">
+					</picture>
+					<div class="detail">
+						<p class="icon">
+						   <span><i class="far fa-heart"></i></span>
+						   <span><i class="far fa-share-square"></i></span>
+						   <span><i class="fas fa-shopping-basket"></i></span>
+						</p>
+						<strong>Blazer</strong>
+						<span>hhhhhhhhhhhhhh</span>
+						<router-link to="/details" ><small @click="getproduct(product.id)">Buy now</small></router-link>
+					</div>
+					<h4>$42.5</h4>
+				</li>
+				
 			</ul>
 		</div>
         
 	</main>
 </template>
-<script >
-  
+<script>
+import Cookies from 'vue-cookies';
+export default {
+  data() {
+    return {
+      showModal: false,
+       products : [],
+       product : {},
+    };
+  },
+   mounted() {
+	   this.getproducts();
+	//    this.filterdata();
+    },
+  methods: {
+	  getCookie(){
+         // it gets the cookie called `username`
+          Cookies.set('id',this.product.id);
+          console.log(Cookies.get('id'));
+     },
+     getproducts(){
+            axios.get('http://localhost/kleider1933-website/backend/API/products/read_woman.php',)
+                .then(response => this.products = response.data)
+                .catch(err => console.log(err));
+        },
+     addproduct(){
+            if(this.product.name !== '' && this.product.price !== ''){
+                axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
+                    name : this.product.name,
+                    price : this.product.price,
+                    title : this.product.title,
+                    gender : this.product.gender,
+                    type : this.product.type,
+                    image : this.product.image
+                    
+                })
+                .then(response => {
+                    Swal.fire(
+                        'Added !',
+                        'success'
+                    ).then(() => {
+                        this.getproducts();
+                    })
+                })
+                .catch(err => console.log(err));
+            }else{
+                Swal.fire({
+                    title : 'Please fill all the fields !',
+                    type : 'warning'
+                }).then(() => {
+                    $('#addproduct').modal('show')
+                })
+            }
+        },
+		
+  },
+};
 </script>
 
 

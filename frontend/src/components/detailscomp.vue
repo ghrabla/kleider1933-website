@@ -8,7 +8,7 @@
       <span> name: </span>
       <div class="base">jordan-nike 23</div>
       <span> price: </span>
-      <div class="base">133$</div>
+      <div class="base">{{product.price}}</div>
       <span> version: </span>
       <div class="base">2022</div>
       <span> pointers: </span>
@@ -53,17 +53,34 @@
 </template>
 
 <script>
+import Cookies from 'vue-cookies';
+
 export default {
   data() {
     return {
       showModal: false,
+       products : [],
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
     };
+  },
+  created(){
+   this.getproducts;
   },
   methods: {
      
     sweetalertpanier() {
      Swal.fire('Saved!', '', 'success')
     },
+    getproducts() {
+            axios.post('http://localhost/kleider1933-website/backend/API/products/read.php',
+            {
+              id : Cookies.get('id')
+            })
+                .then(response => {
+                    this.product = response.data;
+                })
+                .catch(err => console.log(err));
+        },
    
   },
 };

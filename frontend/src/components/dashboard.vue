@@ -19,7 +19,7 @@
      <div class="sta-img"><i class="fa fa-bookmark-o fa-2x" aria-hidden="true" style="color: orange;"></i></div>
      <div class="sta-content">
        <div class="sta-text">product items</div>
-       <div class="sta-number"> 34664$</div>
+       <div class="sta-number">{{ products.length }}</div>
      </div>
    </div>
    <div class="sta-box">
@@ -94,7 +94,7 @@
      <label for="">Price*</label>
     <input type="text" placeholder="product Price" class="input-pop" v-model="product.price">
      <label for="">image*</label>
-    <input type="file" placeholder="product name" class="image" >
+    <input type="text" placeholder="product name" class="image" v-model="product.image">
     <button @click="updateproduct()">valide</button>
   </div>
 </template>

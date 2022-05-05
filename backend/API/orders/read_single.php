@@ -1,4 +1,5 @@
 <?php
+
   // Headers
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
@@ -13,34 +14,37 @@
   if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
 
   include_once '../../config/Database.php';
-  include_once '../../models/product.php';
+  include_once '../../models/order.php';
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
+  // Instantiate blog order object
+  $order = new order($db);
 
-  // Instantiate blog post object
-  $product = new product($db);
-
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
+  // Get ID
+  $order->id = isset($_GET['id']) ? $_GET['id'] : die();
 
   
 
-  $product->name = $data->name;
-  $product->price = $data->price;
-  $product->title = $data->title;
-  $product->gender = $data->gender;
-  $product->type = $data->type;
-  $product->image = $data->image;
-  
+  // Get post
+  $order->read_single();
 
-  // Create product
-  if($product->create()) {
-    echo json_encode(
-      array('message' => 'product Created','response'=>true)
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'product Not Created' , 'response'=>false)
-    );
-  }
+  // Create array
+  $order_arr = array(
+    'id' => $order->id,
+    'name' => $order->name,
+    'price' => $order->price,
+    'title' => $order->title,
+    'gender' => $order->gender,
+    'type' => $order->type,
+    'image' => $order->image,
+    'fullname' => $order->fullname,
+    'phone' => $order->phone,
+    'email' => $order->email,
+    'city' => $order->city,
+    'adresse' => $order->adresse,
+    'postale' => $order->postale
+  );
+
+  // Make JSON
+  print_r(json_encode($order_arr));

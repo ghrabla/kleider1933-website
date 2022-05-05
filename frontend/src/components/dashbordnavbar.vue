@@ -43,7 +43,7 @@
      <label for="">Type*</label>
     <input type="text" placeholder="product Type" class="input-pop" v-model="product.type">
      <label for="">image*</label>
-    <input type="file" placeholder="product name" class="image"  v-bind="product.image">
+    <input type="text" placeholder="product name" class="image" v-model="product.image">
     <button @click="addproduct()">valide</button>
   </div>
 
