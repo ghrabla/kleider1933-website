@@ -26,21 +26,21 @@
      <div class="sta-img"><i class="fa fa-picture-o fa-2x" aria-hidden="true" style="color:#00d4ff;"></i></div>
      <div class="sta-content">
        <div class="sta-text">order items</div>
-       <div class="sta-number"> 34664$</div>
+       <div class="sta-number"> {{ orders.length }}</div>
      </div>
    </div>
    <div class="sta-box">
      <div class="sta-img"><i class="fa fa-user fa-2x" aria-hidden="true" style="color: #8610e8;"></i></div>
      <div class="sta-content">
-       <div class="sta-text">site users</div>
-       <div class="sta-number"> 34664$</div>
+       <div class="sta-text">website users</div>
+       <div class="sta-number"> {{ users.length }}</div>
      </div>
    </div>
    <div class="sta-box">
      <div class="sta-img"><i class="fa fa-star fa-2x" aria-hidden="true" style="color: green;"></i></div>
      <div class="sta-content">
-       <div class="sta-text">month items</div>
-       <div class="sta-number"> 34664$</div>
+       <div class="sta-text">projuct admins</div>
+       <div class="sta-number">{{ admins.length }}</div>
      </div>
    </div>
 </div>
@@ -50,7 +50,7 @@
     <li class="table-header">
       <div class="col col-1"><i class="fa fa-snowflake-o" aria-hidden="true"></i> Name</div>
       <div class="col col-3"><i class="fa fa-usd" aria-hidden="true"></i> Price</div>
-      <div class="col col-4"><i class="fa fa-audio-description" aria-hidden="true"></i> Title</div>
+      <!-- <div class="col col-4"><i class="fa fa-audio-description" aria-hidden="true"></i> Title</div> -->
       <div class="col col-5"><i class="fa fa-product-hunt" aria-hidden="true"></i> Gender</div>
       <div class="col col-6"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Type</div>
       <div class="col col-7"><i class="fa fa-image" aria-hidden="true"></i> Image</div>
@@ -61,21 +61,21 @@
       <div style="display: flex;width: 100%;align-items: center;">
         <div  class="col col-1" data-label="First name">{{product.name}}</div>
         <div  class="col col-1" data-label="First name">{{product.price}}</div>
-        <div  class="col col-1" data-label="First name">{{product.title}}</div>
+        <!-- <div  class="col col-1" data-label="First name">{{product.title}}</div> -->
         <div  class="col col-1" data-label="First name">{{product.gender}}</div>
         <div  class="col col-1" data-label="First name">{{product.type}}</div>
         <div  class="col col-1" data-label="First name">{{product.image}}</div>
         <div class="col col-8 action-icon" data-label="Action">
          <a href="javascript:void(0)" @click="getproduct(product.id)"> <i  class="fa-solid fa-pen" @click="showModal=true;" ></i></a>
          <a href="javascript:void(0)" > <i  class="fa-solid fa-trash-can" @click="deleteproduct(product.id)" ></i></a>
-         <a href="javascript:void(0)"><i class="fa-solid fa-info"></i></a>
+         <a href="javascript:void(0)" @click="getproduct(product.id)"><i class="fa-solid fa-info" @click="showModaldet=true;"></i></a>
         </div>
       </div>
     </li>
   </ul>
 </div>
 
-
+<div class="close-div-update" v-if="showModal"  @click="showModal=false;"></div>
   <div class="popup-all" v-if="showModal" >
     <h2>update product <a href="javascript:void(0)"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
     <label for="">Name*</label>
@@ -97,6 +97,28 @@
     <input type="text" placeholder="product name" class="image" v-model="product.image">
     <button @click="updateproduct()">valide</button>
   </div>
+
+
+  
+<div class="close-div-update" v-if="showModaldet"  @click="showModaldet=false;"></div>
+  <div class="popup-all" v-if="showModaldet" >
+    <h2>product details <a href="javascript:void(0)"  v-if="showModaldet=true" @click="showModaldet=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
+    <label for="">Name*</label>
+    <input type="text" placeholder="product name" class="input-pop" v-model="product.name" disabled>
+     <label for="">Title*</label>
+    <input type="text" placeholder="product Title" class="input-pop" v-model="product.title" disabled>
+   
+     <label for="">Type*</label>
+    <input type="text" placeholder="product Type" class="input-pop" v-model="product.type" disabled>
+     <label for="">Price*</label>
+    <input type="text" placeholder="product Price" class="input-pop" v-model="product.price" disabled>
+     <label for="">Gender*</label>
+      <input type="text" placeholder="product Price" class="input-pop" v-model="product.gender" disabled>
+     <label for="">image*</label>
+     <img src="../assets/image/bz1.png" alt="" class="img-det">
+    <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
+    <!-- <button @click="updateproduct()">valide</button> -->
+  </div>
 </template>
 
 <script>
@@ -104,18 +126,42 @@ export default {
   data() {
     return {
       showModal: false,
+      showModaldet: false,
+       users : [],
+       user : {id:'',fullname : '',email : '',password : ''},
+       admins : [],
+      admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
+       orders : [],
+       order : {},
     };
   },
   created() {
         this.getproducts();
+        this.getorders();
+        this.getadmins();
+        this.getusers();
     },
     methods: {
-      
+       getadmins(){
+            axios.get('http://localhost/kleider1933-website/backend/API/admins/read.php')
+                .then(response => this.admins = response.data)
+                .catch(err => console.log(err));
+        },
+        getusers(){
+            axios.get('http://localhost/kleider1933-website/backend/API/users/read.php')
+                .then(response => this.users = response.data)
+                .catch(err => console.log(err));
+        },
         getproducts(){
             axios.get('http://localhost/kleider1933-website/backend/API/products/read.php')
                 .then(response => this.products = response.data)
+                .catch(err => console.log(err));
+        },
+         getorders(){
+            axios.get('http://localhost/kleider1933-website/backend/API/orders/read.php')
+                .then(response => this.orders = response.data)
                 .catch(err => console.log(err));
         },
         deleteproduct(id){
@@ -182,6 +228,18 @@ export default {
 
 
 <style>
+.img-det{
+  width: 47%;
+    height: 50vh;
+}
+.close-div-update{
+  width: 100%;
+    height: 100vh;
+    background-color: #1b1b1b42;
+    position: fixed;
+    top: 0%;
+    z-index: 88;
+}
 select{
   padding: 10px;
     margin-bottom: 10px;
@@ -364,6 +422,7 @@ h2 {
   }
   .col-8 {
     flex-basis: 15%;
+        margin-left: 10%;
   }
   
   @media all and (max-width: 767px) {

@@ -19,7 +19,7 @@
      <div class="sta-img"><i class="fa fa-bookmark-o fa-2x" aria-hidden="true" style="color: orange;"></i></div>
      <div class="sta-content">
        <div class="sta-text">product items</div>
-       <div class="sta-number"> 34664$</div>
+       <div class="sta-number">34664$</div>
      </div>
    </div>
    <div class="sta-box">
@@ -76,7 +76,9 @@
   </ul>
 </div>
 </template>
+<script>
 
+</script>
 
 
 

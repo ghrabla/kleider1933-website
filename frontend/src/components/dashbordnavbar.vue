@@ -8,7 +8,7 @@
       <a class="nav-link" href="#"
         ><i class="fas fa-users mr-2"></i> Users list</a>
 
-      <a class="nav-link" href="#"
+      <a class="nav-link" href="#" @click="showModaladm=true;"
         ><i class="fas fa-user-plus mr-2"></i> Add admin</a>
 
       <a class="nav-link" href="#" @click="showModal=true;"
@@ -19,9 +19,6 @@
         ><i class="fa fa-first-order"></i> Orders</a>
       <a class="nav-link" href="#"
         ><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
-
-
-     
     </div>
   </nav>
 <div class="close-div" v-if="showModal"  @click="showModal=false;"></div>
@@ -47,6 +44,23 @@
     <button @click="addproduct()">valide</button>
   </div>
 
+
+  
+<div class="close-div" v-if="showModaladm"  @click="showModaladm=false;"></div>
+  <div class="popup-all" v-if="showModaladm" >
+    <h2>Add admin <a href="#"  v-if="showModaladm=true" @click="showModaladm=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
+    <label for="">Fullame*</label>
+    <input type="text" placeholder="admin fullname" class="input-pop" v-model="admin.fullname">
+     <label for="">Email*</label>
+    <input type="text" placeholder="admin email" class="input-pop" v-model="admin.email">
+     <label for="">password*</label>
+    <input type="text" placeholder="admin password" class="input-pop" v-model="admin.password">
+    <button @click="addadmin()">valide</button>
+  </div>
+
+
+
+
 </template>
 
 <script>
@@ -54,12 +68,16 @@ export default {
   data() {
     return {
       showModal: false,
+      showModaladm :false,
+      admins : [],
+      admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',},
     };
   },
    created() {
         this.getproducts();
+        // this.getadmins();
     },
   methods: {
      getproducts(){
@@ -67,7 +85,33 @@ export default {
                 .then(response => this.products = response.data)
                 .catch(err => console.log(err));
         },
-     addproduct(){
+         
+     addadmin(){
+            if(this.admin.fullname !== '' && this.admin.email !== '' && this.admin.password !== ''){
+                axios.post('http://localhost/kleider1933-website/backend/API/admins/register.php',{
+                    fullname : this.admin.fullname,
+                    email : this.admin.email,
+                    password : this.admin.password,
+                    
+                    
+                })
+                .then(response => {
+                    Swal.fire(
+                        'Added !',
+                        'success'
+                    )
+                })
+                .catch(err => console.log(err));
+            }else{
+                Swal.fire({
+                    title : 'Please fill all the fields !',
+                    type : 'warning'
+                }).then(() => {
+                    $('#addadmin').modal('show')
+                })
+            }
+        },
+            addproduct(){
             if(this.product.name !== '' && this.product.price !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
                     name : this.product.name,
@@ -106,7 +150,7 @@ export default {
   width: 100%;
     height: 200vh;
     background-color: #1b1b1b42;
-    position: absolute;
+    position: fixed;
     z-index: 88;
 }
 select{
