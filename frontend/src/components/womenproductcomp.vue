@@ -32,6 +32,7 @@
 						   <span><i class="far fa-share-square"></i></span>
 						   <span><i class="fas fa-shopping-basket"></i></span>
 						</p>
+						<input type="hidden" v-model="product.id">
 						<strong>{{product.type}}</strong>
 						<span>{{product.title}}</span>
 						<router-link to="/details" @click="getCookie"><small>Buy now</small></router-link>
@@ -68,7 +69,8 @@ export default {
     return {
       showModal: false,
        products : [],
-       product : {},
+       product : {id:''},
+	//    proid: {id}
     };
   },
    mounted() {
@@ -76,7 +78,7 @@ export default {
 	//    this.filterdata();
     },
   methods: {
-	  getCookie(){
+	 async getCookie(){
          // it gets the cookie called `username`
           Cookies.set('id',this.product.id);
           console.log(Cookies.get('id'));
