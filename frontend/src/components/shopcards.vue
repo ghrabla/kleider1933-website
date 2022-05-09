@@ -228,7 +228,6 @@
         filterdata() {
             // This syntax may be wrong, too. But the function isn't
             // even running, so I haven't started to debug this yet
-            (function() {
 		
 		let field = document.querySelector('.items');
 		let li = Array.from(field.children);
@@ -317,8 +316,7 @@
 
 		new FilterProduct().run();
 		new SortProduct().run();
-	})();
-        }
+	}
     }
 };
 </script>

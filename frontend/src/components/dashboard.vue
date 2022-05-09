@@ -5,7 +5,7 @@
     left: 50px;
     top: 140px;
     color: white;"></i>
-  <input type="text" placeholder="search items..." class="search">
+  <input type="text" placeholder="search items..." class="search" v-model="query" @keyup="fetchData()">
  </div>
  <div class="profile">
 <!-- <i class="fa fa-envelope fa-2x" aria-hidden="true" style="color: aquamarine;"></i> -->
@@ -135,6 +135,9 @@ export default {
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
        orders : [],
        order : {},
+       allData:'',
+		query:'',
+		nodata:false
     };
   },
   created() {
@@ -142,8 +145,25 @@ export default {
         this.getorders();
         this.getadmins();
         this.getusers();
+        this.fetchData();
     },
     methods: {
+      	fetchData(){
+			axios.post('http://localhost/kleider1933-website/backend/API/products/search.php', {
+				query:this.query
+			}).then(function(response){
+				if(response.data.length > 0)
+				{
+					application.allData = response.data;
+					application.nodata = false;
+				}
+				else
+				{
+					application.allData = '';
+					application.nodata = true;
+				}
+			});
+		},
        getadmins(){
             axios.get('http://localhost/kleider1933-website/backend/API/admins/read.php')
                 .then(response => this.admins = response.data)

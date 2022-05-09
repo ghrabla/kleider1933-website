@@ -2,12 +2,12 @@
   <main>
 		<header>
 			<ul class="indicator">
-				<li data-filter="all" class="active"><a href="#">All</a></li>
-				<li data-filter="Blazer"><a href="#">Blazzer</a></li>
-				<li data-filter="Watch"><a href="#">Watch</a></li>
-				<li data-filter="Shoes"><a href="#">Shoes</a></li>
-				<li data-filter="Mobile"><a href="#">Mobiles</a></li>
-				<li data-filter="Accessories"><a href="#">Accessories</a></li>
+				<li @click="currentType = 'all'" data-filter="all" class="active"><a href="#">All</a></li>
+				<li @click="currentType = 'blazzer'" data-filter="Blazer"><a href="#">Blazzer</a></li>
+				<li @click="currentType = 'watch'" data-filter="Watch"><a href="#">Watch</a></li>
+				<li @click="currentType = 'shoes'" data-filter="Shoes"><a href="#">Shoes</a></li>
+				<li @click="currentType = 'Mobile'" data-filter="Mobile"><a href="#">Mobiles</a></li>
+				<li @click="currentType = 'Accessories'" data-filter="Accessories"><a href="#">Accessories</a></li>
 			</ul>
 			<div class="filter-condition">
 				<div class="span-select">
@@ -22,7 +22,7 @@
 		</header>
 		<div class="product-field">
 			<ul class="items">
-				<li data-category="" data-price="" v-for="product in products" :key="product.id">
+				<li data-category="" data-price="" v-for="product in products.filter(p => p.type === currentType || currentType === 'all')" :key="product.id">
 					<picture>
 						<img src="../assets/image/so3.png" alt="">
 					</picture>
@@ -40,7 +40,7 @@
 					<h4>${{product.price}}</h4>
 				</li>
 
-				<li data-category="" data-price="" >
+				<!-- <li data-category="" data-price="" >
 					<picture>
 						<img src="../assets/image/so3.png" alt="">
 					</picture>
@@ -55,7 +55,7 @@
 						<router-link to="/details" ><small @click="getproduct(product.id)">Buy now</small></router-link>
 					</div>
 					<h4>$42.5</h4>
-				</li>
+				</li> -->
 				
 			</ul>
 		</div>
@@ -67,6 +67,7 @@ import Cookies from 'vue-cookies';
 export default {
   data() {
     return {
+		currentType: "all",
       showModal: false,
        products : [],
        product : {id:''},
@@ -75,17 +76,18 @@ export default {
   },
    mounted() {
 	   this.getproducts();
-	//    this.filterdata();
     },
   methods: {
-	 async getCookie(){
+	 getCookie(){
          // it gets the cookie called `username`
           Cookies.set('id',this.product.id);
           console.log(Cookies.get('id'));
      },
      getproducts(){
             axios.get('http://localhost/kleider1933-website/backend/API/products/read_woman.php',)
-                .then(response => this.products = response.data)
+                .then(response => {
+					this.products = response.data;
+				})
                 .catch(err => console.log(err));
         },
      addproduct(){

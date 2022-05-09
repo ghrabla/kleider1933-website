@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div>
-      <a class="navbar-brand" href="#"
+      <a class="navbar-brand" href="http://localhost:8080/"
         ><i class="fas fa-home mr-2"></i> Dashboard</a>
     </div>
     <div>
@@ -14,9 +14,12 @@
       <a class="nav-link" href="#" @click="showModal=true;"
         ><i class="fab fa-500px mr-2"></i> Add product
         </a>
-
+<router-link to="/ordersdashboard">
       <a class="nav-link" href="#"
-        ><i class="fa fa-first-order"></i> Orders</a>
+        ><i class="fa fa-first-order"></i> Orders</a></router-link>
+        <router-link to="/productdashboard">
+      <a class="nav-link" href="#"
+        ><i class="fa fa-product-hunt"></i> products</a></router-link>
       <a class="nav-link" href="#"
         ><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
     </div>
@@ -145,7 +148,9 @@ export default {
 </script>
 
 <style>
-
+router-link{
+    text-decoration: none !important;
+}
 .close-div{
   width: 100%;
     height: 200vh;
