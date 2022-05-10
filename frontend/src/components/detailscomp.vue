@@ -6,13 +6,13 @@
     <!-- </div> -->
     <div class="details-info">
       <span> name: </span>
-      <div class="base">jordan-nike 23</div>
+      <div class="base">{{product.name}}</div>
       <span> price: </span>
-      <div class="base">{{product.price}}</div>
-      <span> version: </span>
-      <div class="base">2022</div>
-      <span> pointers: </span>
-      <div class="base">23 21 55 77</div>
+      <div class="base">{{product.price}}$</div>
+      <span> gender: </span>
+      <div class="base">{{product.gender}}</div>
+      <span> type: </span>
+      <div class="base">{{ product.type }}</div>
       <div class="add-div">
         <a href="#" class="add" @click="sweetalertpanier()"
           ><i class="fa fa-shopping-cart"></i> add to panier
@@ -34,20 +34,25 @@
  <div class="popup-all"  
         v-if="showModal" >
     <h3 class="add-title">command now <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h3>
-
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.name">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.price">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.title">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.gender">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.type">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.image">
     <label for="">Full name*</label>
-    <input type="text" placeholder="Full name" class="input-pop">
+    <input type="text" placeholder="Full name" class="input-pop" v-model="order.fullname">
      <label for="">Phone number*</label>
-    <input type="text" placeholder="Phone number" class="input-pop">
+    <input type="text" placeholder="Phone number" class="input-pop" v-model="order.phone">
      <label for="">Email*</label>
-    <input type="text" placeholder="Email" class="input-pop">
+    <input type="text" placeholder="Email" class="input-pop" v-model="order.email">
      <label for="">City*</label>
-    <input type="text" placeholder="City" class="input-pop">
+    <input type="text" placeholder="City" class="input-pop" v-model="order.city">
      <label for="">Adresse*</label>
-    <input type="text" placeholder="Adresse" class="input-pop">
+    <input type="text" placeholder="Adresse" class="input-pop" v-model="order.adresse">
      <label for="">Postale code*</label>
-    <input type="text" placeholder="Postale code" class="input-pop">
-    <button>send</button>
+    <input type="text" placeholder="Postale code" class="input-pop" v-model="order.postale">
+    <button @click="addorder()">send</button>
   </div>
 
 </template>
@@ -61,28 +66,64 @@ export default {
       showModal: false,
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
+       orders:[],
+       order : {id : '',fullname : '',phone : '',email : '',city : '',adresse : '',postale : ''}
     };
   },
   created(){
-   this.getproducts;
+   this.getproduct(Cookies.get('id'));
   },
   methods: {
      
     sweetalertpanier() {
      Swal.fire('Saved!', '', 'success')
     },
-    getproducts() {
-            axios.post('http://localhost/kleider1933-website/backend/API/products/read.php',
-            {
-              id : Cookies.get('id')
-            })
+    getproduct(id) {
+            axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id='+
+           id)
                 .then(response => {
                     this.product = response.data;
                 })
                 .catch(err => console.log(err));
         },
    
-  },
+  
+   addorder(){
+            if(this.product.name !== '' && this.product.price !== ''){
+                axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
+                    name : this.product.name,
+                    price : this.product.price,
+                    title : this.product.title,
+                    gender : this.product.gender,
+                    type : this.product.type,
+                    image : this.product.image,
+                    fullname : this.order.fullname,
+                    phone : this.order.phone,
+                    email : this.order.email,
+                    city : this.order.city,
+                    adresse : this.order.adresse,
+                    postale : this.order.postale,
+                    
+                })
+                .then(response => {
+                    Swal.fire(
+                        'Added !',
+                        'success'
+                    ).then(() => {
+                        this.getproducts();
+                    })
+                })
+                .catch(err => console.log(err));
+            }else{
+                Swal.fire({
+                    title : 'Please fill all the fields !',
+                    type : 'warning'
+                }).then(() => {
+                    $('#addproduct').modal('show')
+                })
+            }
+        },
+         }, 
 };
 </script>
 

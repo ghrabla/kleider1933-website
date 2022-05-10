@@ -35,7 +35,7 @@
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.type}}</strong>
 						<span>{{product.title}}</span>
-						<router-link to="/details" @click="getCookie"><small>Buy now</small></router-link>
+						<a href="/details" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
 					<h4>${{product.price}}</h4>
 				</li>
@@ -78,10 +78,17 @@ export default {
 	   this.getproducts();
     },
   methods: {
-	 getCookie(){
-         // it gets the cookie called `username`
+	 getCookie(id){
+		   
+            axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
+                .then(response => {
+                    this.product = response.data;
           Cookies.set('id',this.product.id);
           console.log(Cookies.get('id'));
+                })
+                .catch(err => console.log(err));
+       
+         // it gets the cookie called `username`
      },
      getproducts(){
             axios.get('http://localhost/kleider1933-website/backend/API/products/read_woman.php',)
