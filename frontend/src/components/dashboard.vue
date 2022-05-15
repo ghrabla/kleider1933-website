@@ -39,7 +39,7 @@
    <div class="sta-box">
      <div class="sta-img"><i class="fa fa-star fa-2x" aria-hidden="true" style="color: green;"></i></div>
      <div class="sta-content">
-       <div class="sta-text">projuct admins</div>
+       <div class="sta-text">store admins</div>
        <div class="sta-number">{{ admins.length }}</div>
      </div>
    </div>

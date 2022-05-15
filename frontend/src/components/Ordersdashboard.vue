@@ -39,7 +39,7 @@
    <div class="sta-box">
      <div class="sta-img"><i class="fa fa-star fa-2x" aria-hidden="true" style="color: green;"></i></div>
      <div class="sta-content">
-       <div class="sta-text">projuct admins</div>
+       <div class="sta-text">store admins</div>
        <div class="sta-number">{{ admins.length }}</div>
      </div>
    </div>
@@ -69,7 +69,7 @@
         <div class="col col-8 action-icon" data-label="Action">
          <a href="javascript:void(0)" @click="showModal=true"> <i  class="fa-solid fa-pen" @click="getorder(order.id)"></i></a>
           <a href="javascript:void(0)" @click="deleteorder(order.id)"><i  class="fa-solid fa-trash-can" ></i></a>
-          <i class="fa-solid fa-info"></i>
+          <a href="javascript:void(0)" @click="getorder(order.id)"><i class="fa-solid fa-info" @click="showModaldet=true;"></i></a>
         </div>
       </div>
     </li>
@@ -109,6 +109,56 @@
      <label for="">image*</label>
     <input type="text" placeholder="order name" class="image" v-model="order.image">
     <button @click="updateorder()">valide</button>
+  </div>
+
+  <div class="close-div-update" v-if="showModaldet"  @click="showModaldet=false;"></div>
+  <div class="popup-all" v-if="showModaldet" >
+
+  
+    <h2>order details <a href="javascript:void(0)"  v-if="showModaldet=true" @click="showModaldet=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h2>
+    <label for="">Name*</label>
+    <input type="text" placeholder="product name" class="input-pop" v-model="order.name" disabled>
+     <label for="">Title*</label>
+    <input type="text" placeholder="order Title" class="input-pop" v-model="order.title" disabled>
+   
+     <label for="">Type*</label>
+    <input type="text" placeholder="order Type" class="input-pop" v-model="order.type" disabled>
+     <label for="">Price*</label>
+    <input type="text" placeholder="order Price" class="input-pop" v-model="order.price" disabled>
+     <label for="">Gender*</label>
+      <input type="text" placeholder="order Price" class="input-pop" v-model="order.gender" disabled>
+     <label for="">image*</label>
+     <img v-bind:src="'../img/'+order.image" alt="" class="img-det">
+     <label for="">Name*</label>
+    <input type="text" placeholder="order name" class="input-pop" v-model="order.name" disabled>
+    <label for="">fullame*</label>
+    <input type="text" placeholder="owner name" class="input-pop" v-model="order.fullname" disabled>
+    <label for="">phone*</label>
+    <input type="text" placeholder="order phone" class="input-pop" v-model="order.phone" disabled>
+    <label for="">email*</label>
+    <input type="text" placeholder="order email" class="input-pop" v-model="order.email" disabled>
+    <label for="">city*</label>
+    <input type="text" placeholder="order city" class="input-pop" v-model="order.city" disabled>
+    <label for="">adresse*</label>
+    <input type="text" placeholder="order adresse" class="input-pop" v-model="order.adresse" disabled>
+    <label for="">postale*</label>
+    <input type="text" placeholder="order postale" class="input-pop" v-model="order.postale" disabled>
+     <label for="">Title*</label>
+    <input type="text" placeholder="order Title" class="input-pop" v-model="order.title" disabled>
+    <label for="">Gender*</label>
+  <select name="gender" id="gender" v-model="order.gender" disabled>
+  <option value="" selected disabled>Please select a gender</option>
+  <option value="man">man</option>
+  <option value="woman">woman</option>
+  <option value="kid">kid</option>
+</select>
+     <label for="">Type*</label>
+    <input type="text" placeholder="order Type" class="input-pop" v-model="order.type" disabled>
+     <label for="">Price*</label>
+    <input type="text" placeholder="order Price" class="input-pop" v-model="order.price" disabled>
+    
+    <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
+    <!-- <button @click="updateproduct()">valide</button> -->
   </div>
 </template>
 
