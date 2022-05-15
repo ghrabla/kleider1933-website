@@ -115,7 +115,7 @@
      <label for="">Gender*</label>
       <input type="text" placeholder="product Price" class="input-pop" v-model="product.gender" disabled>
      <label for="">image*</label>
-     <img src="../assets/image/bz1.png" alt="" class="img-det">
+     <img v-bind:src="'../img/'+product.image" alt="" class="img-det">
     <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
     <!-- <button @click="updateproduct()">valide</button> -->
   </div>

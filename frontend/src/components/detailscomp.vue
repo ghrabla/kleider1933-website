@@ -2,8 +2,9 @@
  
   <div class="details-all">
     <!-- <div class="image"> -->
-    <img src="../assets/image/so3.png" alt="" class="image" />
+    <img v-bind:src="'../img/'+product.image" alt="" class="image" />
     <!-- </div> -->
+    <!-- <img  v-bind:src="'../img/'+product.image" alt=""> -->
     <div class="details-info">
       <span> name: </span>
       <div class="base">{{product.name}}</div>

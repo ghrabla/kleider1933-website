@@ -79,6 +79,7 @@
      </section>
 </template>
 <style>
+
 .container-pics {
   display: flex;
   justify-content: space-evenly;
@@ -158,6 +159,9 @@ textarea{
     border-radius: 10px;
 }
 @media screen and (max-width: 768px) {
+  .new-k-p br {
+    display: none ;
+  }
     .container-pics{
         flex-direction: column-reverse;
     }

@@ -43,7 +43,7 @@
      <label for="">Type*</label>
     <input type="text" placeholder="product Type" class="input-pop" v-model="product.type">
      <label for="">image*</label>
-    <input type="text" placeholder="product name" class="image" v-model="product.image">
+    <input type="text" @change="onFileChanged" class="image" v-model="product.image">
     <button @click="addproduct()">valide</button>
   </div>
 
@@ -76,10 +76,12 @@ export default {
       admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',},
+       selectedFile: null
     };
   },
    created() {
         this.getproducts();
+        // this.addproduct();
         // this.getadmins();
     },
   methods: {
@@ -88,6 +90,9 @@ export default {
                 .then(response => this.products = response.data)
                 .catch(err => console.log(err));
         },
+        onFileChanged (event) {
+    this.selectedFile = event.target.files[0]
+  },
          
      addadmin(){
             if(this.admin.fullname !== '' && this.admin.email !== '' && this.admin.password !== ''){

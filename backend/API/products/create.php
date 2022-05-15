@@ -34,6 +34,8 @@
   $product->image = $data->image;
   
 
+  
+
   // Create product
   if($product->create()) {
     echo json_encode(

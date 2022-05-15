@@ -2,7 +2,7 @@
   <main>
 		<header>
 			<ul class="indicator">
-				<li @click="currentType = 'all'" data-filter="all" class="active"><a href="#">All</a></li>
+				<li @click="currentType = 'all'" data-filter="all" class="active" ><a href="#">All</a></li>
 				<li @click="currentType = 'blazzer'" data-filter="Blazer"><a href="#">Blazzer</a></li>
 				<li @click="currentType = 'watch'" data-filter="Watch"><a href="#">Watch</a></li>
 				<li @click="currentType = 'shoes'" data-filter="Shoes"><a href="#">Shoes</a></li>
@@ -24,7 +24,8 @@
 			<ul class="items">
 				<li data-category="" data-price="" v-for="product in products.filter(p => p.type === currentType || currentType === 'all')" :key="product.id">
 					<picture>
-						<img src="../assets/image/so3.png" alt="">
+					    <img  v-bind:src="'../img/'+product.image" alt="">
+						<!-- <img  src="../assets/image/kamal.jpg" alt=""> -->
 					</picture>
 					<div class="detail">
 						<p class="icon">
@@ -40,22 +41,6 @@
 					<h4>${{product.price}}</h4>
 				</li>
 
-				<!-- <li data-category="" data-price="" >
-					<picture>
-						<img src="../assets/image/so3.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>hhhhhhhhhhhhhh</span>
-						<router-link to="/details" ><small @click="getproduct(product.id)">Buy now</small></router-link>
-					</div>
-					<h4>$42.5</h4>
-				</li> -->
 				
 			</ul>
 		</div>
@@ -76,8 +61,39 @@ export default {
   },
    mounted() {
 	   this.getproducts();
+	   this.colorchanger();
     },
   methods: {
+	  
+	  colorchanger(){
+      	let field = document.querySelector('.items');
+		let li = Array.from(field.children);
+
+		function loopit() {
+			for(let i of li){
+				const name = i.querySelector('strong');
+				const x = name.innerHTML;
+				i.setAttribute("data-category", x);
+			}
+
+			let indicator = document.querySelector('.indicator').children;
+
+			this.run = function() {
+				for(let i=0; i<indicator.length; i++)
+				{
+					indicator[i].onclick = function () {
+						for(let x=0; x<indicator.length; x++)
+						{
+							indicator[x].classList.remove('active');
+						}
+						this.classList.add('active');
+						const displayItems = this.getAttribute('data-filter');
+					};
+				}
+			}
+		}
+		new loopit().run();
+	  },
 	 getCookie(id){
 		   
             axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
@@ -97,35 +113,7 @@ export default {
 				})
                 .catch(err => console.log(err));
         },
-     addproduct(){
-            if(this.product.name !== '' && this.product.price !== ''){
-                axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
-                    name : this.product.name,
-                    price : this.product.price,
-                    title : this.product.title,
-                    gender : this.product.gender,
-                    type : this.product.type,
-                    image : this.product.image
-                    
-                })
-                .then(response => {
-                    Swal.fire(
-                        'Added !',
-                        'success'
-                    ).then(() => {
-                        this.getproducts();
-                    })
-                })
-                .catch(err => console.log(err));
-            }else{
-                Swal.fire({
-                    title : 'Please fill all the fields !',
-                    type : 'warning'
-                }).then(() => {
-                    $('#addproduct').modal('show')
-                })
-            }
-        },
+     
 		
   },
 };
