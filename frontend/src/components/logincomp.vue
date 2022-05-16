@@ -3,10 +3,10 @@
        <div class="login-text"><h2>login</h2></div>
    <div class="login-inputs">
        <label><b>email <i class="fa fa-envelope" ></i> :</b></label>
-       <input type="text" placeholder="email" >
+       <input type="text" placeholder="email" v-model="email">
        <label><b> Password <i class="fa-solid fa-key"></i> :</b></label>
-       <input type="text" placeholder="password " >
-       <router-link to="/choicedash"><input type="submit" name="" id="" value="login" class="btn-login"></router-link>
+       <input type="text" placeholder="password " v-model="password">
+       <a  href="javascript:void(0)" class="btn-login" @click="login()" >login</a>
    </div>
    <div><p>you don't have an account?</p>
    <h3><a href="">register</a></h3>
@@ -16,7 +16,49 @@
   
 </template>
 
+<script>
+import Cookies from 'vue-cookies';
 
+export default{
+ data(){
+    return{
+      checklogin : null,
+      email: "",
+      password: "",
+      id:""
+    }
+  },
+methods: {
+
+    
+    async login() {
+    if (this.email != '' && this.password != '') {
+      let respon = await axios.post('http://localhost/kleider1933-website/backend/API/users/login.php', {
+        email: this.email,
+        password: this.password
+        
+      });
+      console.log(respon);
+      
+
+        if (respon.data[0].status != false) {
+          Cookies.set('userId',respon.data[0].id);
+          console.log(Cookies.get('userId'));
+          this.$router.push('/productsshop')
+        // alert("User exist");
+
+        } else {
+        alert("User does not exist");
+        }
+
+    } else {
+      alert('Please enter your data');
+    }
+    },
+}
+};
+
+</script>
 
 <style>
    label{
@@ -32,9 +74,14 @@
        gap: 20px;
    }
    .btn-login{
-       background-color: black;
-       color: white;
-       margin: 0px 40%;
+      background-color: black;
+    color: white;
+    margin: 0px 40%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
    }
    input{
        margin: 0px 30%;

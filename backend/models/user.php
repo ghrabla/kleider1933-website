@@ -20,6 +20,19 @@ class user
     $this->conn = $db;
   }
 
+
+
+  public function login()
+  {
+      $query = "SELECT * FROM users WHERE email = :email AND password =:password";
+      $stmt = $this->conn->prepare($query);
+
+
+      // Execute query
+      $stmt->execute(["email"=>$this->email,"password"=>$this->password]);
+  
+      return $stmt;
+  }
   public function read()
   {
     // Create query

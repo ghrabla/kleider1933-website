@@ -2,12 +2,12 @@
   <main>
 		<header>
 			<ul class="indicator">
-				<li data-filter="all" class="active"><a href="#">All</a></li>
-				<li data-filter="Blazer"><a href="#">Blazzer</a></li>
-				<li data-filter="Watch"><a href="#">Watch</a></li>
-				<li data-filter="Shoes"><a href="#">Shoes</a></li>
-				<li data-filter="Mobile"><a href="#">Mobiles</a></li>
-				<li data-filter="Accessories"><a href="#">Accessories</a></li>
+				<li @click="currentType = 'all'" data-filter="all" class="active" ><a href="#">All</a></li>
+				<li @click="currentType = 'blazzer'" data-filter="Blazer"><a href="#">Blazzer</a></li>
+				<li @click="currentType = 'watch'" data-filter="Watch"><a href="#">Watch</a></li>
+				<li @click="currentType = 'shoes'" data-filter="Shoes"><a href="#">Shoes</a></li>
+				<li @click="currentType = 'Mobile'" data-filter="Mobile"><a href="#">Mobiles</a></li>
+				<li @click="currentType = 'Accessories'" data-filter="Accessories"><a href="#">Accessories</a></li>
 			</ul>
 			<div class="filter-condition">
 				<div class="span-select">
@@ -22,9 +22,10 @@
 		</header>
 		<div class="product-field">
 			<ul class="items">
-				<li data-category="" data-price="">
+				<li data-category="" data-price="" v-for="product in products.filter(p => p.type === currentType || currentType === 'all')" :key="product.id">
 					<picture>
-						<img src="../assets/image/wa1.png" alt="">
+					    <img  v-bind:src="'../img/'+product.image" alt="">
+						<!-- <img  src="../assets/image/kamal.jpg" alt=""> -->
 					</picture>
 					<div class="detail">
 						<p class="icon">
@@ -32,207 +33,43 @@
 						   <span><i class="far fa-share-square"></i></span>
 						   <span><i class="fas fa-shopping-basket"></i></span>
 						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
+						<input type="hidden" v-model="product.id">
+						<strong>{{product.type}}</strong>
+						<span>{{product.title}}</span>
+						<a href="/details" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
-					<h4>$45.78</h4>
+					<h4>${{product.price}}</h4>
 				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz1.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$35.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/wa2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$40.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$42.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/wa3.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Watch</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$46.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/bz4.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Blazer</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$55.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$25.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/samsung.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Mobile</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$20.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so1.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$15.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so2.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$22.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/one.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Mobile</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$33.78</h4>
-				</li>
-				<li data-category="" data-price="">
-					<picture>
-						<img src="../assets/image/so3.png" alt="">
-					</picture>
-					<div class="detail">
-						<p class="icon">
-						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
-						</p>
-						<strong>Shoes</strong>
-						<span>Lorem, ipsum dolor sit amet consectetur.</span>
-						<router-link to="/details"><small>Buy now</small></router-link>
-					</div>
-					<h4>$44.78</h4>
-				</li>
+
+				
 			</ul>
 		</div>
         
 	</main>
 </template>
-<script >
-  export default {        
-    mounted() {
-      this.filterdata();
+<script>
+import Cookies from 'vue-cookies';
+export default {
+  data() {
+    return {
+		currentType: "all",
+      showModal: false,
+       products : [],
+       product : {id:''},
+	//    proid: {id}
+    };
+  },
+   mounted() {
+	   this.getproducts();
+	   this.colorchanger();
     },
-    methods: {
-        filterdata() {
-            // This syntax may be wrong, too. But the function isn't
-            // even running, so I haven't started to debug this yet
-		
-		let field = document.querySelector('.items');
+  methods: {
+	  
+	  colorchanger(){
+      	let field = document.querySelector('.items');
 		let li = Array.from(field.children);
 
-		function FilterProduct() {
+		function loopit() {
 			for(let i of li){
 				const name = i.querySelector('strong');
 				const x = name.innerHTML;
@@ -251,73 +88,34 @@
 						}
 						this.classList.add('active');
 						const displayItems = this.getAttribute('data-filter');
-
-						for(let z=0; z<li.length; z++)
-						{
-							li[z].style.transform = "scale(0)";
-							setTimeout(()=>{
-								li[z].style.display = "none";
-							}, 500);
-
-							if ((li[z].getAttribute('data-category') == displayItems) || displayItems == "all")
-							 {
-							 	li[z].style.transform = "scale(1)";
-							 	setTimeout(()=>{
-									li[z].style.display = "block";
-								}, 500);
-							 }
-						}
 					};
 				}
 			}
 		}
-
-		function SortProduct() {
-			let select = document.getElementById('select');
-			let ar = [];
-			for(let i of li){
-				const last = i.lastElementChild;
-				const x = last.textContent.trim();
-				const y = Number(x.substring(1));
-				i.setAttribute("data-price", y);
-				ar.push(i);
-			}
-			this.run = ()=>{
-				addevent();
-			}
-			function addevent(){
-				select.onchange = sortingValue;
-			}
-			function sortingValue(){
-			
-				if (this.value === 'Default') {
-					while (field.firstChild) {field.removeChild(field.firstChild);}
-					field.append(...ar);	
-				}
-				if (this.value === 'LowToHigh') {
-					SortElem(field, li, true)
-				}
-				if (this.value === 'HighToLow') {
-					SortElem(field, li, false)
-				}
-			}
-			function SortElem(field,li, asc){
-				let  dm, sortli;
-				dm = asc ? 1 : -1;
-				sortli = li.sort((a, b)=>{
-					const ax = a.getAttribute('data-price');
-					const bx = b.getAttribute('data-price');
-					return ax > bx ? (1*dm) : (-1*dm);
-				});
-				 while (field.firstChild) {field.removeChild(field.firstChild);}
-				 field.append(...sortli);	
-			}
-		}
-
-		new FilterProduct().run();
-		new SortProduct().run();
-	}
-    }
+		new loopit().run();
+	  },
+	 getCookie(id){
+		   
+            axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
+                .then(response => {
+                    this.product = response.data;
+          Cookies.set('id',this.product.id);
+          console.log(Cookies.get('id'));
+                })
+                .catch(err => console.log(err));
+       
+         // it gets the cookie called `username`
+     },
+     getproducts(){
+            axios.get('http://localhost/kleider1933-website/backend/API/products/read_man.php',)
+                .then(response => {
+					this.products = response.data;
+				})
+                .catch(err => console.log(err));
+        },
+     
+		
+  },
 };
 </script>
 

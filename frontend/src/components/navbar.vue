@@ -12,42 +12,21 @@
         <a href="#" class="button" @click="showModal = false">
           <i class="fa fa-window-close"></i>Close Modal
         </a>
-        <h3>products bascket</h3>
+        <h3 >products bascket</h3>
 
-        <div class="mini-product">
-          <img src="../assets/image/so3.png" alt="">
+        <div v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product"  >
+          <img v-bind:src="'../img/'+shopcart.image" alt="">
           <div>
-            <h3>jordan-nike 23</h3>
+            <h3>{{ shopcart.name }}</h3>
             <span>2022</span>
-            <p>133$</p>
-          </div>
-          <div>
-            <i class="fa fa-window-close" style="color: red;"></i>
-          </div>
-        </div>
-        <div class="mini-product">
-          <img src="../assets/image/wa2.png" alt="">
-          <div>
-            <h3>jordan-nike 23</h3>
-            <span>2022</span>
-            <p>133$</p>
+            <p>{{ shopcart.price }}</p>
           </div>
           <div>
             <i class="fa fa-window-close" style="color: red;"></i>
           </div>
         </div>
         
-        <div class="mini-product">
-          <img src="../assets/image/so2.png" alt="">
-          <div>
-            <h3>jordan-nike 23</h3>
-            <span>2022</span>
-            <p>133$</p>
-          </div>
-          <div>
-            <i class="fa fa-window-close" style="color: red;"></i>
-          </div>
-        </div>
+        
       <div class="panier-btns">
           <div class="add-div">
           <a href="#" class="add" @click="sweetalertpanier()"
@@ -119,18 +98,32 @@
 </template>
 
 <script>
+import Cookies from 'vue-cookies';
 export default {
   el: "#app",
   data() {
     return {
       showMobileMenu: false,
       showModal: false,
+      shopcarts:[],
+      shopcart:{}
     };
+  },
+  created(){
+    this.getshopcarts(Cookies.get('userId'));
   },
   methods: {
     showMenu() {
       this.showMobileMenu = !this.showMobileMenu;
     },
+      getshopcarts(userId){
+            axios.get('http://localhost/kleider1933-website/backend/API/shopcart/read.php?userId='
+            +userId)
+                .then(response => {
+					this.shopcarts = response.data;
+				})
+                .catch(err => console.log(err));
+        },
   },
 };
 </script>

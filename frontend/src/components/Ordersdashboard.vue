@@ -129,8 +129,8 @@
       <input type="text" placeholder="order Price" class="input-pop" v-model="order.gender" disabled>
      <label for="">image*</label>
      <img v-bind:src="'../img/'+order.image" alt="" class="img-det">
-     <label for="">Name*</label>
-    <input type="text" placeholder="order name" class="input-pop" v-model="order.name" disabled>
+     <!-- <label for="">Name*</label> -->
+    <!-- <input type="text" placeholder="order name" class="input-pop" v-model="order.name" disabled> -->
     <label for="">fullame*</label>
     <input type="text" placeholder="owner name" class="input-pop" v-model="order.fullname" disabled>
     <label for="">phone*</label>
@@ -143,7 +143,7 @@
     <input type="text" placeholder="order adresse" class="input-pop" v-model="order.adresse" disabled>
     <label for="">postale*</label>
     <input type="text" placeholder="order postale" class="input-pop" v-model="order.postale" disabled>
-     <label for="">Title*</label>
+     <!-- <label for="">Title*</label>
     <input type="text" placeholder="order Title" class="input-pop" v-model="order.title" disabled>
     <label for="">Gender*</label>
   <select name="gender" id="gender" v-model="order.gender" disabled>
@@ -155,7 +155,7 @@
      <label for="">Type*</label>
     <input type="text" placeholder="order Type" class="input-pop" v-model="order.type" disabled>
      <label for="">Price*</label>
-    <input type="text" placeholder="order Price" class="input-pop" v-model="order.price" disabled>
+    <input type="text" placeholder="order Price" class="input-pop" v-model="order.price" disabled> -->
     
     <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
     <!-- <button @click="updateproduct()">valide</button> -->
