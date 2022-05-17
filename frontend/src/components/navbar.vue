@@ -18,11 +18,11 @@
           <img v-bind:src="'../img/'+shopcart.image" alt="">
           <div>
             <h3>{{ shopcart.name }}</h3>
-            <span>2022</span>
-            <p>{{ shopcart.price }}</p>
+            <span>{{ shopcart.gender }}</span>
+            <p>{{ shopcart.price }}$</p>
           </div>
           <div>
-            <i class="fa fa-window-close" style="color: red;"></i>
+            <i class="fa fa-window-close" style="color: red;" @click="deleteshopcart(shopcart.id)"></i>
           </div>
         </div>
         
@@ -30,7 +30,7 @@
       <div class="panier-btns">
           <div class="add-div">
           <a href="#" class="add" @click="sweetalertpanier()"
-            ><i class="fa fa-calculator" ></i> count all
+            ><i class="fa fa-calculator" ></i> {{ shopcarts.length * 75 }}$
           </a>
         </div>
         <div class="command-div">
@@ -74,7 +74,7 @@
           </li>
           <li>
             <a href="#" @click="showModal = true"
-              ><i class="fa fa-shopping-cart"></i>bascket</a
+              ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart">{{ shopcarts.length }}</span></a
             >
           </li>
           <li>
@@ -106,13 +106,21 @@ export default {
       showMobileMenu: false,
       showModal: false,
       shopcarts:[],
-      shopcart:{}
+      shopcart:{},
+      // totalp : null
+      
     };
   },
   created(){
     this.getshopcarts(Cookies.get('userId'));
+    // this.total();
   },
   methods: {
+    // total () {
+
+    //  totalp =  shopcarts.reduce((accumulator, current) => accumulator + current.price, 0)
+    //  return this.totalp;
+    // },
     showMenu() {
       this.showMobileMenu = !this.showMobileMenu;
     },
@@ -124,14 +132,54 @@ export default {
 				})
                 .catch(err => console.log(err));
         },
+         deleteshopcart(id){
+            Swal.fire({
+                title: 'Are you sure ?',
+                text: "You are going to delete this shopcart",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'black',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText : 'Cancel'
+            }).then((result) => {
+                if (result.value) {
+                    axios.delete('http://localhost/kleider1933-website/backend/API/shopcart/delete.php?id=' + id)
+                        .then(response => {
+                            Swal.fire(
+                                'Deleted !',
+                                'success'
+                            ).then(() => {
+                                this.shopcarts = this.shopcarts.filter(shopcart => {
+                                    return shopcart.id !== id;
+                                })
+                            })
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+        },
   },
 };
 </script>
 
 <style>
+body{
+  font-family: "lato", sans-serif;
+}
 header,
 nav {
   font-family: sans-serif;
+}
+.many-cart{
+  position: relative;
+    right: 3%;
+    top: 0px;
+    color: white;
+    background-color: black;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-weight: bold;
 }
 .sticky {
   position: fixed;

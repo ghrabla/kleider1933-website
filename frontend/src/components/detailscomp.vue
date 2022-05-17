@@ -15,7 +15,7 @@
       <span> type: </span>
       <div class="base">{{ product.type }}</div>
       <div class="add-div">
-        <a href="#" class="add" @click="sweetalertpanier()"
+        <a href="#" class="add" @click="addshopcart()"
           ><i class="fa fa-shopping-cart"></i> add to panier
         </a>
       </div>
@@ -73,6 +73,7 @@ export default {
   },
   created(){
    this.getproduct(Cookies.get('id'));
+
   },
   methods: {
      
@@ -111,6 +112,33 @@ export default {
                         'Added !',
                         'success'
                     ).then(() => {
+                        this.getproducts();
+                    })
+                })
+                .catch(err => console.log(err));
+            }else{
+                 Swal.fire({
+                    title : 'Please fill all the fields !',
+                    type : 'warning'
+                }).then(() => {
+                    $('#addproduct').modal('show')
+                })
+            }
+        },
+        addshopcart(){
+            if(this.product.name !== '' && this.product.price !== ''){
+                axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
+                    name : this.product.name,
+                    price : this.product.price,
+                    title : this.product.title,
+                    gender : this.product.gender,
+                    type : this.product.type,
+                    image : this.product.image,
+                    userId : Cookies.get('userId')
+                    
+                })
+                .then(response => {
+                    Swal.fire('Saved!', '', 'success').then(() => {
                         this.getproducts();
                     })
                 })
