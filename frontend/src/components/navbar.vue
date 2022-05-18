@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" >
     <transition name="fade" appear>
       <div
         class="modal-overlay"
@@ -53,7 +53,7 @@
     </div>
   </header>
 
-  <nav id="navbar">
+  <nav id="navbar" >
     <img src="../assets/burger.svg" alt="" class="burger" @click="showMenu()" />
     <div class="navbar">
       <div class="navbar-logo">
@@ -67,10 +67,16 @@
         <ul>
           <li><router-link to="/"><a href="">Home</a></router-link></li>
 
-          <li>
-            <router-link to="/productsshop">
-              <a href="">Product</a></router-link
-            >
+          <li >
+              <a href="javascript:void(0)" @click="showlinksf()" >Product</a>
+             <div class="product-links" v-if="showlinks"  >
+               
+              <a href="/productsshop">man</a>
+           
+              <a href="/womenproduct">woman</a>
+            
+              <a href="/kidproduct">kid</a>
+             </div>
           </li>
           <li>
             <a href="#" @click="showModal = true"
@@ -105,6 +111,7 @@ export default {
     return {
       showMobileMenu: false,
       showModal: false,
+      showlinks: false,
       shopcarts:[],
       shopcart:{},
       // totalp : null
@@ -121,6 +128,9 @@ export default {
     //  totalp =  shopcarts.reduce((accumulator, current) => accumulator + current.price, 0)
     //  return this.totalp;
     // },
+     showlinksf() {
+      this.showlinks = !this.showlinks;
+    },
     showMenu() {
       this.showMobileMenu = !this.showMobileMenu;
     },
@@ -170,6 +180,23 @@ body{
 header,
 nav {
   font-family: sans-serif;
+}
+
+.product-links{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: black;
+    padding: 10px;
+    
+}
+.product-links a{
+  color: white !important;
+  border-top: white 1px solid;
+  padding-top: 5px ;
 }
 .many-cart{
   position: relative;
@@ -297,6 +324,7 @@ nav {
 }
 .mini-product img{
   width: 22%;
+  height: 15vh;
 }
 .panier-btns{
   margin: auto;

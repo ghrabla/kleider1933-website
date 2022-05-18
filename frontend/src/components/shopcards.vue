@@ -25,7 +25,6 @@
 				<li data-category="" data-price="" v-for="product in products.filter(p => p.type === currentType || currentType === 'all')" :key="product.id">
 					<picture>
 					    <img  v-bind:src="'../img/'+product.image" alt="">
-						<!-- <img  src="../assets/image/kamal.jpg" alt=""> -->
 					</picture>
 					<div class="detail">
 						<p class="icon">

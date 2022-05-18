@@ -61,7 +61,8 @@
 
 <style>
    label{
-       text-align: center;
+       /* text-align: center; */
+       margin: 0px 30%;
    }
    .register-text{
        text-align: center;

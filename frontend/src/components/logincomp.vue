@@ -47,12 +47,19 @@ methods: {
           this.$router.push('/productsshop')
         // alert("User exist");
 
-        } else {
-        alert("User does not exist");
+        } else if (respon.data.id === false) {
+        // alert("");
+        Swal.fire({
+                    title : 'User does not exist !',
+                    type : 'warning'
+                })
         }
-
     } else {
-      alert('Please enter your data');
+      // alert('');
+      Swal.fire({
+                    title : 'Please enter your data !',
+                    type : 'warning'
+                })
     }
     },
 }
@@ -62,7 +69,8 @@ methods: {
 
 <style>
    label{
-       text-align: center;
+       /* text-align: center; */
+       margin: 0px 30%;
    }
    .login-text{
        text-align: center;

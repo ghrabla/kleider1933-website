@@ -219,7 +219,7 @@ export default {
 		  width: 95%;
 		  z-index: 1;
 		  transform: skewY(-40deg);
-		  padding: 25px 0 0 0;
+		  padding: 60px 0 0 0;
 		}
 		.detail{
 			width: 100%;

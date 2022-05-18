@@ -50,6 +50,6 @@ if ($num>0) {
     // );
 } else {
     echo json_encode(
-        array("response" => false)
+        array("id" => false)
     );
 }

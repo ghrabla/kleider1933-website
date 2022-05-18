@@ -5,7 +5,8 @@
     <img v-bind:src="'../img/'+product.image" alt="" class="image" />
     <!-- </div> -->
     <!-- <img  v-bind:src="'../img/'+product.image" alt=""> -->
-    <div class="details-info">
+   <div class="details-info-all">
+      <div class="details-info">
       <span> name: </span>
       <div class="base">{{product.name}}</div>
       <span> price: </span>
@@ -23,13 +24,30 @@
         <a href="#" class="command" @click="showModal=true;"><i class="fa fa-check"></i> command now </a>
       </div>
     </div>
-    <div>
-      <img
-        src="../assets/free.svg"
-        alt=""
-        style="width: 66%; margin-top: 17%"
-      />
+    
+    <div class="details-two">
+      <span> title: </span>
+      <div class="base">{{product.title}}</div>
+      <span> reviews: </span>
+       <img src="../assets/image/revstars.jpg" alt="" style="    width: 75%;
+    height: 8vh;" />
+      <span> Quantity: </span>
+       <div class="">
+    <button
+      class=""
+      @click="increment">
+      Increment
+    </button>
+    {{ number }}
+    <button
+      class=""
+      @click="decrement">
+      Decrement
+    </button>
+  </div>
+      
     </div>
+   </div>
   </div>
 
  <div class="popup-all"  
@@ -64,6 +82,7 @@ import Cookies from 'vue-cookies';
 export default {
   data() {
     return {
+      number : 1,
       showModal: false,
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
@@ -76,6 +95,12 @@ export default {
 
   },
   methods: {
+    increment() {
+      this.number++;
+    },
+    decrement() {
+      this.number--;
+    },
      
     sweetalertpanier() {
      Swal.fire('Saved!', '', 'success')
@@ -157,6 +182,19 @@ export default {
 </script>
 
 <style>
+
+.details-two span{
+  font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.details-info-all{
+  display: flex;
+  justify-content:flex-start;
+  border: 1px solid rgb(47, 46, 46);
+  padding: 10px 73px;
+  flex-grow: 2;
+}
 .add-title{
   text-align: center;
   padding: 17px;
@@ -201,18 +239,24 @@ button{
 
 .image {
   width: 30%;
+      width: 30%;
+    background-color: #e5e5e5;
+    padding: 54px 59px 0px 28px;
 }
 .details-all {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 60px 30px 100px 30px;
   /* flex-wrap: wrap; */
   font-family: "lato", sans-serif;
+  
 }
 .details-info {
   display: flex;
   flex-direction: column;
-  gap: 5%;
+  gap: 2%;
+  width: 100%;
+  
 }
 .details-info span {
   font-weight: bold;
@@ -220,17 +264,19 @@ button{
   text-transform: uppercase;
 }
 .base {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  color: #DAA520;
+  color: #131312;
   text-shadow: 1px 1px 2px black;
 }
 .add {
   text-decoration: none;
-  color: white;
-  background-color: #74d665;
+  color: black;
+  background-color: white;
   padding: 10px 49px;
+  border: 1px solid black;
   border-radius: 10px;
+  font-weight: bold;
 }
 .command {
   text-decoration: none;
@@ -238,6 +284,7 @@ button{
   background-color: black;
   padding: 10px 45px;
   border-radius: 10px;
+  font-weight: bold;
 }
 .add-div,
 .command-div {

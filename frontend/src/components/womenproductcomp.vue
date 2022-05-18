@@ -217,10 +217,10 @@ export default {
 		    box-shadow: 0px 1px 0px #00000020, -1px 0px 0px #ccc;
 		}
 		picture img {
-		  width: 95%;
+		  width: 65%;
 		  z-index: 1;
 		  transform: skewY(-40deg);
-		  padding: 25px 0 0 0;
+		  padding: 70px 0 0 0;
 		}
 		.detail{
 			width: 100%;
