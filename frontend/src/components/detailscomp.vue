@@ -31,7 +31,7 @@
       <div >{{product.title}}</div>
      <div class="reviews">
         <span> reviews: </span>
-       <img src="../assets/image/revstars.jpg" alt="" style="    width: 75%;
+       <img src="../assets/image/revstars-removebg-preview.png" alt="" style="    width: 75%;
     height: 10vh;" />
         </div>
      
@@ -58,10 +58,8 @@
    </div>
   </div>
 
-
-
   
-
+<div class="close-div-update" v-if="showModal"  @click="showModal=false;"></div>
  <div class="popup-all"  
         v-if="showModal" >
     <h3 class="add-title">command now <a href="#"  v-if="showModal=true" @click="showModal=false;"><i class="fa fa-times" aria-hidden="true" style="float: right;"></i></a></h3>
@@ -194,7 +192,14 @@ export default {
 </script>
 
 <style>
-
+.close-div-update{
+  width: 100%;
+    height: 100vh;
+    background-color: #1b1b1b42;
+    position: fixed;
+    top: 0%;
+    z-index: 88;
+}
 .reviews{
       margin-top: 40px;
 }

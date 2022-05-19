@@ -122,6 +122,8 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
@@ -148,6 +150,7 @@ export default {
         this.fetchData();
     },
     methods: {
+      
       	fetchData(){
 			axios.post('http://localhost/kleider1933-website/backend/API/products/search.php', {
 				query:this.query

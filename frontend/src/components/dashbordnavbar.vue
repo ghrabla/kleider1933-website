@@ -20,7 +20,7 @@
         <router-link to="/productdashboard">
       <a class="nav-link" href="#"
         ><i class="fa fa-product-hunt"></i> products</a></router-link>
-      <a class="nav-link" href="#"
+      <a class="nav-link" href="" @click="logout()"
         ><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
     </div>
   </nav>
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import router from '@/router';
+import Cookies from 'vue-cookies';
 export default {
   data() {
     return {
@@ -85,6 +87,12 @@ export default {
         // this.getadmins();
     },
   methods: {
+logout(){
+        // clearCookie('adminID');
+        Cookies.remove('adminId');
+        this.$router.push('/');
+      },
+
      getproducts(){
             axios.get('http://localhost/kleider1933-website/backend/API/products/read.php')
                 .then(response => this.products = response.data)
