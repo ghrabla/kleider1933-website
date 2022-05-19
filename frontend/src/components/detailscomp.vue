@@ -26,29 +26,41 @@
     </div>
     
     <div class="details-two">
-      <span> title: </span>
-      <div class="base">{{product.title}}</div>
-      <span> reviews: </span>
+      <div>
+        <span> title: </span>
+      <div >{{product.title}}</div>
+     <div class="reviews">
+        <span> reviews: </span>
        <img src="../assets/image/revstars.jpg" alt="" style="    width: 75%;
-    height: 8vh;" />
-      <span> Quantity: </span>
+    height: 10vh;" />
+        </div>
+     
+     </div>
+     <div>
+        <span> Quantity: </span>
        <div class="">
     <button
       class=""
       @click="increment">
-      Increment
+      +
     </button>
-    {{ number }}
+    <div style="text-shadow: 1px 1px 2px black;
+    font-size: 20px;">{{ number }}</div>
     <button
       class=""
       @click="decrement">
-      Decrement
+      -
     </button>
+     </div>
   </div>
       
     </div>
    </div>
   </div>
+
+
+
+  
 
  <div class="popup-all"  
         v-if="showModal" >
@@ -183,6 +195,17 @@ export default {
 
 <style>
 
+.reviews{
+      margin-top: 40px;
+}
+/* .details-two div,img{
+  margin-top: 10px;
+} */
+.details-two{
+  display: flex;
+    flex-direction: column;
+    gap: 8%;
+}
 .details-two span{
   font-weight: bold;
     letter-spacing: 1px;
@@ -194,6 +217,8 @@ export default {
   border: 1px solid rgb(47, 46, 46);
   padding: 10px 73px;
   flex-grow: 2;
+  border-bottom-right-radius: 22px;
+  border-top-right-radius: 22px;
 }
 .add-title{
   text-align: center;
@@ -209,6 +234,18 @@ button{
   margin-left: 40%;
   text-align: center;
   border-radius: 10px;
+
+}
+.details-two button{
+  display: block;
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+    margin-top: 15px;
+    margin-left: 40%;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: bold;
 
 }
 .popup-all{
@@ -242,6 +279,8 @@ button{
       width: 30%;
     background-color: #e5e5e5;
     padding: 54px 59px 0px 28px;
+    border-bottom-left-radius: 22px;
+    border-top-left-radius: 22px;
 }
 .details-all {
   display: flex;
@@ -266,8 +305,9 @@ button{
 .base {
   font-size: 18px;
   font-weight: bold;
-  color: #131312;
-  text-shadow: 1px 1px 2px black;
+  color: #555;
+    text-shadow: 1px 1px 2px black;
+    font-size: 20px;
 }
 .add {
   text-decoration: none;

@@ -80,7 +80,7 @@
           </li>
           <li>
             <a href="#" @click="showModal = true"
-              ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart">{{ shopcarts.length }}</span></a
+              ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart">{{ shopcarts.length  }}</span></a
             >
           </li>
           <li>

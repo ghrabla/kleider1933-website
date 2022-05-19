@@ -64,7 +64,7 @@
         <!-- <div  class="col col-1" data-label="First name">{{product.title}}</div> -->
         <div  class="col col-1" data-label="First name">{{product.gender}}</div>
         <div  class="col col-1" data-label="First name">{{product.type}}</div>
-        <div  class="col col-1" data-label="First name">{{product.image}}</div>
+        <div  class="col col-1" data-label="First name"><img  v-bind:src="'../img/'+product.image" alt="" class="img-pr"></div>
         <div class="col col-8 action-icon" data-label="Action">
          <a href="javascript:void(0)" @click="getproduct(product.id)"> <i  class="fa-solid fa-pen" @click="showModal=true;" ></i></a>
          <a href="javascript:void(0)" > <i  class="fa-solid fa-trash-can" @click="deleteproduct(product.id)" ></i></a>
@@ -248,6 +248,11 @@ export default {
 
 
 <style>
+.img-pr{
+  width: 43%;
+  height: 7vh;
+}
+
 .img-det{
   width: 47%;
     height: 50vh;
