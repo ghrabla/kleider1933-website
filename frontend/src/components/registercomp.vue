@@ -5,9 +5,9 @@
        <label><b>username <i class="fa fa-user" ></i> :</b></label>
        <input type="text" placeholder="username" v-model="user.fullname">
        <label><b>email <i class="fa fa-envelope" ></i> :</b></label>
-       <input type="text" placeholder="email" v-model="user.email">
+       <input type="email" placeholder="email" v-model="user.email">
        <label><b> Password <i class="fa-solid fa-key"></i> :</b></label>
-       <input type="text" placeholder="password " v-model="user.password">
+       <input type="password" placeholder="password " v-model="user.password">
        <input type="submit" name="" id="" value="register" class="btn-register" @click="adduser()">
    </div>
    <div><p>already have an account?</p>
@@ -43,6 +43,7 @@
                         'Added !',
                         'success'
                     )
+                    this.$router.push('/login');
                 })
                 .catch(err => console.log(err));
             }else{

@@ -8,6 +8,7 @@
 import Dashbordnavbar from "@/components/dashbordnavbar.vue"
 import Ordersdashboard from "@/components/Ordersdashboard.vue"
 import Footercomp from "@/components/footercomp.vue"
+import Cookies from 'vue-cookies'
 
 // import Navbar from "@/components/navbar.vue"
  export default {
@@ -18,6 +19,13 @@ import Footercomp from "@/components/footercomp.vue"
     Ordersdashboard,
     Footercomp,
     Dashbordnavbar
+},
+created(){
+  let checkcok = Cookies.get('adminId');
+  if(!checkcok){
+    this.$router.push('/loginadmin');
+    
+  }
 }
 }
 </script>

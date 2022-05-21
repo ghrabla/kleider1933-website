@@ -14,7 +14,8 @@
         </a>
         <h3 >products bascket</h3>
 
-        <div v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product"  >
+     <div v-if="checklogin || shopcarts.length==0">
+          <div  v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product"  >
           <img v-bind:src="'../img/'+shopcart.image" alt="">
           <div>
             <h3>{{ shopcart.name }}</h3>
@@ -26,8 +27,8 @@
           </div>
         </div>
         
-        
-      <div class="panier-btns">
+        <!-- <div v-else-if="response.data[0].status == false" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts</div> -->
+      <div class="panier-btns"  >
           <div class="add-div">
           <a href="#" class="add" @click="sweetalertpanier()"
             ><i class="fa fa-calculator" ></i> {{ shopcarts.length * 75 }}$
@@ -39,6 +40,9 @@
           </a>
         </div>
       </div>
+     </div>
+        <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts</div>
+        
       </div>
     </transition>
   </div>
@@ -80,17 +84,22 @@
           </li>
           <li>
             <a href="#" @click="showModal = true"
-              ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart">{{ shopcarts.length  }}</span></a
+              ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart" v-if="shopcarts.length>0">{{ shopcarts.length  }}</span></a
             >
           </li>
-          <li>
+          <li v-if="!checklogin">
             <router-link to="/login"
               ><a href="" class="login"
                 ><i class="fas fa-sign-in-alt mr-2"></i>login</a
               ></router-link
             >
           </li>
-          <li>
+                <li v-if="checklogin" >
+           <a href="" class="login" @click="logout()"
+                ><i class="fas fa-sign-in-alt mr-2"></i>logout</a
+              >
+          </li>
+          <li v-if="!checklogin" >
             <router-link to="/register"
               ><a href="" class="register" style="color: white"
                 ><i class="fas fa-user-plus mr-2"></i>register</a
@@ -109,11 +118,13 @@ export default {
   el: "#app",
   data() {
     return {
+       checklogin : Cookies.get('userId'),
       showMobileMenu: false,
       showModal: false,
       showlinks: false,
       shopcarts:[],
       shopcart:{},
+      message:''
       // totalp : null
       
     };
@@ -128,6 +139,10 @@ export default {
     //  totalp =  shopcarts.reduce((accumulator, current) => accumulator + current.price, 0)
     //  return this.totalp;
     // },
+   logout(){
+     Cookies.remove('userId');
+     this.$router.push('/');
+   },
      showlinksf() {
       this.showlinks = !this.showlinks;
     },
@@ -139,6 +154,10 @@ export default {
             +userId)
                 .then(response => {
 					this.shopcarts = response.data;
+          this.message =  console.log(response.data);
+          
+
+
 				})
                 .catch(err => console.log(err));
         },

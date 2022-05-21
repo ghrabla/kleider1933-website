@@ -15,16 +15,18 @@ import Footercomp from "@/components/footercomp.vue"
   components: {
       navbar,womenproductcomp,Footercomp   
 }, 
-  mounted() {
-	//   this.filterdata();
-    },
-	data(){
-		return {
-			// currentType: "all",
-		}
-	},
-    methods: {
+
+
+//   mounted() {
+// 	//   this.filterdata();
+//     },
+// 	data(){
+// 		return {
+// 			// currentType: "all",
+// 		}
+// 	},
+//     methods: {
          
-    }
+//     }
 }
 </script>

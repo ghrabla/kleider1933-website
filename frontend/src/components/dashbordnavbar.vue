@@ -5,6 +5,9 @@
         ><i class="fas fa-home mr-2"></i> Dashboard</a>
     </div>
     <div>
+      <i class="fas fa-bars" style="color: white;"></i>
+    </div>
+    <div class="navbar-menu">
       <a class="nav-link" href="#"
         ><i class="fas fa-users mr-2"></i> Users list</a>
 
@@ -234,5 +237,13 @@ button{
 }
 .nav-link{
     margin-right: 15px;
+}
+ @media screen and (max-width: 768px) {
+   
+   .navbar-menu{
+     display: flex;
+    flex-direction: column;
+    gap: 10px;
+   }
 }
 </style>

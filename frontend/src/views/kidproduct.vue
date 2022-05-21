@@ -17,5 +17,6 @@ import Footercomp from "@/components/footercomp.vue"
     
     
 }
+
 }
 </script>

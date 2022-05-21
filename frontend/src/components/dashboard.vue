@@ -122,6 +122,8 @@
 </template>
 
 <script>
+import router from '@/router';
+
 
 
 export default {
@@ -216,7 +218,6 @@ export default {
         },
          updateproduct() {
             axios.put('http://localhost/kleider1933-website/backend/API/products/update.php', {
-              
                  id : this.product.id,
                  name : this.product.name,
                  price : this.product.price,
@@ -245,7 +246,8 @@ export default {
         clearFields(){
             this.product = {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''};
         }
-}
+},
+
 };
 </script>
 
@@ -457,15 +459,17 @@ h2 {
     .table-header {
       display: none;
     }
-   
     li {
       display: block;
     }
     .col {
-      
       flex-basis: 100%;
-      
     }
+    .statistic,.search-profile{
+      flex-direction: column;
+    gap: 10px;
+    }
+
    
   }
 

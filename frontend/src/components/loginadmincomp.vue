@@ -3,9 +3,9 @@
        <div class="login-text"><h2>login admin</h2></div>
    <div class="login-inputs">
        <label><b>email <i class="fa fa-envelope" ></i> :</b></label>
-       <input type="text" placeholder="email" v-model="email">
+       <input type="email" placeholder="email" v-model="email">
        <label><b> Password <i class="fa-solid fa-key"></i> :</b></label>
-       <input type="text" placeholder="password " v-model="password">
+       <input type="password" placeholder="password " v-model="password" >
        <a  href="javascript:void(0)" class="btn-login" @click="login()" >login</a>
    </div>
    <!-- <div><p>you don't have an account?</p>
