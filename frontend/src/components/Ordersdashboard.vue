@@ -275,6 +275,226 @@ export default {
 
 
 <style>
+
+.img-pr{
+  width: 43%;
+  height: 7vh;
+}
+
+.img-det{
+  width: 47%;
+    height: 50vh;
+}
+.close-div-update{
+  width: 100%;
+    height: 100vh;
+    background-color: #1b1b1b42;
+    position: fixed;
+    top: 0%;
+    z-index: 88;
+}
+select{
+  padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: black;
+}
+body{
+  font-family: "lato", sans-serif;
+}
+.table-row a{
+  color: black;
+}
+button{
+  display: block;
+  padding: 15px 50px;
+  background-color: black;
+  color: white;
+  margin-top: 15px;
+  margin-left: 40%;
+  text-align: center;
+  border-radius: 10px;
+
+}
+.popup-all{
+  font-family: sans-serif;
+    position: absolute;
+    top: 11%;
+    right: 20%;
+    z-index: 99;
+    background-color: #E5E5E5;
+    padding: 0px 35px 20px;
+    border-radius: 10px;
+}
+.input-pop{
+    padding: 15px 480px 15px 10px;
+    border-radius: 10px;
+    border: solid 1px;
+    border-color: #b1b1b1;
+    margin-bottom: 20px;
+}
+.image{
+   padding: 15px 200px;
+}
+.popup-all label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.search-profile{
+      display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    font-family: sans-serif;
+}
+.profile {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.profile span{
+  margin-top: 15px;
+}
+.search::placeholder{
+  color:white;
+}
+.search{
+  padding: 20px 40px;
+    border-radius: 10px;
+    color: white;
+    border: solid 1px;
+    border-color: #b1b1b1;
+    margin-top: 10px;
+    padding: 12px 81px;
+    background-color: #26272e;
+}
+.sta-img{
+  padding: 9px 17px;
+    background-color: #26272e;
+    border-radius: 10px;
+   box-shadow: rgb(149 157 165 / 40%) 0px 8px 24px;
+}
+
+
+.sta-text{
+      color: #d3cccc;
+}
+.sta-number{
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.statistic{
+  display: flex;
+  justify-content: space-around;
+  margin: 4%;
+  font-family: sans-serif;
+}
+.sta-box{
+  display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background: black;
+    border-radius: 10px;
+}
+  .container1 {
+  font-family: 'lato', sans-serif;
+}
+.container1 {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+
+h2 {
+  font-size: 20px;
+  margin: 30px 0;
+  text-align: center;
+ 
+}
+ small {
+    font-size: 0.5em;
+  }
+
+
+  li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    align-items: center;
+   
+  }
+   .message{
+      width: 100%;
+      text-align: center;
+      color: lawngreen;
+    }
+  .table-header {
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.003em;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+   
+  }
+  .action-icon{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .col-1 {
+    flex-basis: 15%;
+  }
+  .col-2 {
+    flex-basis: 15%;
+  }
+  .col-3 {
+    flex-basis: 15%;
+  }
+  .col-4 {
+    flex-basis: 18%;
+  }
+  .col-5 {
+    flex-basis: 20%;
+  }
+  .col-6 {
+    flex-basis: 19%;
+  }
+  .col-7 {
+    flex-basis: 21%;
+  }
+  .col-8 {
+    flex-basis: 15%;
+        margin-left: 10%;
+  }
+  
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
+    }
+    li {
+      display: block;
+    }
+    .col {
+      flex-basis: 100%;
+    }
+    .statistic,.search-profile{
+      flex-direction: column;
+    gap: 10px;
+    }
+
+   
+  }
 .img-det{
   width: 47%;
     height: 50vh;

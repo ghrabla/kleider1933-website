@@ -8,7 +8,7 @@
     private $conn;
 
     // DB Connect
-    public function connect() {
+    public function connect() {    
       $this->conn = null;
 
       try { 

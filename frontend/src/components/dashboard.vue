@@ -252,7 +252,8 @@ export default {
 </script>
 
 
-<style>
+<style >
+
 .img-pr{
   width: 43%;
   height: 7vh;

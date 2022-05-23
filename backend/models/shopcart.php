@@ -14,6 +14,7 @@ class shopcart
   public $gender;
   public $type;
   public $image;
+  public $productId;
   public $userId;
   
 
@@ -43,6 +44,27 @@ class shopcart
     return $stmt;
   }
 
+  public function read_single()
+  {
+    // Create query
+    $query = "SELECT * FROM shopcart WHERE id= :id";
+
+    //Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam(1, $this->id);
+
+    // Execute query
+    $stmt->execute(["id"=>$this->id]);
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // set properties
+    $this->id = $row['id'];
+    $this->productId = $row['productId'];
+   
+  }
 
  public function create()
   {
@@ -56,6 +78,7 @@ class shopcart
       gender = :gender,
       type = :type,
       image = :image,
+      productId = :productId,
       userId = :userId
       ';
 
@@ -69,6 +92,7 @@ class shopcart
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->type = htmlspecialchars(strip_tags($this->type));
     $this->image = htmlspecialchars(strip_tags($this->image));
+    $this->productId = htmlspecialchars(strip_tags($this->productId));
     $this->userId = htmlspecialchars(strip_tags($this->userId));
     // Bind data
     $stmt->bindParam(':name', $this->name);
@@ -77,6 +101,7 @@ class shopcart
     $stmt->bindParam(':gender', $this->gender);
     $stmt->bindParam(':type', $this->type);
     $stmt->bindParam(':image', $this->image);
+    $stmt->bindParam(':productId', $this->productId);
     $stmt->bindParam(':userId', $this->userId);
     // Execute query
     if ($stmt->execute()) {

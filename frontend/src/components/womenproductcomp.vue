@@ -122,7 +122,7 @@ export default {
 
 
 
-<style>
+<style >
   		:root{
 			--gra: black;
 		}

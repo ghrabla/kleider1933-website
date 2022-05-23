@@ -46,6 +46,7 @@ create table shopcart(
    gender varchar(90) not null,
    type varchar(90) not null,
    image varchar(90) not null,
+   productId int ,
    userId int ,
    FOREIGN KEY (userId) REFERENCES users(id) 
 );

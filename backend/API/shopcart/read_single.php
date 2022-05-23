@@ -1,4 +1,5 @@
 <?php
+
   // Headers
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
@@ -17,34 +18,24 @@
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
-
-  // Instantiate blog post object
+  // Instantiate blog shopcart object
   $shopcart = new shopcart($db);
 
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
+  // Get ID
+  $shopcart->id = isset($_GET['id']) ? $_GET['id'] : die();
 
   
 
-  $shopcart->name = $data->name;
-  $shopcart->price = $data->price;
-  $shopcart->title = $data->title;
-  $shopcart->gender = $data->gender;
-  $shopcart->type = $data->type;
-  $shopcart->image = $data->image;
-  $shopcart->productId = $data->productId;
-  $shopcart->userId = $data->userId;
-  
+  // Get post
+  $shopcart->read_single();
 
-  
+  // Create array
+  $shopcart_arr = array(
+    
+    'id' => $shopcart->id,
+    'productId' => $shopcart->productId,
 
-  // Create shopcart
-  if($shopcart->create()) {
-    echo json_encode(
-      array('message' => 'shopcart Created','response'=>true)
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'shopcart Not Created' , 'response'=>false)
-    );
-  }
+  );
+
+  // Make JSON
+  print_r(json_encode($shopcart_arr));

@@ -67,7 +67,7 @@ methods: {
 
 </script>
 
-<style>
+<style >
    label{
        /* text-align: center; */
        margin: 0px 30%;

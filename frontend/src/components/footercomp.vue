@@ -37,7 +37,7 @@
    <p class="footer-p">kleider1933 © 2022 kamalghrabla Ltd All rights reserved.</p>
   </footer>
 </template>
-<style>
+<style scoped>
 
 
 .footer{

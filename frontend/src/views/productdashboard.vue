@@ -30,3 +30,4 @@ beforeMount(){
 }
 }
 </script>
+<!-- <style scoped></style> -->

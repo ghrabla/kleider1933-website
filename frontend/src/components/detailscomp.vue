@@ -163,12 +163,14 @@ export default {
         addshopcart(){
             if(this.product.name !== '' && this.product.price !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
-                    name : this.product.name,
+
+                  name : this.product.name,
                     price : this.product.price,
                     title : this.product.title,
                     gender : this.product.gender,
                     type : this.product.type,
                     image : this.product.image,
+                    productId : this.product.id,
                     userId : Cookies.get('userId')
                     
                 })
@@ -191,7 +193,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .close-div-update{
   width: 100%;
     height: 100vh;

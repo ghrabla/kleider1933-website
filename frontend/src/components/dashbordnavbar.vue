@@ -4,10 +4,10 @@
       <a class="navbar-brand" href="http://localhost:8080/"
         ><i class="fas fa-home mr-2"></i> Dashboard</a>
     </div>
-    <div>
+    <div @click="showmenu()" class="burger">
       <i class="fas fa-bars" style="color: white;"></i>
     </div>
-    <div class="navbar-menu">
+    <div class="navbar-menu" :class="this.show ? 'open-menu' : 'closed-menu'">
       <a class="nav-link" href="#"
         ><i class="fas fa-users mr-2"></i> Users list</a>
 
@@ -75,6 +75,7 @@ import Cookies from 'vue-cookies';
 export default {
   data() {
     return {
+      show : false,
       showModal: false,
       showModaladm :false,
       admins : [],
@@ -90,6 +91,7 @@ export default {
         // this.getadmins();
     },
   methods: {
+    showmenu(){this.show = !this.show},
 logout(){
         // clearCookie('adminID');
         Cookies.remove('adminId');
@@ -163,9 +165,12 @@ logout(){
 };
 </script>
 
-<style>
+<style scoped>
 router-link{
     text-decoration: none !important;
+}
+.burger{
+  display: none;
 }
 .close-div{
   width: 100%;
@@ -223,6 +228,7 @@ button{
   font-weight: bold;
 }
 .navbar {
+  font-family: "lato", sans-serif;
   display: flex;
   justify-content: space-between;
   padding: 3%;
@@ -239,7 +245,9 @@ button{
     margin-right: 15px;
 }
  @media screen and (max-width: 768px) {
-   
+   .burger{
+     display: block;
+   }
    .navbar-menu{
      display: flex;
     flex-direction: column;

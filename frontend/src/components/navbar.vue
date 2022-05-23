@@ -16,6 +16,8 @@
 
      <div v-if="checklogin || shopcarts.length==0">
           <div  v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product"  >
+          <a href="/details" @click="getCookie(shopcart.id)">more
+            </a>
           <img v-bind:src="'../img/'+shopcart.image" alt="">
           <div>
             <h3>{{ shopcart.name }}</h3>
@@ -139,6 +141,18 @@ export default {
     //  totalp =  shopcarts.reduce((accumulator, current) => accumulator + current.price, 0)
     //  return this.totalp;
     // },
+     getCookie(id){
+		   
+            axios.post('http://localhost/kleider1933-website/backend/API/shopcart/read_single.php?id=' + id)
+                .then(response => {
+                    this.shopcart = response.data;
+          Cookies.set('id',this.shopcart.productId);
+          console.log(Cookies.get('id'));
+                })
+                .catch(err => console.log(err));
+       
+         // it gets the cookie called `username`
+     },
    logout(){
      Cookies.remove('userId');
      this.$router.push('/');
@@ -154,7 +168,7 @@ export default {
             +userId)
                 .then(response => {
 					this.shopcarts = response.data;
-          this.message =  console.log(response.data);
+          // this.message =  console.log(response.data);
           
 
 
@@ -192,7 +206,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body{
   font-family: "lato", sans-serif;
 }

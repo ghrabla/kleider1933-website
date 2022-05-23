@@ -78,7 +78,7 @@
 
      </section>
 </template>
-<style>
+<style >
 
 .container-pics {
   display: flex;

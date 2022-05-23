@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
             'gender' => $gender,
             'type' => $type,
             'image' => $image,
+            'productId' => $productId,
             'userId' => $userId
 
             // 'name' => $name
