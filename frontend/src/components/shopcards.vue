@@ -28,9 +28,9 @@
 					</picture>
 					<div class="detail">
 						<p class="icon">
+							<span><i class="fa fa-shopping-cart"></i></span>
 						   <span><i class="far fa-heart"></i></span>
 						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
 						</p>
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.type}}</strong>

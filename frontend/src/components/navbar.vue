@@ -207,6 +207,7 @@ export default {
 </script>
 
 <style scoped>
+
 body{
   font-family: "lato", sans-serif;
 }

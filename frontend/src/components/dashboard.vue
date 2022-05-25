@@ -57,7 +57,7 @@
       <div class="col col-8"><i class="fa fa-cog fa-spin fa-fw"></i> Action</div>
     </li>
     
-     <li  class="table-row" v-for="product in products" :key="product.id" >
+     <li  class="table-row" v-for="product in displayedproducts" :key="product.id" >
       <div style="display: flex;width: 100%;align-items: center;">
         <div  class="col col-1" data-label="First name">{{product.name}}</div>
         <div  class="col col-1" data-label="First name">{{product.price}}</div>
@@ -72,6 +72,19 @@
         </div>
       </div>
     </li>
+    <div aria-label="Page navigation example">
+                  <ul class="pagination">
+                      <!-- <li class="page-item"> -->
+                        <!-- </li> -->
+                      <li class="page-item">
+                          <a href="javascript:void(0)" class="page-link" v-if="page != 1" @click="page--"> Previous </a>
+                          <a href="javascript:void(0)" class="page-link" v-for="pageNumber in pages.slice(page-1, page+5)" @click="page = pageNumber"> {{pageNumber}} </a>
+                          <a href="javascript:void(0)" @click="page++" v-if="page < pages.length" class="page-link"> Next </a>
+                      </li>
+                      <!-- <li class="page-item"> -->
+                      <!-- </li> -->
+                  </ul>
+    </div>	
   </ul>
 </div>
 
@@ -141,7 +154,10 @@ export default {
        order : {},
        allData:'',
 		query:'',
-		nodata:false
+		nodata:false,
+     page: 1,
+              perPage: 5,
+              pages: [],
     };
   },
   created() {
@@ -152,8 +168,20 @@ export default {
         this.fetchData();
     },
     methods: {
-      
-      	fetchData(){
+          setPages () {
+              let numberOfPages = Math.ceil(this.products.length / this.perPage);
+              for (let index = 1; index <= numberOfPages; index++) {
+                  this.pages.push(index);
+              }
+          },
+          paginate (products) {
+              let page = this.page;
+              let perPage = this.perPage;
+              let from = (page * perPage) - perPage;
+              let to = (page * perPage);
+              return  products.slice(from, to);
+          }
+      	,fetchData(){
 			axios.post('http://localhost/kleider1933-website/backend/API/products/search.php', {
 				query:this.query
 			}).then(function(response){
@@ -247,13 +275,38 @@ export default {
             this.product = {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''};
         }
 },
+  computed: {
+          displayedproducts () {
+              return this.paginate(this.products);
+          }
+      },
+      watch: {
+          products () {
+              this.setPages();
+          }
+      },
+      filters: {
+          trimWords(value){
+              return value.split(" ").splice(0,20).join(" ") + '...';
+          }
+      }
 
 };
 </script>
 
 
 <style >
-
+.page-item{
+      border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    align-items: center;
+}
+.page-item a{
+  color: black;
+}
 .img-pr{
   width: 43%;
   height: 7vh;
@@ -294,6 +347,8 @@ button{
   border-radius: 10px;
 
 }
+
+
 .popup-all{
   font-family: sans-serif;
     position: absolute;

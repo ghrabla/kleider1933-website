@@ -81,7 +81,7 @@
     <input type="text" placeholder="Adresse" class="input-pop" v-model="order.adresse">
      <label for="">Postale code*</label>
     <input type="text" placeholder="Postale code" class="input-pop" v-model="order.postale">
-    <button @click="addorder()">send</button>
+    <button @click="addorder()" >send</button>
   </div>
 
 </template>
@@ -110,6 +110,9 @@ export default {
     },
     decrement() {
       this.number--;
+      if(this.number<1){
+        this.number++;
+      }
     },
      
     sweetalertpanier() {
@@ -201,6 +204,7 @@ export default {
     position: fixed;
     top: 0%;
     z-index: 88;
+    cursor: pointer;
 }
 .reviews{
       margin-top: 40px;
@@ -222,7 +226,7 @@ export default {
   display: flex;
   justify-content:flex-start;
   border: 1px solid rgb(47, 46, 46);
-  padding: 10px 73px;
+  padding: 30px 73px;
   flex-grow: 2;
   border-bottom-right-radius: 22px;
   border-top-right-radius: 22px;
@@ -241,7 +245,7 @@ button{
   margin-left: 40%;
   text-align: center;
   border-radius: 10px;
-
+cursor: pointer;
 }
 .details-two button{
   display: block;
@@ -264,6 +268,7 @@ button{
     background-color: #E5E5E5;
     padding: 0px 35px 20px;
     border-radius: 10px;
+    transition: all 1s ease;
 }
 .input-pop{
     padding: 15px 480px 15px 10px;
@@ -310,11 +315,14 @@ button{
   text-transform: uppercase;
 }
 .base {
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
-    text-shadow: 1px 1px 2px black;
+  /* font-size: 18px;
+  font-weight: bold; */
+    color: rgb(27, 54, 15);
     font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+    font-family: fantasy;
+    letter-spacing: 2px;
 }
 .add {
   text-decoration: none;
@@ -346,7 +354,18 @@ button{
     margin: 6% 0%;
   }
   .image {
-    width: 100%;
+    width: 75%;
+        border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+  .details-info-all{
+    border-radius: 0px;
+    flex-direction: column-reverse;
+    padding: 10%;
+  }
+  .add,.command{
+    padding: 10px 18px;
+    margin-bottom: 10px;
   }
 }
 </style>
