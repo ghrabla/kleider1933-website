@@ -74,15 +74,11 @@
     </li>
     <div aria-label="Page navigation example">
                   <ul class="pagination">
-                      <!-- <li class="page-item"> -->
-                        <!-- </li> -->
                       <li class="page-item">
                           <a href="javascript:void(0)" class="page-link" v-if="page != 1" @click="page--"> Previous </a>
                           <a href="javascript:void(0)" class="page-link" v-for="pageNumber in pages.slice(page-1, page+5)" @click="page = pageNumber"> {{pageNumber}} </a>
                           <a href="javascript:void(0)" @click="page++" v-if="page < pages.length" class="page-link"> Next </a>
                       </li>
-                      <!-- <li class="page-item"> -->
-                      <!-- </li> -->
                   </ul>
     </div>	
   </ul>
@@ -285,17 +281,12 @@ export default {
               this.setPages();
           }
       },
-      filters: {
-          trimWords(value){
-              return value.split(" ").splice(0,20).join(" ") + '...';
-          }
-      }
 
 };
 </script>
 
 
-<style >
+<style scoped>
 .page-item{
       border-radius: 3px;
     padding: 25px 30px;
@@ -306,6 +297,7 @@ export default {
 }
 .page-item a{
   color: black;
+  text-decoration: none;
 }
 .img-pr{
   width: 43%;

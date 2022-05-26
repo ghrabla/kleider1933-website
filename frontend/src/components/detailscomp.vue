@@ -45,7 +45,7 @@
       +
     </button>
     <div style="text-shadow: 1px 1px 2px black;
-    font-size: 20px;">{{ number }}</div>
+    font-size: 20px;" >{{ number }}</div>
     <button
       class=""
       @click="decrement">
@@ -167,7 +167,7 @@ export default {
             if(this.product.name !== '' && this.product.price !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
 
-                  name : this.product.name,
+                    name : this.product.name,
                     price : this.product.price,
                     title : this.product.title,
                     gender : this.product.gender,
@@ -175,6 +175,7 @@ export default {
                     image : this.product.image,
                     productId : this.product.id,
                     userId : Cookies.get('userId')
+                    
                     
                 })
                 .then(response => {

@@ -58,7 +58,7 @@
       <div class="col col-8"><i class="fa fa-cog fa-spin fa-fw"></i> Action</div>
     </li>
     
-     <li v-for="order in orders" class="table-row" >
+     <li v-for="order in displayedorders" class="table-row" >
       <div style="display: flex;width: 100%;align-items: center;">
         <div  class="col col-1" data-label="First name">{{order.fullname }}</div>
         <div  class="col col-1" data-label="First name">{{order.phone }}</div>
@@ -73,6 +73,15 @@
         </div>
       </div>
     </li>
+     <div aria-label="Page navigation example">
+                  <ul class="pagination">
+                      <li class="page-item">
+                          <a href="javascript:void(0)" class="page-link" v-if="page != 1" @click="page--"> Previous </a>
+                          <a href="javascript:void(0)" class="page-link" v-for="pageNumber in pages.slice(page-1, page+5)" @click="page = pageNumber"> {{pageNumber}} </a>
+                          <a href="javascript:void(0)" @click="page++" v-if="page < pages.length" class="page-link"> Next </a>
+                      </li>
+                  </ul>
+    </div>
   </ul>
 </div>
 
@@ -143,22 +152,7 @@
     <input type="text" placeholder="order adresse" class="input-pop" v-model="order.adresse" disabled>
     <label for="">postale*</label>
     <input type="text" placeholder="order postale" class="input-pop" v-model="order.postale" disabled>
-     <!-- <label for="">Title*</label>
-    <input type="text" placeholder="order Title" class="input-pop" v-model="order.title" disabled>
-    <label for="">Gender*</label>
-  <select name="gender" id="gender" v-model="order.gender" disabled>
-  <option value="" selected disabled>Please select a gender</option>
-  <option value="man">man</option>
-  <option value="woman">woman</option>
-  <option value="kid">kid</option>
-</select>
-     <label for="">Type*</label>
-    <input type="text" placeholder="order Type" class="input-pop" v-model="order.type" disabled>
-     <label for="">Price*</label>
-    <input type="text" placeholder="order Price" class="input-pop" v-model="order.price" disabled> -->
     
-    <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
-    <!-- <button @click="updateproduct()">valide</button> -->
   </div>
 </template>
 
@@ -176,6 +170,11 @@ export default {
        order : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',fullname:'',phone : '',email:'',city:'',adresse:'',postale:''},
        products : [],
        product : {},
+       query:'',
+		nodata:false,
+     page: 1,
+              perPage: 2,
+              pages: [],
     };
   },
   created() {
@@ -185,7 +184,20 @@ export default {
         this.getusers();
     },
     methods: {
-       getadmins(){
+      setPages () {
+              let numberOfPages = Math.ceil(this.orders.length / this.perPage);
+              for (let index = 1; index <= numberOfPages; index++) {
+                  this.pages.push(index);
+              }
+          },
+          paginate (orders) {
+              let page = this.page;
+              let perPage = this.perPage;
+              let from = (page * perPage) - perPage;
+              let to = (page * perPage);
+              return  orders.slice(from, to);
+          }
+       ,getadmins(){
             axios.get('http://localhost/kleider1933-website/backend/API/admins/read.php')
                 .then(response => this.admins = response.data)
                 .catch(err => console.log(err));
@@ -269,13 +281,35 @@ export default {
         clearFields(){
             this.product = {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''};
         }
-}
+},
+ computed: {
+          displayedorders () {
+              return this.paginate(this.orders);
+  
+          }
+      },
+      watch: {
+          orders () {
+              this.setPages();
+          }
+      },
 };
 </script>
 
 
 <style>
-
+.page-item{
+      border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    align-items: center;
+}
+.page-item a{
+  color: black;
+  text-decoration: none;
+}
 .img-pr{
   width: 43%;
   height: 7vh;
