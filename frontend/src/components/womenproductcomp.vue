@@ -10,13 +10,12 @@
 				<li @click="currentType = 'Accessories'" data-filter="Accessories"><a href="#">Accessories</a></li>
 			</ul>
 			<div class="filter-condition">
-				<div class="span-select">
+				<div class="span-select" style="display: flex; flex-direction: column;">
                     <span>View As a</span>
-				<select name="" id="select">
-					<option value="Default">Default</option>
-					<option value="LowToHigh">Low to high</option>
-					<option value="HighToLow">High to low</option>
-				</select>
+					<a href="" @click="sort0()"  class="sort-links">default</a>
+					<a href="javascript:void(0)" @click="sort1()"  class="sort-links">Low to high</a>
+					<a href="javascript:void(0)" @click="sort2()" class="sort-links">High to low</a>
+				<!-- </select> -->
                 </div>
 			</div>
 		</header>
@@ -25,20 +24,19 @@
 				<li data-category="" data-price="" v-for="product in products.filter(p => p.type === currentType || currentType === 'all')" :key="product.id">
 					<picture>
 					    <img  v-bind:src="'../img/'+product.image" alt="">
-						<!-- <img  src="../assets/image/kamal.jpg" alt=""> -->
 					</picture>
 					<div class="detail">
 						<p class="icon">
+							<span @click="getpush(product.id)"><i class="fa fa-shopping-cart"></i></span>
 						   <span><i class="far fa-heart"></i></span>
 						   <span><i class="far fa-share-square"></i></span>
-						   <span><i class="fas fa-shopping-basket"></i></span>
 						</p>
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.type}}</strong>
 						<span>{{product.title}}</span>
 						<a href="/details" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
-					<h4>${{product.price}}</h4>
+					<h4>${{product.price}}</h4> 
 				</li>
 
 				
@@ -55,16 +53,52 @@ export default {
 		currentType: "all",
       showModal: false,
        products : [],
-       product : {id:''},
-	//    proid: {id}
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
     };
   },
    mounted() {
 	   this.getproducts();
 	   this.colorchanger();
     },
+	
   methods: {
-	  
+ 
+	//  sort0(){
+	// 	 this.products[Math.floor(Math.random()*items.length)];
+	//  },
+	 sort1(){
+		 this.products.sort((a, b) =>(a.price > b.price ? 1 : -1));
+	 },
+	 sort2(){
+		 this.products.sort((a, b) =>(a.price > b.price ? -1 : 1));
+	 },
+
+
+   async getpush(id){
+   axios.all([
+  await axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
+                .then(response => {
+					this.product = response.data;
+                }),
+     axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
+				  
+                    name : this.product.name,
+                    price : this.product.price,
+                    title : this.product.title,
+                    gender : this.product.gender,
+                    type : this.product.type,
+                    image : this.product.image,
+                    productId : this.product.id,
+                    userId : Cookies.get('userId')
+                    
+                    
+                })
+ ])
+ .then(response => {
+                    Swal.fire('Saved!', '', 'success')
+                })
+ },
+
 	  colorchanger(){
       	let field = document.querySelector('.items');
 		let li = Array.from(field.children);
@@ -103,13 +137,13 @@ export default {
           console.log(Cookies.get('id'));
                 })
                 .catch(err => console.log(err));
-       
-         // it gets the cookie called `username`
      },
      getproducts(){
             axios.get('http://localhost/kleider1933-website/backend/API/products/read_woman.php',)
                 .then(response => {
 					this.products = response.data;
+					
+					console.log(this.products)
 				})
                 .catch(err => console.log(err));
         },
@@ -137,14 +171,6 @@ export default {
 			margin: 60px auto;
 			font-family: sans-serif;
 		}
-		/* header{
-			width: 100%;
-			height: 100px;
-			border-bottom: 2px solid #e5e5e5;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		} */
 		header ul li{
 			list-style: none;
 			padding: 20px;
@@ -165,6 +191,13 @@ export default {
 		header ul li.active a{
 			color: white;
 			font-weight: bold;
+		}
+		.sort-links{
+			color: var(--gra);
+			font-size: 15px;
+			text-decoration: none;
+			font-weight: bold;
+			margin-top: 4px;
 		}
 		.filter-condition{
 			padding: 20px;
@@ -217,10 +250,10 @@ export default {
 		    box-shadow: 0px 1px 0px #00000020, -1px 0px 0px #ccc;
 		}
 		picture img {
-		  width: 65%;
+		  width: 95%;
 		  z-index: 1;
 		  transform: skewY(-40deg);
-		  padding: 70px 0 0 0;
+		  padding: 25px 0 0 0;
 		}
 		.detail{
 			width: 100%;

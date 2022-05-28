@@ -274,7 +274,11 @@ export default {
   computed: {
           displayedproducts () {
               return this.paginate(this.products);
-          }
+          },
+        
+
+      
+          
       },
       watch: {
           products () {

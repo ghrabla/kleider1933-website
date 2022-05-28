@@ -44,8 +44,8 @@
       @click="increment">
       +
     </button>
-    <div style="text-shadow: 1px 1px 2px black;
-    font-size: 20px;" >{{ number }}</div>
+    <div style="    font-weight: bold;
+    font-size: 23px;" >{{ number }}</div>
     <button
       class=""
       @click="decrement">
