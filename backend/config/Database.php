@@ -4,7 +4,7 @@
     private $host = 'localhost';
     private $db_name = 'kleider';
     private $username = 'root';
-    private $password = '';
+    private $password = 'root';
     private $conn;
 
     // DB Connect

@@ -211,4 +211,23 @@ class product
 
     // return false;
   }
+
+
+  public function search($keywords)
+  {
+    // Create query
+    $query = 'SELECT * FROM ' . $this->table . '
+    WHERE name LIKE ? OR title LIKE ? OR type LIKE ?';
+
+    // Prepare Statement
+    $stmt = $this->conn->prepare($query);
+    //executing the query
+    $keywords = htmlspecialchars(strip_tags($keywords));
+    $keywords = "%{$keywords}%";
+    $stmt->bindParam(1, $keywords);
+    $stmt->bindParam(2, $keywords);
+    $stmt->bindParam(3, $keywords);
+    $stmt->execute();
+
+  }
 }
