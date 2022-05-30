@@ -87,7 +87,7 @@
           <li>
             <a href="#" @click="showModal = true"
               ><i class="fa fa-shopping-cart"></i>bascket <span class="many-cart" v-if="shopcarts.length>0">{{ shopcarts.length  }}</span></a
-            >
+            > 
           </li>
           <li v-if="!checklogin">
             <router-link to="/login"

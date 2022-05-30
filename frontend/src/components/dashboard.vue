@@ -5,7 +5,7 @@
     left: 50px;
     top: 140px;
     color: white;"></i>
-  <input type="text" placeholder="search items..." class="search" v-model="query" @keyup="fetchData()">
+  <input type="text" placeholder="search items..." class="search" v-model="keyword" >
  </div>
  <div class="profile">
 <!-- <i class="fa fa-envelope fa-2x" aria-hidden="true" style="color: aquamarine;"></i> -->
@@ -57,7 +57,7 @@
       <div class="col col-8"><i class="fa fa-cog fa-spin fa-fw"></i> Action</div>
     </li>
     
-     <li  class="table-row" v-for="product in displayedproducts" :key="product.id" >
+     <li  class="table-row" v-for="product in filteredList" :key="product.id" >
       <div style="display: flex;width: 100%;align-items: center;">
         <div  class="col col-1" data-label="First name">{{product.name}}</div>
         <div  class="col col-1" data-label="First name">{{product.price}}</div>
@@ -149,7 +149,7 @@ export default {
        orders : [],
        order : {},
        allData:'',
-		query:'',
+		keyword:'',
 		nodata:false,
      page: 1,
               perPage: 5,
@@ -272,9 +272,13 @@ export default {
         }
 },
   computed: {
-          displayedproducts () {
-              return this.paginate(this.products);
-          },
+          // displayedproducts () {
+          //     return this.paginate(this.products);
+          // },
+           filteredList() {
+             let data = this.products.filter( product => product.name.toLowerCase().includes(this.keyword));
+             return this.paginate(data);
+    }
         
 
       

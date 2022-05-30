@@ -32,7 +32,7 @@
 						   <span><i class="far fa-share-square"></i></span>
 						</p>
 						<input type="hidden" v-model="product.id">
-						<strong>{{product.type}}</strong>
+						<strong>{{product.name}}</strong>
 						<span>{{product.title}}</span>
 						<a href="/details" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
