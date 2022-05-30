@@ -21,6 +21,7 @@ $login = new admin($db);
 $data = json_decode(file_get_contents("php://input"));
 $login->email = $data->email;
 $login->password = $data->password;
+$login->fullname = $data->fullname;
 
 $result = $login->login();
 
@@ -38,6 +39,7 @@ if ($num>0) {
         'id' => $id,
         'email' => $email,
         'password' => $password,
+        'fullname' => $fullname,
       );
       
       array_push($login_arr, $login_item);

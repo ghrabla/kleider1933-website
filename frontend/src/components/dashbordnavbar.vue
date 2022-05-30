@@ -176,7 +176,7 @@ router-link{
   width: 100%;
     height: 200vh;
     background-color: #1b1b1b42;
-    position: fixed;
+    position: absolute;
     z-index: 88;
 }
 select{
@@ -211,6 +211,11 @@ button{
     background-color: #E5E5E5;
     padding: 0px 35px 20px;
     border-radius: 10px;
+}
+.popup-all h2{
+  font-size: 20px;
+    text-align: center;
+    padding: 20px;
 }
 .input-pop{
     padding: 15px 480px 15px 10px;

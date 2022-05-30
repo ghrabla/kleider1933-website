@@ -44,6 +44,7 @@
       </div>
      </div>
         <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts</div>
+        <img v-if="this.message!=true" src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas">
         
       </div>
     </transition>
@@ -215,7 +216,10 @@ header,
 nav {
   font-family: sans-serif;
 }
-
+.empty-bas{
+      height: 48vh;
+    margin-top: 33%;
+}
 .product-links{
     position: absolute;
     display: flex;

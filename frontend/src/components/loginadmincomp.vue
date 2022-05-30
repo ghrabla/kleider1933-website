@@ -43,7 +43,9 @@ methods: {
 
         if (respon.data[0].status != false) {
           Cookies.set('adminId',respon.data[0].id);
+          Cookies.set('adminname',respon.data[0].fullname);
           console.log(Cookies.get('adminId'));
+          console.log(Cookies.get('adminname'));
           this.$router.push('/productdashboard')
         // alert("User exist");
 

@@ -9,7 +9,8 @@
        <a  href="javascript:void(0)" class="btn-login" @click="login()" >login</a>
    </div>
    <div><p>you don't have an account?</p>
-   <h3><a href="">register</a></h3>
+   <router-link to="/register"><h3><a href="javascript:void(0)">Register</a></h3></router-link>
+   
    </div>
    </div>
 

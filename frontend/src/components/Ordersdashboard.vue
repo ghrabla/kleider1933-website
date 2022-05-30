@@ -2,7 +2,7 @@
 <div class="search-profile">
  <div>
     <i class="fa fa-search" aria-hidden="true" style="position: absolute;
-    left: 50px;
+    left: 134px;
     top: 140px;
     color: white;"></i>
   <input type="text" placeholder="search items..." class="search" v-model="keyword">
@@ -10,7 +10,7 @@
  <div class="profile">
 <!-- <i class="fa fa-envelope fa-2x" aria-hidden="true" style="color: aquamarine;"></i> -->
    <img src="../assets/kamal.svg" alt="">
-   <span style="font-weight: bold;">Kamal Rhrabla</span>
+   <span style="font-weight: bold;">{{ adminname }}</span>
  </div>
   
 </div>
@@ -156,7 +156,11 @@
   </div>
 </template>
 
+
+
 <script>
+import Cookies from 'vue-cookies'
+
 export default {
   data() {
     return {
@@ -175,6 +179,7 @@ export default {
      page: 1,
               perPage: 2,
               pages: [],
+              adminname:Cookies.get('adminname'),
     };
   },
   created() {
@@ -289,7 +294,7 @@ export default {
           // }
 
               filteredList() {
-             return this.paginate(this.orders.filter( order => order.name.toLowerCase().includes(this.keyword)));
+             return this.paginate(this.orders.filter( order => order.fullname.toLowerCase().includes(this.keyword)));
     }
       },
       watch: {
@@ -380,11 +385,12 @@ button{
   font-weight: bold;
 }
 
-.search-profile{
-      display: flex;
-    justify-content: space-between;
-    margin: 20px;
-    font-family: sans-serif;
+.search-profile {
+  display: flex !important; 
+  justify-content: space-around !important;
+  gap: 26.5rem !important;
+  margin: 20px !important;
+  font-family: sans-serif !important;
 }
 .profile {
   display: flex;

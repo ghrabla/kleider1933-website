@@ -11,7 +11,7 @@
        <input type="submit" name="" id="" value="register" class="btn-register" @click="adduser()">
    </div>
    <div><p>already have an account?</p>
-   <h3><a href="javascript:void(0)" >login</a></h3>
+   <router-link to="/login"><h3><a href="javascript:void(0)">Login</a></h3></router-link>
    </div>
    </div>
 

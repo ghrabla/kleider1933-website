@@ -129,7 +129,7 @@ export default {
    
   
    addorder(){
-            if(this.product.name !== '' && this.product.price !== ''){
+            if(this.order.city !== '' && this.order.fullame !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
                     name : this.product.name,
                     price : this.product.price,
