@@ -287,7 +287,8 @@
 <script>
 import router from "@/router";
 import Cookies from "vue-cookies";
-
+ import axios from 'axios';
+import Swal from 'sweetalert2';
 export default {
   data() {
     return {

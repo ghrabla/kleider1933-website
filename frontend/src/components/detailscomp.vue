@@ -10,7 +10,7 @@
       <span> name: </span>
       <div class="base">{{product.name}}</div>
       <span> price: </span>
-      <div class="base">{{product.price}}$</div>
+      <div class="base" id="amount" v-bind:data-amount="product.price">{{product.price}}$</div>
       <span> gender: </span>
       <div class="base">{{product.gender}}</div>
       <span> type: </span>
@@ -57,8 +57,6 @@
     </div>
    </div>
   </div>
-
-  
 <div class="close-div-update" v-if="showModal"  @click="showModal=false;"></div>
  <div class="popup-all"  
         v-if="showModal" >
@@ -83,11 +81,27 @@
     <input type="text" placeholder="Postale code" class="input-pop" v-model="order.postale">
     <button @click="addorder()" >send</button>
   </div>
+     <div id="paypal-button-container" style="text-align:center;"></div>
 
 </template>
 
 <script>
 import Cookies from 'vue-cookies';
+ import axios from 'axios';
+import Swal from 'sweetalert2';
+ paypal.Buttons({ 
+    
+    createOrder: function(data, actions) {
+  
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    }}).render('#paypal-button-container');
+
 
 export default {
   data() {
@@ -105,6 +119,10 @@ export default {
 
   },
   methods: {
+
+  
+
+
     increment() {
       this.number++;
     },
@@ -265,7 +283,7 @@ cursor: pointer;
     position: absolute;
     top: 11%;
     right: 20%;
-    z-index: 99;
+    z-index: 102;
     background-color: #E5E5E5;
     padding: 0px 35px 20px;
     border-radius: 10px;
@@ -356,8 +374,9 @@ cursor: pointer;
   }
   .image {
     width: 75%;
-        border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0px;
   }
   .details-info-all{
     border-radius: 0px;
@@ -367,6 +386,9 @@ cursor: pointer;
   .add,.command{
     padding: 10px 18px;
     margin-bottom: 10px;
+  }
+  .details-two button{
+    margin-left: 60%;
   }
 }
 </style>

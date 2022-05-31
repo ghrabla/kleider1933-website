@@ -43,8 +43,10 @@
         </div>
       </div>
      </div>
-        <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts</div>
-        <img v-if="this.message!=true" src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas">
+        <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts <br/>
+                <img src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas">
+
+        </div>
         
       </div>
     </transition>
@@ -117,6 +119,8 @@
 
 <script>
 import Cookies from 'vue-cookies';
+ import axios from 'axios';
+import Swal from 'sweetalert2';
 export default {
   el: "#app",
   data() {
