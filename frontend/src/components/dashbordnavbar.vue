@@ -176,10 +176,11 @@ router-link{
 }
 .close-div{
   width: 100%;
-    height: 200vh;
+    height: 100vh;
     background-color: #1b1b1b42;
-    position: absolute;
+    position: fixed;
     z-index: 88;
+    top: 0%;
 }
 select{
   padding: 10px;
