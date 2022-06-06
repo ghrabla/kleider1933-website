@@ -25,7 +25,7 @@ create table Products(
 create table Orders(
    id int PRIMARY KEY AUTO_INCREMENT,
    name  varchar(30) NOT NULL,
-   price  varchar(30) NOT NULL,
+   price  int NOT NULL,
    title varchar(90) not null,
    gender varchar(90) not null,
    type varchar(90) not null,
@@ -41,7 +41,7 @@ create table Orders(
 create table shopcart(
    id int PRIMARY KEY AUTO_INCREMENT,
    name  varchar(30) NOT NULL,
-   price  varchar(30) NOT NULL,
+   price  int NOT NULL,
    title varchar(90) not null,
    gender varchar(90) not null,
    type varchar(90) not null,

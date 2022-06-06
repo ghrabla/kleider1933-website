@@ -65,9 +65,7 @@ export default {
 	
   methods: {
  
-	//  sort0(){
-	// 	 this.products[Math.floor(Math.random()*items.length)];
-	//  },
+	
 	 sort1(){
 		 this.products.sort((a, b) =>(a.price > b.price ? 1 : -1));
 	 },

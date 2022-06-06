@@ -141,5 +141,26 @@ class shopcart
     // return false;
   }
 
+  public function deleteall()
+  {
+    // Create query
+    $query = 'DELETE FROM ' . $this->table . ' WHERE userId = :userId';
+
+    // Prepare Statement
+    $stmt = $this->conn->prepare($query);
+
+    // clean data
+    $this->userId = htmlspecialchars(strip_tags($this->userId));
+
+    // Bind Data
+    $stmt->bindParam(':userId', $this->userId);
+
+    // Execute query
+    if ($stmt->execute()) {
+      return true;
+    }
+
+    // Print error if something goes wrong
+  }
 
 }

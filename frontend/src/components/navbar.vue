@@ -14,8 +14,9 @@
         </a>
         <h3 >products bascket</h3>
 
-     <div v-if="checklogin || shopcarts.length==0">
-          <div  v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product"  >
+     <div v-if="this.shopcarts!=0">
+     <div>
+          <div  v-for="shopcart in shopcarts" :key="shopcart.id"  class="mini-product">
           <a href="/details" @click="getCookie(shopcart.id)">more
             </a>
           <img v-bind:src="'../img/'+shopcart.image" alt="">
@@ -30,22 +31,24 @@
         </div>
         
         <!-- <div v-else-if="response.data[0].status == false" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts</div> -->
-      <div class="panier-btns"  >
+      <div  class="panier-btns"  >
           <div class="add-div">
           <a href="#" class="add" @click="sweetalertpanier()"
-            ><i class="fa fa-calculator" ></i> {{ shopcarts.length * 75 }}$
+            ><i class="fa fa-calculator" ></i> {{ this.totalprice }}$
           </a>
         </div>
-        <div class="command-div">
-          <a href="" class="command"
+        <div class="command-div" style="margin-bottom: 10%;">
+          <a href="javascript:void(0)" class="command" @click="deleteallshopcart(checklogin)"
             ><i class="fa fa-trash"></i> Remove all
           </a>
         </div>
       </div>
      </div>
+
+     </div>
+     
         <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts <br/>
                 <img src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas">
-
         </div>
         
       </div>
@@ -131,13 +134,15 @@ export default {
       showlinks: false,
       shopcarts:[],
       shopcart:{},
-      message:''
+      message:'',
+      totalprice:0,
       // totalp : null
       
     };
   },
   created(){
     this.getshopcarts(Cookies.get('userId'));
+    // this.counttotal();
     // this.total();
   },
   methods: {
@@ -146,6 +151,7 @@ export default {
     //  totalp =  shopcarts.reduce((accumulator, current) => accumulator + current.price, 0)
     //  return this.totalp;
     // },
+   
      getCookie(id){
 		   
             axios.post('http://localhost/kleider1933-website/backend/API/shopcart/read_single.php?id=' + id)
@@ -173,13 +179,17 @@ export default {
             +userId)
                 .then(response => {
 					this.shopcarts = response.data;
-          // this.message =  console.log(response.data);
           
-
-
+      var total = 0;
+      for(var i = 0; i < this.shopcarts.length; i++){
+        total += this.shopcarts[i].price*1;
+      }
+      this.totalprice = total;
+      console.log(total);
 				})
                 .catch(err => console.log(err));
         },
+         
          deleteshopcart(id){
             Swal.fire({
                 title: 'Are you sure ?',
@@ -200,6 +210,33 @@ export default {
                             ).then(() => {
                                 this.shopcarts = this.shopcarts.filter(shopcart => {
                                     return shopcart.id !== id;
+                                })
+                            })
+                        })
+                        .catch(err => console.log(err));
+                }
+            })
+        },
+         deleteallshopcart(userId){
+            Swal.fire({
+                title: 'Are you sure ?',
+                text: "You are going to delete this shopcart",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'black',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText : 'Cancel'
+            }).then((result) => {
+                if (result.value) {
+                    axios.delete('http://localhost/kleider1933-website/backend/API/shopcart/deleteall.php?userId=' + userId)
+                        .then(response => {
+                            Swal.fire(
+                                'Deleted !',
+                                'success'
+                            ).then(() => {
+                                this.shopcarts = this.shopcarts.filter(shopcart => {
+                                    return shopcart.userId !== userId;
                                 })
                             })
                         })
@@ -327,6 +364,7 @@ nav {
 .modal {
   padding: 20px;
   height: 100vh;
+  overflow-x: hidden;
 }
 .button {
   float: right;

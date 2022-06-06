@@ -66,6 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
   } else {
         // No shopcart
         echo json_encode(
-          array('message' => 'false')
+        0
         );
   }

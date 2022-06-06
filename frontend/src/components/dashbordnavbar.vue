@@ -8,9 +8,10 @@
       <i class="fas fa-bars" style="color: white;"></i>
     </div>
     <div class="navbar-menu" :class="this.show ? 'open-menu' : 'closed-menu'">
+    <router-link to="/usersdashboard">
       <a class="nav-link" href="#"
         ><i class="fas fa-users mr-2"></i> Users list</a>
-
+      </router-link>
       <a class="nav-link" href="#" @click="showModaladm=true;"
         ><i class="fas fa-user-plus mr-2"></i> Add admin</a>
 
