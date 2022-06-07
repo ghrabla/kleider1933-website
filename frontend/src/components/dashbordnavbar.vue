@@ -124,6 +124,7 @@ logout(){
                         'Added !',
                         'success'
                     )
+                    
                 })
                 .catch(err => console.log(err));
             }else{

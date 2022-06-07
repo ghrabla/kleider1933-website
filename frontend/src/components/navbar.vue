@@ -48,7 +48,9 @@
      </div>
      
         <div v-else-if="this.message!=true" style="font-weight: bold; color: red; margin-top: 10%;">there is no carts <br/>
-                <img src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas">
+                <!-- <img src="../assets/image/emptybas-removebg-preview.png" alt="" class="empty-bas"> -->
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ardajn6t.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
+
         </div>
         
       </div>
@@ -235,9 +237,7 @@ export default {
                                 'Deleted !',
                                 'success'
                             ).then(() => {
-                                this.shopcarts = this.shopcarts.filter(shopcart => {
-                                    return shopcart.userId !== userId;
-                                })
+                                this.shopcarts = [];
                             })
                         })
                         .catch(err => console.log(err));

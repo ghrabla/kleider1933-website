@@ -65,6 +65,9 @@ export default {
 	
   methods: {
  
+	// share product to messenger
+   
+
 	
 	 sort1(){
 		 this.products.sort((a, b) =>(a.price > b.price ? 1 : -1));
