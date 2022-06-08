@@ -173,6 +173,7 @@ logout(){
 router-link{
     text-decoration: none !important;
 }
+
 .burger{
   display: none;
 }
@@ -261,7 +262,34 @@ button{
    .navbar-menu{
      display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 28px;
+    position: absolute;
+    right: 24%;
+    background-color: black;
+    padding: 20px 40px;
    }
+   .open-menu {
+    opacity: 1;
+    /* height: 50vh; */
+  }
+  .closed-menu {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    display: none;
+  }
+    .popup-all{
+   width:76%;
+   right:4%;
+  }
+  .input-pop{
+            padding: 5% 27% 5% 6%;
+  }
+  .image{
+    padding: 20px 40px;
+  }
+  button{
+   margin-left:28%;
+ }
 }
 </style>

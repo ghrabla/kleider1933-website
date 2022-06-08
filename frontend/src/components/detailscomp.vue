@@ -147,7 +147,9 @@ export default {
    
   
    addorder(){
-            if(this.order.city !== '' && this.order.fullame !== ''){
+          let checkcok = Cookies.get('userId');
+          if(checkcok){
+              if(this.order.city !== '' && this.order.fullame !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
                     name : this.product.name,
                     price : this.product.price,
@@ -176,13 +178,18 @@ export default {
                  Swal.fire({
                     title : 'Please fill all the fields !',
                     type : 'warning'
-                }).then(() => {
-                    $('#addproduct').modal('show')
                 })
             }
+          }else{
+             Swal.fire({
+                    title : 'Please login to get that order !',
+                    type : 'warning'
+                })
+          }
         },
         addshopcart(){
-            if(this.product.name !== '' && this.product.price !== ''){
+          let checkcok = Cookies.get('userId');
+            if(checkcok){
                 axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
 
                     name : this.product.name,
@@ -197,17 +204,13 @@ export default {
                     
                 })
                 .then(response => {
-                    Swal.fire('Saved!', '', 'success').then(() => {
-                        this.getproducts();
-                    })
+                    Swal.fire('Saved!', '', 'success')
                 })
                 .catch(err => console.log(err));
             }else{
                 Swal.fire({
-                    title : 'Please fill all the fields !',
+                    title : 'Please login if you wanna add it !',
                     type : 'warning'
-                }).then(() => {
-                    $('#addproduct').modal('show')
                 })
             }
         },
@@ -390,5 +393,15 @@ cursor: pointer;
   .details-two button{
     margin-left: 60%;
   }
+    .popup-all{
+   width:76%;
+   right:4%;
+  }
+  .input-pop{
+            padding: 5% 27% 5% 6%;
+  }
+ button{
+   margin-left:28%;
+ }
 }
 </style>

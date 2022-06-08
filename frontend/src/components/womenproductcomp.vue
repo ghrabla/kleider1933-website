@@ -11,10 +11,12 @@
 			</ul>
 			<div class="filter-condition">
 				<div class="span-select" style="display: flex; flex-direction: column;">
-                    <span>View As a</span>
+                    <span @click="showsort=!showsort" style="cursor: pointer;">View As a <i class="fa-solid fa-caret-down"></i></span>
+					<div v-if="showsort" class="sort-div">
 					<a href="" @click="sort0()"  class="sort-links">default</a>
 					<a href="javascript:void(0)" @click="sort1()"  class="sort-links">Low to high</a>
 					<a href="javascript:void(0)" @click="sort2()" class="sort-links">High to low</a>
+					</div>
 				<!-- </select> -->
                 </div>
 			</div>
@@ -29,7 +31,7 @@
 						<p class="icon">
 							<span @click="getpush(product.id)"><i class="fa fa-shopping-cart"></i></span>
 						   <span><i class="far fa-heart"></i></span>
-						   <span><i class="far fa-share-square"></i></span>
+						   <!-- <span><i class="far fa-share-square"></i></span> -->
 						</p>
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.name}}</strong>
@@ -54,8 +56,10 @@ export default {
     return {
 		currentType: "all",
       showModal: false,
+	  showsort : false,
        products : [],
        product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
+	   checklogin : Cookies.get('userId')
     };
   },
    mounted() {
@@ -65,9 +69,10 @@ export default {
 	
   methods: {
  
-	//  sort0(){
-	// 	 this.products[Math.floor(Math.random()*items.length)];
-	//  },
+	// share product to messenger
+   
+
+	
 	 sort1(){
 		 this.products.sort((a, b) =>(a.price > b.price ? 1 : -1));
 	 },
@@ -77,8 +82,15 @@ export default {
 
 
    async getpush(id){
-   axios.all([
-  await axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
+       
+   if(!this.checklogin){
+	     Swal.fire({
+                    title : 'Please login if you wanna add it !',
+                    type : 'warning'
+                })
+   }else{
+	   axios.all([
+		     await axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
                 .then(response => {
 					this.product = response.data;
                 }),
@@ -95,10 +107,12 @@ export default {
                     
                     
                 })
+	   
  ])
  .then(response => {
                     Swal.fire('Saved!', '', 'success')
                 })
+   }
  },
 
 	  colorchanger(){
@@ -144,7 +158,6 @@ export default {
             axios.get('http://localhost/kleider1933-website/backend/API/products/read_woman.php',)
                 .then(response => {
 					this.products = response.data;
-					
 					console.log(this.products)
 				})
                 .catch(err => console.log(err));
@@ -194,11 +207,21 @@ export default {
 			color: white;
 			font-weight: bold;
 		}
+		.sort-div{
+			display:flex;
+			flex-direction:column;
+			top:46%;
+            background:black;
+			position:absolute;
+
+		}
+
 		.sort-links{
-			color: var(--gra);
+			color: white;
 			font-size: 15px;
 			text-decoration: none;
 			font-weight: bold;
+			padding:5px;
 			margin-top: 4px;
 		}
 		.filter-condition{
@@ -218,7 +241,7 @@ export default {
 		    cursor: pointer;
 		}
 		.product-field{
-			padding: 40px 20px;
+			/* padding: 40px 20px; */
 		}
 		.product-field ul{
 			width: 100%;
@@ -229,7 +252,7 @@ export default {
 		.product-field ul li{
 			list-style: none;
 			width: 23.4%;
-			height: 400px;
+			height: 296px;
 			transition: 0.5s all;
 			background: whitesmoke;
 			/*overflow: hidden;*/
@@ -245,17 +268,17 @@ export default {
 		    right: 0;
 		    bottom: 41%;
 		    width: 75%;
-		    height: 85%;
+		    height: 73%;
 		    border-radius: 50px 20px 0 20px;
 		    transform: skewY(40deg);
 		    overflow: hidden;
 		    box-shadow: 0px 1px 0px #00000020, -1px 0px 0px #ccc;
 		}
 		picture img {
-		  width: 95%;
+		  width: 79%;
 		  z-index: 1;
 		  transform: skewY(-40deg);
-		  padding: 25px 0 0 0;
+		  /* padding: 25px 0 0 0; */
 		}
 		.detail{
 			width: 100%;
@@ -263,7 +286,7 @@ export default {
 		}
 		.detail .icon{
 			width: 30%;
-		    height: 55%;
+		    height: 42%;
 		    padding: 20px 5px;
 		}
 		.icon span{
@@ -285,8 +308,8 @@ export default {
 		}
 		.detail > strong{
 			display: inherit;
-			margin: 20px;
-			font-size: 30px;
+			margin: 36px 20px 20px 20px;
+         font-size: 22px; 
 			letter-spacing: 2px;
 			color: #555;
 		}

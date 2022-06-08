@@ -82,14 +82,17 @@
           <li><router-link to="/"><a href="">Home</a></router-link></li>
 
           <li >
-              <a href="javascript:void(0)" @click="showlinksf()" >Product</a>
+              <a href="javascript:void(0)" @click="showlinksf()" >Product <i class="fa-solid fa-caret-down"></i></a>
              <div class="product-links" v-if="showlinks"  >
-               
-              <a href="/productsshop">man</a>
-           
-              <a href="/womenproduct">woman</a>
-            
-              <a href="/kidproduct">kid</a>
+               <router-link to="/productsshop">
+              <a href="#">man</a>
+              </router-link>
+              <router-link to="/womenproduct">
+              <a href="#">woman</a>
+              </router-link>
+            <router-link to="/kidproduct">
+              <a href="#">kid</a>
+              </router-link>
              </div>
           </li>
           <li>

@@ -19,16 +19,16 @@ import Cookies from "vue-cookies"
     
     
 },
-beforeMount(){
-  let checkcok = Cookies.get('userId');
-  console.log(checkcok);
-  if(!checkcok){
-    this.$router.push('/login');
-    Swal.fire(
-       'please login to see details',
-       'warning'
-    )
-  }
-}
+// beforeMount(){
+//   let checkcok = Cookies.get('userId');
+//   console.log(checkcok);
+//   if(!checkcok){
+//     this.$router.push('/login');
+//     Swal.fire(
+//        'please login to see details',
+//        'warning'
+//     )
+//   }
+// }
 }
 </script>

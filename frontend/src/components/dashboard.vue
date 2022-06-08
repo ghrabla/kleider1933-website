@@ -1,11 +1,12 @@
 <template>
   <div class="search-profile">
     <div>
+    <div class="search-icon">
       <i
         class="fa fa-search"
         aria-hidden="true"
-        style="position: absolute; left: 134px; top: 140px; color: white"
       ></i>
+      </div>
       <input
         type="text"
         placeholder="search items..."
@@ -103,10 +104,10 @@
             {{ product.price }}
           </div>
           <!-- <div  class="col col-1" data-label="First name">{{product.title}}</div> -->
-          <div class="col col-1" data-label="First name">
+          <div class="col col-1" id="gender" data-label="First name">
             {{ product.gender }}
           </div>
-          <div class="col col-1" data-label="First name">
+          <div class="col col-1" id="type" data-label="First name" >
             {{ product.type }}
           </div>
           <div class="col col-1" data-label="First name">
@@ -457,6 +458,12 @@ export default {
 </script>
 
 <style scoped>
+.search-icon{
+      position: absolute;
+    left: 134px;
+    top: 140px;
+    color: white;
+}
 .page-item {
   border-radius: 3px;
   padding: 25px 30px;
@@ -682,5 +689,34 @@ li {
     flex-direction: column;
     gap: 10px;
   }
+  .sta-box{
+        display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background: black;
+    width: 65%;
+    border-radius: 10px;
+    margin: 0% 13%;
+  }
+  .search-icon{
+    display:none;
+    
+  }
+  #type,#gender{
+    display:none;
+  }
+  .popup-all{
+   width:76%;
+   right:4%;
+  }
+  .input-pop{
+            padding: 5% 27% 5% 6%;
+  }
+  .image{
+    padding: 20px 40px;
+  }
+  button{
+   margin-left:28%;
+ }
 }
 </style>
