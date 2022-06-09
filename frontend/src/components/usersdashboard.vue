@@ -74,7 +74,7 @@
     <ul class="responsive-table">
       <li class="table-header">
         <div class="col col-1">
-          <i class="fa fa-snowflake-o" aria-hidden="true"></i>fullname
+          <i class="fa fa-snowflake-o" aria-hidden="true" ></i>fullname
         </div>
         <div class="col col-3">
          <i class="fa fa-envelope-o" aria-hidden="true"></i> email
@@ -88,10 +88,10 @@
 
       <li class="table-row" v-for="user in filteredList" :key="user.id">
         <div style="display: flex; width: 100%; align-items: center">
-          <div class="col col-1" data-label="First name">
+          <div class="col col-1" data-label="First name" >
             {{ user.fullname }}
           </div>
-          <div class="col col-1" data-label="First name">
+          <div class="col col-1" data-label="First name" id="fullname-detais">
             {{ user.email }}
           </div>
           <!-- <div  class="col col-1" data-label="First name">{{user.title}}</div> -->
@@ -409,7 +409,7 @@ button{
 .search-profile {
   display: flex !important; 
   justify-content: space-around !important;
-  gap: 26.5rem !important;
+  gap: 26.5rem ;
   margin: 20px !important;
   font-family: sans-serif !important;
 }
@@ -733,7 +733,22 @@ h2 {
       flex-basis: 100%;
       
     }
-   
+    .popup-all{
+   width:76%;
+   right:4%;
+  }
+  .input-pop{
+            padding: 5% 27% 5% 6%;
+  }
+  .image{
+    padding: 20px 40px;
+  }
+  button{
+   margin-left:28%;
+ }
+ #fullname-detais{
+   display:none;
+ }
   }
 
 </style>

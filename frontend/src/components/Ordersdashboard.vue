@@ -61,11 +61,11 @@
      <li v-for="order in filteredList" class="table-row" >
       <div style="display: flex;width: 100%;align-items: center;">
         <div  class="col col-1" data-label="First name">{{order.fullname }}</div>
-        <div  class="col col-1" data-label="First name">{{order.phone }}</div>
-        <div  class="col col-1" data-label="First name">{{order.city }}</div>
-        <div  class="col col-1" data-label="First name">{{order.adresse }}</div>
-        <div  class="col col-1" data-label="First name">{{order.postale }}</div>
-        <div  class="col col-1" data-label="First name">{{order.email }}</div>
+        <div  class="col col-1" data-label="First name" >{{order.phone }}</div>
+        <div  class="col col-1" data-label="First name" id="order-retgived">{{order.city }}</div>
+        <div  class="col col-1" data-label="First name" id="order-retgived">{{order.adresse }}</div>
+        <div  class="col col-1" data-label="First name" id="order-retgived">{{order.postale }}</div>
+        <div  class="col col-1" data-label="First name" id="order-retgived">{{order.email }}</div>
         <div class="col col-8 action-icon" data-label="Action">
          <a href="javascript:void(0)" @click="showModal=true"> <i  class="fa-solid fa-pen" @click="getorder(order.id)"></i></a>
           <a href="javascript:void(0)" @click="deleteorder(order.id)"><i  class="fa-solid fa-trash-can" ></i></a>
@@ -389,7 +389,7 @@ button{
 .search-profile {
   display: flex !important; 
   justify-content: space-around !important;
-  gap: 26.5rem !important;
+  gap: 26.5rem ;
   margin: 20px !important;
   font-family: sans-serif !important;
 }
@@ -712,7 +712,22 @@ h2 {
       flex-basis: 100%;
       
     }
-   
+    #order-retgived{
+      display:none;
+    }
+   .popup-all{
+   width:76%;
+   right:4%;
+  }
+  .input-pop{
+            padding: 5% 27% 5% 6%;
+  }
+  .image{
+    padding: 20px 40px;
+  }
+  button{
+   margin-left:28%;
+ }
   }
 
 </style>
