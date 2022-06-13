@@ -61,7 +61,7 @@ import Swal from 'sweetalert2';
 
 </script>
 
-<style >
+<style scoped>
    label{
        /* text-align: center; */
        margin: 0px 30%;

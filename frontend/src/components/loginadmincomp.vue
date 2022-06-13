@@ -70,7 +70,7 @@ methods: {
 
 </script>
 
-<style>
+<style scoped>
    label{
        /* text-align: center; */
        margin: 0px 30%;

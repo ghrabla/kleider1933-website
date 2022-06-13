@@ -2,6 +2,7 @@
  
   <div class="details-all">
     <!-- <div class="image"> -->
+    
     <img v-bind:src="'../img/'+product.image" alt="" class="image" />
     <!-- </div> -->
     <!-- <img  v-bind:src="'../img/'+product.image" alt=""> -->
@@ -89,18 +90,7 @@
 import Cookies from 'vue-cookies';
  import axios from 'axios';
 import Swal from 'sweetalert2';
- paypal.Buttons({ 
-    
-    createOrder: function(data, actions) {
-  
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: '0.01'
-          }
-        }]
-      });
-    }}).render('#paypal-button-container');
+ 
 
 
 export default {
@@ -114,13 +104,27 @@ export default {
        order : {id : '',fullname : '',phone : '',email : '',city : '',adresse : '',postale : ''}
     };
   },
-  created(){
+  mounted(){
    this.getproduct(Cookies.get('id'));
+   this.paypalpay();
 
   },
   methods: {
 
+  paypalpay(){
+    paypal.Buttons({ 
+    
+    createOrder: function(data, actions) {
   
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    }}).render('#paypal-button-container');
+  },
 
 
     increment() {
@@ -309,8 +313,7 @@ cursor: pointer;
 }
 
 .image {
-  width: 30%;
-      width: 30%;
+    max-width: 36%;
     background-color: #e5e5e5;
     padding: 54px 59px 0px 28px;
     border-bottom-left-radius: 22px;
@@ -327,7 +330,7 @@ cursor: pointer;
 .details-info {
   display: flex;
   flex-direction: column;
-  gap: 2%;
+  /* gap: 2%; */
   width: 100%;
   
 }
@@ -345,6 +348,7 @@ cursor: pointer;
     line-height: 24px;
     font-family: fantasy;
     letter-spacing: 2px;
+    margin: 2% 0%;
 }
 .add {
   text-decoration: none;

@@ -36,7 +36,7 @@
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.name}}</strong>
 						<span>{{product.title}}</span>
-						<a href="/details" @click="getCookie(product.id)"><small>Buy now</small></a>
+						<a href="javascript:void(0)" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
 					<h4>${{product.price}}</h4> 
 				</li>
@@ -149,7 +149,9 @@ export default {
             axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
                 .then(response => {
                     this.product = response.data;
+		  Cookies.remove('id');			
           Cookies.set('id',this.product.id);
+		  this.$router.push('/details');
           console.log(Cookies.get('id'));
                 })
                 .catch(err => console.log(err));
@@ -326,6 +328,7 @@ export default {
 		    border-radius: 6px;
 		    border: 1px solid #999;
 		    cursor: pointer;
+			color: black;
 		}
 		.detail small:hover{
 			    background: var(--gra);

@@ -178,7 +178,7 @@ export default {
        keyword:'',
 		nodata:false,
      page: 1,
-              perPage: 2,
+              perPage: 5,
               pages: [],
               adminname:Cookies.get('adminname'),
     };

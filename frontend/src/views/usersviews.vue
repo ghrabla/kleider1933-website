@@ -13,6 +13,7 @@
 import Dashbordnavbar from '@/components/dashbordnavbar.vue'
 import Usersdashboard from '@/components/usersdashboard.vue'
 import Footercomp from '@/components/footercomp.vue'
+import Cookies from 'vue-cookies'
 
 
 export default {
@@ -22,6 +23,14 @@ export default {
     Dashbordnavbar,
     Usersdashboard,
     Footercomp
+},
+
+created(){
+  let checkcok = Cookies.get('adminId');
+  if(!checkcok){
+    this.$router.push('/loginadmin');
+    
+  }
 }
 }
 </script>

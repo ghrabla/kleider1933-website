@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+  <loader/>
   <Navbar/>
   <pagehome/>
   <Footercomp/>
@@ -10,6 +11,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import loader from '../components/loader.vue'
 import Navbar from '@/components/navbar.vue'
 import pagehome from '@/components/pagehome.vue'
 // import footer from '@/components/footer.vue'
@@ -19,6 +21,7 @@ export default {
   name: 'HomeView',
   components: {
     // HelloWorld,
+    loader,
     Navbar,
     pagehome,
     Footercomp

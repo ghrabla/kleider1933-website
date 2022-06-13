@@ -442,6 +442,7 @@ export default {
     // displayedproducts () {
     //     return this.paginate(this.products);
     // },
+    
     filteredList() {
       let data = this.products.filter((product) =>
         product.name.toLowerCase().includes(this.keyword)

@@ -42,14 +42,14 @@ methods: {
       });
       console.log(respon);
       
-
+ 
         if (respon.data[0].status != false) {
           Cookies.set('userId',respon.data[0].id);
           console.log(Cookies.get('userId'));
           this.$router.push('/productsshop')
         // alert("User exist");
 
-        } else if (respon.data.id === false) {
+        }else {
         // alert("");
         Swal.fire({
                     title : 'User does not exist !',
@@ -69,7 +69,7 @@ methods: {
 
 </script>
 
-<style >
+<style scoped>
    label{
        /* text-align: center; */
        margin: 0px 30%;

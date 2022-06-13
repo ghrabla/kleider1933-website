@@ -24,7 +24,7 @@
         <router-link to="/productdashboard">
       <a class="nav-link" href="#"
         ><i class="fa fa-product-hunt"></i> products</a></router-link>
-      <a class="nav-link" href="" @click="logout()"
+      <a class="nav-link" href="javascript:void(0)" @click="logout()"
         ><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
     </div>
   </nav>
