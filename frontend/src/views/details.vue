@@ -17,13 +17,16 @@ import Cookies from "vue-cookies"
  export default {
   name: 'details',
   components: {
-
       // loader,
       navbar,detailscomp,Footercomp
-    
-    
 },
-
+beforeMount(){
+  let checkcok = Cookies.get('id');
+  if(!checkcok){
+    this.$router.push('/');
+    
+  }
+},
 
 data(){
     return {
@@ -31,11 +34,6 @@ data(){
     }
   },
 
-  beforeMount () {
-    setTimeout(() => {
-      this.isLoading = false
-    }, 600)
-  }
 // beforeMount(){
 //   let checkcok = Cookies.get('userId');
 //   console.log(checkcok);

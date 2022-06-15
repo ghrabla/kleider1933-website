@@ -1,6 +1,6 @@
 <template>
- 
-  <div class="details-all">
+ <div>
+    <div class="details-all">
     <!-- <div class="image"> -->
     
     <img v-bind:src="'../img/'+product.image" alt="" class="image" />
@@ -86,7 +86,8 @@
     <input type="text" placeholder="Postale code" class="input-pop" v-model="order.postale">
     <button @click="addorder()" >send</button>
   </div>
-     <div id="paypal-button-container" style="text-align:center;"></div>
+    <div id="paypal-button-container" style="text-align:center;"></div>
+ </div>
 
 </template>
 
@@ -100,7 +101,7 @@ import Swal from 'sweetalert2';
 export default {
   data() {
     return {
-      number : 1,
+      number : 0,
       newquantity:this.quantity-this.number,
       showModal: false,
        products : [],
@@ -161,7 +162,7 @@ export default {
   async addorder(){
           let checkcok = Cookies.get('userId');
           if(checkcok){
-              if(this.order.city !== '' && this.order.fullame !== ''){
+              if(this.order.city !== '' && this.order.fullame !== '' && this.number != 0){
    const respon = await Promise.all([
        axios.put('http://localhost/kleider1933-website/backend/API/products/updatequant.php',{
                   id : this.product.id,
@@ -190,9 +191,12 @@ export default {
                         'success'
                     )
                 }).then(()=>{
-                  // this.$router.push('/');
                   this.getproduct(Cookies.get('id'));
                   this.number = this.product.quantity-this.number;
+                  if(this.number == 0){
+                    Cookies.remove('id');
+                    this.$router.push('/');
+                  }
                 })
                 .catch(err => console.log(err));
             }else{
@@ -414,7 +418,7 @@ cursor: pointer;
     margin: 6% 0%;
   }
   .image {
-    width: 75%;
+    max-width: 75%;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0px;
