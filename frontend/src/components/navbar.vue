@@ -26,7 +26,7 @@
             <p>{{ shopcart.price }}$</p>
           </div>
           <div>
-            <i class="fa fa-window-close" style="color: red;" @click="deleteshopcart(shopcart.id)"></i>
+            <i class="fa fa-window-close" style="color: red;cursor: pointer;" @click="deleteshopcart(shopcart.id)"></i>
           </div>
         </div>
         

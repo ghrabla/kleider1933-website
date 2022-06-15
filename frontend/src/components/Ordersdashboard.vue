@@ -115,6 +115,8 @@
     <input type="text" placeholder="order Type" class="input-pop" v-model="order.type">
      <label for="">Price*</label>
     <input type="text" placeholder="order Price" class="input-pop" v-model="order.price">
+      <label for="">quantity*</label>
+    <input type="text" placeholder="order quantity" class="input-pop" v-model="order.quantity" />
      <label for="">image*</label>
     <input type="text" placeholder="order name" class="image" v-model="order.image">
     <button @click="updateorder()">valide</button>
@@ -152,7 +154,8 @@
     <input type="text" placeholder="order adresse" class="input-pop" v-model="order.adresse" disabled>
     <label for="">postale*</label>
     <input type="text" placeholder="order postale" class="input-pop" v-model="order.postale" disabled>
-    
+     <label for="">quantity*</label>
+    <input type="text" placeholder="order quantity" class="input-pop" v-model="order.quantity" disabled />
   </div>
 </template>
 
@@ -172,7 +175,7 @@ export default {
        admins : [],
       admin : {id:'',fullname : '',email : '',password : ''},
        orders : [],
-       order : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',fullname:'',phone : '',email:'',city:'',adresse:'',postale:''},
+       order : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',fullname:'',phone : '',email:'',city:'',adresse:'',postale:'',quantity:''},
        products : [],
        product : {},
        keyword:'',
@@ -266,6 +269,7 @@ export default {
                  city : this.order.city,
                  adresse : this.order.adresse,
                  postale : this.order.postale,
+                 quantity : this.order.quantity,
             })
                 .then(response => {
                     Swal.fire(

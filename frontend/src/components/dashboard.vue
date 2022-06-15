@@ -212,6 +212,14 @@
       class="input-pop"
       v-model="product.price"
     />
+    <label for="">quantity*</label>
+    <input
+      type="text"
+      placeholder="product Price"
+      class="input-pop"
+      v-model="product.quantity"
+      
+    />
     <label for="">image*</label>
     <input
       type="text"
@@ -219,6 +227,7 @@
       class="image"
       v-model="product.image"
     />
+    
     <button @click="updateproduct()">valide</button>
   </div>
 
@@ -278,6 +287,14 @@
       v-model="product.gender"
       disabled
     />
+    <label for="">quantity*</label>
+    <input
+      type="number"
+      placeholder="product Price"
+      class="input-pop"
+      v-model="product.quantity"
+      disabled
+    />
     <label for="">image*</label>
     <img v-bind:src="'../img/' + product.image" alt="" class="img-det" />
     <!-- <input type="text" placeholder="product name" class="image" v-model="product.image"> -->
@@ -308,6 +325,7 @@ export default {
         gender: "",
         type: "",
         image: "",
+        quantity:""
       },
       orders: [],
       order: {},
@@ -406,6 +424,7 @@ export default {
             gender: this.product.gender,
             type: this.product.type,
             image: this.product.image,
+            quantity: this.product.quantity
           }
         )
         .then((response) => {

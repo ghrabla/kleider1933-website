@@ -20,6 +20,8 @@ class order
   public $city;
   public $adresse;
   public $postale;
+  public $quantity;
+  public $newquantity;
   
 
 
@@ -72,6 +74,7 @@ class order
     $this->city = $row['city'];
     $this->adresse = $row['adresse'];
     $this->postale = $row['postale'];
+    $this->quantity = $row['quantity'];
   }
 
 
@@ -81,24 +84,9 @@ class order
   public function create()
   {
     // Create Query
-    $query = 'INSERT INTO ' .
-      $this->table . '
-    SET
-      name = :name,
-      price = :price ,
-      title = :title,
-      gender = :gender,
-      type = :type,
-      image = :image,
-      fullname = :fullname,
-      phone = :phone,
-      email = :email,
-      city = :city,
-      adresse = :adresse,
-      postale = :postale
-      ';
+    $query = 'INSERT INTO orders SET name = :name, price = :price , title = :title, gender = :gender, type = :type, image = :image, fullname = :fullname, phone = :phone,email = :email, city = :city, adresse = :adresse,postale = :postale,quantity = :quantity';
 
-    // Prepare Statement
+ // Prepare Statement
     $stmt = $this->conn->prepare($query);
 
     // Clean data
@@ -114,6 +102,7 @@ class order
     $this->city = htmlspecialchars(strip_tags($this->city));
     $this->adresse = htmlspecialchars(strip_tags($this->adresse));
     $this->postale = htmlspecialchars(strip_tags($this->postale));
+    $this->quantity = htmlspecialchars(strip_tags($this->quantity));
     // Bind data
     $stmt->bindParam(':name', $this->name);
     $stmt->bindParam(':price', $this->price);
@@ -127,6 +116,7 @@ class order
     $stmt->bindParam(':city', $this->city);
     $stmt->bindParam(':adresse', $this->adresse);
     $stmt->bindParam(':postale', $this->postale);
+    $stmt->bindParam(':quantity', $this->quantity);
     // Execute query
     if ($stmt->execute()) {
       return true;
@@ -158,7 +148,9 @@ class order
     email = :email,
     city = :city,
     adresse = :adresse,
-    postale = :postale WHERE  id= :id';
+    postale = :postale,
+    quantity = :quantity
+     WHERE  id= :id';
 
     // Prepare Statement
     $stmt = $this->conn->prepare($query);
@@ -176,6 +168,7 @@ class order
     $this->city = htmlspecialchars(strip_tags($this->city));
     $this->adresse = htmlspecialchars(strip_tags($this->adresse));
     $this->postale = htmlspecialchars(strip_tags($this->postale));
+    $this->quantity = htmlspecialchars(strip_tags($this->quantity));
     // Bind data
     $stmt->bindParam(':id', $this->id);
     $stmt->bindParam(':name', $this->name);
@@ -190,6 +183,7 @@ class order
     $stmt->bindParam(':city', $this->city);
     $stmt->bindParam(':adresse', $this->adresse);
     $stmt->bindParam(':postale', $this->postale);
+    $stmt->bindParam(':quantity', $this->quantity);
 
     // Execute query
     if ($stmt->execute()) {

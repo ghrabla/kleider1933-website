@@ -16,6 +16,9 @@
       <div class="base">{{product.gender}}</div>
       <span> type: </span>
       <div class="base">{{ product.type }}</div>
+      <div class="base" style="display:none;">{{ product.quantity }}</div>
+      <!-- <div class="base" >{{ product.quantity }}</div> -->
+
       <div class="add-div">
         <a href="#" class="add" @click="addshopcart()"
           ><i class="fa fa-shopping-cart"></i> add to panier
@@ -46,7 +49,7 @@
       +
     </button>
     <div style="    font-weight: bold;
-    font-size: 23px;" >{{ number }}</div>
+    font-size: 23px;" v-bind:data-amount="number">{{ number}}</div>
     <button
       class=""
       @click="decrement">
@@ -68,6 +71,7 @@
     <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.gender">
     <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.type">
     <input type="hidden" placeholder="Full name" class="input-pop" v-model="product.image">
+    <input type="hidden" placeholder="Full name" class="input-pop" v-model="number">
     <label for="">Full name*</label>
     <input type="text" placeholder="Full name" class="input-pop" v-model="order.fullname">
      <label for="">Phone number*</label>
@@ -97,9 +101,10 @@ export default {
   data() {
     return {
       number : 1,
+      newquantity:this.quantity-this.number,
       showModal: false,
        products : [],
-       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : ''},
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',quantity:''},
        orders:[],
        order : {id : '',fullname : '',phone : '',email : '',city : '',adresse : '',postale : ''}
     };
@@ -129,6 +134,9 @@ export default {
 
     increment() {
       this.number++;
+      if(this.number>this.product.quantity){
+        this.number--;
+      }
     },
     decrement() {
       this.number--;
@@ -150,11 +158,16 @@ export default {
         },
    
   
-   addorder(){
+  async addorder(){
           let checkcok = Cookies.get('userId');
           if(checkcok){
               if(this.order.city !== '' && this.order.fullame !== ''){
-                axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
+   const respon = await Promise.all([
+       axios.put('http://localhost/kleider1933-website/backend/API/products/updatequant.php',{
+                  id : this.product.id,
+                  quantity :this.product.quantity-this.number
+                }),
+               axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
                     name : this.product.name,
                     price : this.product.price,
                     title : this.product.title,
@@ -167,15 +180,19 @@ export default {
                     city : this.order.city,
                     adresse : this.order.adresse,
                     postale : this.order.postale,
-                    
+                    quantity : this.number  
                 })
+               
+    ])
                 .then(response => {
                     Swal.fire(
                         'Added !',
                         'success'
-                    ).then(() => {
-                        this.getproducts();
-                    })
+                    )
+                }).then(()=>{
+                  // this.$router.push('/');
+                  this.getproduct(Cookies.get('id'));
+                  this.number = this.product.quantity-this.number;
                 })
                 .catch(err => console.log(err));
             }else{
@@ -191,10 +208,16 @@ export default {
                 })
           }
         },
-        addshopcart(){
+       async addshopcart(){
           let checkcok = Cookies.get('userId');
-            if(checkcok){
-                axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
+          if(checkcok){
+                  let respon = await axios.post('http://localhost/kleider1933-website/backend/API/shopcart/check.php', {
+                    productId: this.product.id ,       
+                    userId: Cookies.get('userId')
+                 });
+            console.log(respon.data.answer);
+        if (respon.data.answer === false) {
+          axios.post('http://localhost/kleider1933-website/backend/API/shopcart/create.php',{
 
                     name : this.product.name,
                     price : this.product.price,
@@ -211,7 +234,18 @@ export default {
                     Swal.fire('Saved!', '', 'success')
                 })
                 .catch(err => console.log(err));
-            }else{
+        // alert("User exist");
+
+        }else {
+        // alert("");
+        Swal.fire({
+                    title : 'you added this product before !',
+                    type : 'warning'
+                })
+        }
+    }
+               
+        else{
                 Swal.fire({
                     title : 'Please login if you wanna add it !',
                     type : 'warning'

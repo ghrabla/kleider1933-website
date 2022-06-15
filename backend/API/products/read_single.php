@@ -37,7 +37,8 @@
     'title' => $product->title,
     'gender' => $product->gender,
     'type' => $product->type,
-    'image' => $product->image
+    'image' => $product->image,
+    'quantity' => $product->quantity
   );
 
   // Make JSON

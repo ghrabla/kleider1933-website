@@ -55,7 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
             'email' => $email,
             'city' => $city,
             'adresse' => $adresse,
-            'postale' => $postale
+            'postale' => $postale,
+            'quantity' => $quantity
 
             // 'name' => $name
           );

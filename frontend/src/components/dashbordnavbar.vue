@@ -35,6 +35,8 @@
     <input type="text" placeholder="product name" class="input-pop" v-model="product.name">
      <label for="">Price*</label>
     <input type="text" placeholder="product Price" class="input-pop" v-model="product.price">
+      <label for="">quantity*</label>
+    <input type="text" placeholder="product quantity" class="input-pop" v-model="product.quantity"/>
      <label for="">Title*</label>
     <input type="text" placeholder="product Title" class="input-pop" v-model="product.title">
     <label for="">Gender*</label>
@@ -84,7 +86,7 @@ export default {
       admins : [],
       admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
-       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',},
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',quantity:''},
        selectedFile: null
     };
   },
@@ -144,7 +146,8 @@ logout(){
                     title : this.product.title,
                     gender : this.product.gender,
                     type : this.product.type,
-                    image : this.product.image
+                    image : this.product.image,
+                    quantity : this.product.quantity
                     
                 })
                 .then(response => {

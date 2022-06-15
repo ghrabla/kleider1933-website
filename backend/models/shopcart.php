@@ -26,7 +26,17 @@ class shopcart
   }
 
 
+  public function check()
+  {
+      $query = "SELECT * FROM shopcart WHERE productId = :productId and userId = :userId ";
+      $stmt = $this->conn->prepare($query);
 
+
+      // Execute query
+      $stmt->execute(["productId"=>$this->productId,"userId"=>$this->userId]);
+  
+      return $stmt;
+  }
 
 
   public function read()

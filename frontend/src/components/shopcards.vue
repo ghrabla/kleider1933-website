@@ -35,14 +35,13 @@
 						</p>
 						<input type="hidden" v-model="product.id">
 						<strong>{{product.name}}</strong>
+						<!-- <strong>{{product.id}}</strong> -->
 						<span>{{product.title}}</span>
 						
 						<a href="javascript:void(0)" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
 					<h4>${{product.price}}</h4> 
-				</li>
-
-				
+				</li>			
 			</ul>
 		</div>
         
@@ -89,7 +88,18 @@ export default {
                     title : 'Please login if you wanna add it !',
                     type : 'warning'
                 })
-   }else{
+   }
+   else if(this.checklogin){
+	   await axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
+                .then(response => {
+					this.product = response.data;
+                })
+	   let respon = await axios.post('http://localhost/kleider1933-website/backend/API/shopcart/check.php', {
+                    productId: this.product.id ,       
+                    userId: Cookies.get('userId')
+                 });
+            console.log(respon.data.answer);
+   if(respon.data.answer === false){
 	   axios.all([
 		     await axios.post('http://localhost/kleider1933-website/backend/API/products/read_single.php?id=' + id)
                 .then(response => {
@@ -118,6 +128,12 @@ export default {
  .then(response => {
                     Swal.fire('Saved!', '', 'success')
                 })
+   }else{
+	   Swal.fire({
+                    title : 'you added this product before !',
+                    type : 'warning'
+                })
+   }
    }
  },
 

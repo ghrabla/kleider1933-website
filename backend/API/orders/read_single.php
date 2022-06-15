@@ -43,7 +43,8 @@
     'email' => $order->email,
     'city' => $order->city,
     'adresse' => $order->adresse,
-    'postale' => $order->postale
+    'postale' => $order->postale,
+    'quantity' => $order->quantity
   );
 
 

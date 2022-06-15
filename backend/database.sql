@@ -19,7 +19,8 @@ create table Products(
    title varchar(90) not null,
    gender varchar(90) not null,
    type varchar(90) not null,
-   image varchar(90) not null
+   image varchar(90) not null,
+   quantity  int NOT NULL
 );
 
 create table Orders(
@@ -35,7 +36,8 @@ create table Orders(
    email varchar(90) not null,
    city varchar(90) not null,
    adresse varchar(90) not null,
-   postale varchar(90) not null
+   postale varchar(90) not null,
+   quantity  int NOT NULL
 );
 
 create table shopcart(

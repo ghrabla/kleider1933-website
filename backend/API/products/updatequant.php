@@ -19,21 +19,15 @@
 
   // Set ID to UPDATE
   $product->id = $data->id;
-  $product->name = $data->name;
-  $product->price = $data->price;
-  $product->title = $data->title;
-  $product->gender = $data->gender;
-  $product->type = $data->type;
-  $product->image = $data->image;
   $product->quantity = $data->quantity;
 
   // Update post
-  if($product->update()) {
+  if($product->updatequant()) {
     echo json_encode(
-      array('message' => 'product Updated')
+      array('message' => 'quantity Updated')
     );
   } else {
     echo json_encode(
-      array('message' => 'product not updated')
+      array('message' => 'quantity not updated')
     );
   }

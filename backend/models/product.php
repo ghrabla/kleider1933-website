@@ -13,6 +13,7 @@ class product
   public $gender;
   public $type;
   public $image;
+  public $quantity;
   
 
 
@@ -37,7 +38,7 @@ class product
   public function read_man()
   {
     // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "man"';
+    $query = 'SELECT * FROM `products` WHERE gender = "man" and quantity != 0';
     // Prepare statement
     $stmt = $this->conn->prepare($query);
     // Execute query
@@ -48,7 +49,7 @@ class product
   public function read_woman()
   {
     // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "woman"';
+    $query = 'SELECT * FROM `products` WHERE gender = "woman" and quantity != 0';
     // Prepare statement
     $stmt = $this->conn->prepare($query);
     // Execute query
@@ -59,7 +60,7 @@ class product
   public function read_kid()
   {
     // Create query
-    $query = 'SELECT * FROM `products` WHERE gender = "kid"';
+    $query = 'SELECT * FROM `products` WHERE gender = "kid" and quantity != 0';
     // Prepare statement
     $stmt = $this->conn->prepare($query);
     // Execute query
@@ -72,7 +73,7 @@ class product
   public function read_single()
   {
     // Create query
-    $query = "SELECT * FROM products WHERE id= :id";
+    $query = "SELECT * FROM products WHERE id= :id ";
 
     //Prepare statement
     $stmt = $this->conn->prepare($query);
@@ -93,6 +94,7 @@ class product
     $this->gender = $row['gender'];
     $this->type = $row['type'];
     $this->image = $row['image'];
+    $this->quantity = $row['quantity'];
   }
 
 
@@ -110,7 +112,8 @@ class product
       title = :title,
       gender = :gender,
       type = :type,
-      image = :image
+      image = :image,
+      quantity = :quantity
       ';
 
     // Prepare Statement
@@ -123,6 +126,7 @@ class product
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->type = htmlspecialchars(strip_tags($this->type));
     $this->image = htmlspecialchars(strip_tags($this->image));
+    $this->quantity = htmlspecialchars(strip_tags($this->quantity));
     // Bind data
     $stmt->bindParam(':name', $this->name);
     $stmt->bindParam(':price', $this->price);
@@ -130,6 +134,7 @@ class product
     $stmt->bindParam(':gender', $this->gender);
     $stmt->bindParam(':type', $this->type);
     $stmt->bindParam(':image', $this->image);
+    $stmt->bindParam(':quantity', $this->quantity);
     // Execute query
     if ($stmt->execute()) {
       return true;
@@ -144,6 +149,27 @@ class product
   }
 
   // Update Category
+ public function updatequant(){
+  $query = 'UPDATE ' .
+  $this->table . '
+SET
+quantity = :quantity
+ WHERE  id= :id';
+
+// Prepare Statement
+$stmt = $this->conn->prepare($query);
+
+$this->quantity = htmlspecialchars(strip_tags($this->quantity));
+$this->id = htmlspecialchars(strip_tags($this->id));
+// Bind data
+$stmt->bindParam(':quantity', $this->quantity);
+$stmt->bindParam(':id', $this->id);
+
+// Execute query
+if ($stmt->execute()) {
+  return true;
+}
+  }
   public function update()
   {
     // Create Query
@@ -155,7 +181,9 @@ class product
     title = :title,
     gender = :gender,
     type = :type,
-    image = :image WHERE  id= :id';
+    image = :image,
+    quantity = :quantity
+     WHERE  id= :id';
 
     // Prepare Statement
     $stmt = $this->conn->prepare($query);
@@ -166,6 +194,7 @@ class product
     $this->gender = htmlspecialchars(strip_tags($this->gender));
     $this->type = htmlspecialchars(strip_tags($this->type));
     $this->image = htmlspecialchars(strip_tags($this->image));
+    $this->quantity = htmlspecialchars(strip_tags($this->quantity));
     $this->id = htmlspecialchars(strip_tags($this->id));
     // Bind data
     $stmt->bindParam(':name', $this->name);
@@ -174,6 +203,7 @@ class product
     $stmt->bindParam(':gender', $this->gender);
     $stmt->bindParam(':type', $this->type);
     $stmt->bindParam(':image', $this->image);
+    $stmt->bindParam(':quantity', $this->quantity);
     $stmt->bindParam(':id', $this->id);
 
     // Execute query

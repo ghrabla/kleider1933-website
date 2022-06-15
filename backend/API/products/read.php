@@ -49,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
             'title' => $title,
             'gender' => $gender,
             'type' => $type,
-            'image' => $image
+            'image' => $image,
+            'quantity' => $quantity,
 
             // 'name' => $name
           );

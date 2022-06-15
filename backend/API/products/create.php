@@ -32,6 +32,7 @@
   $product->gender = $data->gender;
   $product->type = $data->type;
   $product->image = $data->image;
+  $product->quantity = $data->quantity;
   
 
   

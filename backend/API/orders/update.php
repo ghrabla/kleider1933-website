@@ -31,6 +31,7 @@
   $order->city = $data->city;
   $order->adresse = $data->adresse;
   $order->postale = $data->postale;
+  $order->quantity = $data->quantity;
 
   // Update post
   if($order->update()) {
