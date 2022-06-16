@@ -49,7 +49,7 @@
      <label for="">Type*</label>
     <input type="text" placeholder="product Type" class="input-pop" v-model="product.type">
      <label for="">image*</label>
-    <input type="text" @change="onFileChanged" class="image" v-model="product.image">
+    <input type="file" @change="onFileChanged" class="image" >
     <button @click="addproduct()">valide</button>
   </div>
 
@@ -86,8 +86,9 @@ export default {
       admins : [],
       admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
-       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',quantity:''},
-       selectedFile: null
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : Cookies.get("image"),quantity:''},
+       selectedFile: null,
+       image:''
     };
   },
    created() {
@@ -109,7 +110,11 @@ logout(){
                 .catch(err => console.log(err));
         },
         onFileChanged (event) {
-    this.selectedFile = event.target.files[0]
+         
+    this.selectedFile = event.target.files[0];
+    Cookies.remove("image");
+    Cookies.set("image",this.selectedFile.name);
+    console.log(Cookies.get("image"))
   },
          
      addadmin(){
@@ -139,6 +144,7 @@ logout(){
             }
         },
             addproduct(){
+              // this.onFileChanged();
             if(this.product.name !== '' && this.product.price !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
                     name : this.product.name,
@@ -155,7 +161,10 @@ logout(){
                         'Added !',
                         'success'
                     ).then(() => {
-                        this.getproducts();
+                      // Cookies.remove("image");
+                      this.$router.go('/productdashboard');
+                       
+                        // this.getproducts();
                     })
                 })
                 .catch(err => console.log(err));

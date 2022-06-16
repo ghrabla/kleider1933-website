@@ -252,8 +252,11 @@ export default {
               Swal.fire("Deleted !", "success").then(() => {
                 this.shopcarts = this.shopcarts.filter((shopcart) => {
                   return shopcart.id !== id;
+                
                 });
               });
+            }).then(() => {
+              this.getshopcarts(Cookies.get("userId"));
             })
             .catch((err) => console.log(err));
         }

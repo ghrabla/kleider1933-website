@@ -1,54 +1,36 @@
 <?php
-  // Headers
-  header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: POST');
-  
-  if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-      header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-      header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-  }
-  if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") return true;
 
-  include_once '../../config/Database.php';
-  include_once '../../models/order.php';
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
+header("Access-Control-Allow-Origin: http://localhost/Auth/");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-  // Instantiate blog post object
-  $order = new order($db);
+include_once '../../config/Database.php';
+include_once '../../models/order.php';
+// Instantiate DB & connect
+$database = new Database();
+$db = $database->connect();
 
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
+// Instantiate blog post object
+$order = new order($db);
 
-  
+$data = json_decode(file_get_contents("php://input"));
 
-  $order->name = $data->name;
-  $order->price = $data->price;
-  $order->title = $data->title;
-  $order->gender = $data->gender;
-  $order->type = $data->type;
-  $order->image = $data->image;
-  $order->fullname = $data->fullname;
-  $order->phone = $data->phone;
-  $order->email = $data->email;
-  $order->city = $data->city;
-  $order->adresse = $data->adresse;
-  $order->postale = $data->postale;
-  $order->quantity = $data->quantity;
-  // $order->newquantity = $data->newquantity;
-  
 
-  // Create order
-  if($order->create()) {
-    echo json_encode(
-      array('message' => 'order Created','response'=>true)
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'order Not Created' , 'response'=>false)
-    );
-  }
+
+if($order->orderDetails($data)){
+
+    // http_response_code(200);
+    echo json_encode(array(
+        "message" => "All rows of Order Details are inserted.",
+
+    ));
+}
+else{
+
+    // http_response_code(400);
+    echo json_encode(array("message" => "Sorry! Error while inserting rows of order details"));
+}
+?>

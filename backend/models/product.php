@@ -85,7 +85,7 @@ class product
     $stmt->execute(["id"=>$this->id]);
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
     // set properties
     $this->id = $row['id'];
     $this->name = $row['name'];

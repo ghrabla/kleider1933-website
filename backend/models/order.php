@@ -31,7 +31,9 @@ class order
     $this->conn = $db;
   }
 
-  // Get categories
+  
+
+  
   public function read()
   {
     // Create query
@@ -78,7 +80,7 @@ class order
   }
 
 
- 
+
 
   // Create Category
   public function create()
@@ -128,6 +130,41 @@ class order
 
 
     // return false;
+  }
+
+
+
+
+
+  
+  function orderDetails($arr)
+  {
+     $query=  "INSERT INTO orders (name, price, title, gender,type,image,fullname,phone,email,city,adresse,postal,quantity) VALUES
+    (:name,: price,:title,: gender,:type,:image,:fullname,:phone,:email,:city,:adresse,:postal,:quantity) ";
+    
+      $stmt = $this->conn->prepare($query);
+
+      foreach($arr as $item)
+      {
+        $stmt->bindParam(':name', $item->name);
+        $stmt->bindParam(':price', $item->price);
+        $stmt->bindParam(':title', $item->title);
+        $stmt->bindParam(':gender', $item->gender);
+        $stmt->bindParam(':type', $item->type);
+        $stmt->bindParam(':image', $item->image);
+        $stmt->bindParam(':fullname', $item->fullname);
+        $stmt->bindParam(':phone', $item->phone);
+        $stmt->bindParam(':email', $item->email);
+        $stmt->bindParam(':city', $item->city);
+        $stmt->bindParam(':adresse', $item->adresse);
+        $stmt->bindParam(':postale', $item->postale);
+        $stmt->bindParam(':quantity', $item->quantity);
+
+        if($stmt->execute()){
+          echo "good";
+      }
+    }
+      
   }
 
   // Update Category

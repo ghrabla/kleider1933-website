@@ -143,6 +143,7 @@ export default {
       this.number--;
       if(this.number<1){
         this.number++;
+        
       }
     },
      
@@ -170,12 +171,13 @@ export default {
                 }),
                axios.post('http://localhost/kleider1933-website/backend/API/orders/create.php',{
                     name : this.product.name,
-                    price : this.product.price,
+                    price : this.product.price * this.number,
                     title : this.product.title,
                     gender : this.product.gender,
                     type : this.product.type,
                     image : this.product.image,
                     fullname : this.order.fullname,
+                    
                     phone : this.order.phone,
                     email : this.order.email,
                     city : this.order.city,

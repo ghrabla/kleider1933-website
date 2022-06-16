@@ -27,6 +27,16 @@ beforeMount(){
     this.$router.push('/loginadmin');
     
   }
+},
+methods : {
+  getproducts() {
+      axios
+        .get(
+          "http://localhost/kleider1933-website/backend/API/products/read.php"
+        )
+        .then((response) => (this.products = response.data))
+        .catch((err) => console.log(err));
+    }
 }
 }
 </script>

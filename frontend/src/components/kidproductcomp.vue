@@ -13,7 +13,7 @@
 				<div class="span-select" style="display: flex; flex-direction: column;">
                     <span @click="showsort=!showsort" style="cursor: pointer;">View As a <i class="fa-solid fa-caret-down"></i></span>
 					<div v-if="showsort" class="sort-div">
-					<a href="" @click="sort0()"  class="sort-links">default</a>
+					<a href="javascript:void(0)" @click="sort0()"  class="sort-links">default</a>
 					<a href="javascript:void(0)" @click="sort1()"  class="sort-links">Low to high</a>
 					<a href="javascript:void(0)" @click="sort2()" class="sort-links">High to low</a>
 					</div>
@@ -41,9 +41,7 @@
 						<a href="javascript:void(0)" @click="getCookie(product.id)"><small>Buy now</small></a>
 					</div>
 					<h4>${{product.price}}</h4> 
-				</li>
-
-				
+				</li>			
 			</ul>
 		</div>
         
@@ -74,12 +72,17 @@ export default {
 	// share product to messenger
    
 
-	
+	sort0(){
+		this.getproducts();
+		this.showsort = !this.showsort;
+	},
 	 sort1(){
 		 this.products.sort((a, b) =>(a.price > b.price ? 1 : -1));
+		 this.showsort = !this.showsort;
 	 },
 	 sort2(){
 		 this.products.sort((a, b) =>(a.price > b.price ? -1 : 1));
+		 this.showsort = !this.showsort;
 	 },
 
 
