@@ -222,10 +222,10 @@
     />
     <label for="">image*</label>
     <input
-      type="text"
+      type="file"
       placeholder="product name"
       class="image"
-      v-model="product.image"
+      @change="onFileChanged"
     />
     
     <button @click="updateproduct()">valide</button>
@@ -310,6 +310,7 @@ import Swal from 'sweetalert2';
 export default {
   data() {
     return {
+      selectedFile : null,
       showModal: false,
       showModaldet: false,
       users: [],
@@ -412,6 +413,13 @@ export default {
         }
       });
     },
+      onFileChanged (event) {
+         
+    this.selectedFile = event.target.files[0];
+    Cookies.remove("image");
+    Cookies.set("image",this.selectedFile.name);
+    console.log(Cookies.get("image"))
+  },
     updateproduct() {
       axios
         .put(
@@ -423,7 +431,7 @@ export default {
             title: this.product.title,
             gender: this.product.gender,
             type: this.product.type,
-            image: this.product.image,
+            image: this.selectedFile.name,
             quantity: this.product.quantity
           }
         )
@@ -442,6 +450,7 @@ export default {
         )
         .then((response) => {
           this.product = response.data;
+          // this.product.image = this.product.image;
         })
         .catch((err) => console.log(err));
     },

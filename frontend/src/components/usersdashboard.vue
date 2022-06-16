@@ -30,7 +30,7 @@
           ></i>
         </div>
         <div class="sta-content">
-          <div class="sta-text">user items</div>
+          <div class="sta-text">product items</div>
           <div class="sta-number">{{ products.length }}</div>
         </div>
       </div>
@@ -43,7 +43,7 @@
           ></i>
         </div>
         <div class="sta-content">
-          <div class="sta-text">user items</div>
+          <div class="sta-text">order items</div>
           <div class="sta-number">{{ orders.length }}</div>
         </div>
       </div>

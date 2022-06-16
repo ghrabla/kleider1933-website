@@ -86,7 +86,7 @@ export default {
       admins : [],
       admin : {id:'',fullname : '',email : '',password : ''},
        products : [],
-       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : Cookies.get("image"),quantity:''},
+       product : {id : '',name : '',price : '',title : '',gender : '',type : '',image : '',quantity:''},
        selectedFile: null,
        image:''
     };
@@ -109,13 +109,7 @@ logout(){
                 .then(response => this.products = response.data)
                 .catch(err => console.log(err));
         },
-        onFileChanged (event) {
-         
-    this.selectedFile = event.target.files[0];
-    Cookies.remove("image");
-    Cookies.set("image",this.selectedFile.name);
-    console.log(Cookies.get("image"))
-  },
+     
          
      addadmin(){
             if(this.admin.fullname !== '' && this.admin.email !== '' && this.admin.password !== ''){
@@ -152,7 +146,7 @@ logout(){
                     title : this.product.title,
                     gender : this.product.gender,
                     type : this.product.type,
-                    image : this.product.image,
+                    image : this.selectedFile.name,
                     quantity : this.product.quantity
                     
                 })
@@ -177,6 +171,13 @@ logout(){
                 })
             }
         },
+           onFileChanged (event) {
+         
+    this.selectedFile = event.target.files[0];
+    Cookies.remove("image");
+    Cookies.set("image",this.selectedFile.name);
+    console.log(Cookies.get("image"))
+  },
   },
 };
 </script>
