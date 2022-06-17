@@ -378,7 +378,8 @@ export default {
                     flex-direction: column;
             }
             .product-field ul li {
-                width: 79%;
+                width: 71%;
+				margin-left: 15%;
             }
         }
 </style>
