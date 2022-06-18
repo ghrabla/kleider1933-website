@@ -85,7 +85,7 @@
             <i class="fa fa-envelope-o" aria-hidden="true"></i> email
           </div>
           <!-- <div class="col col-4"><i class="fa fa-audio-description" aria-hidden="true"></i> Title</div> -->
-          <div class="col col-5"><i class="fa-solid fa-key"></i> password</div>
+          <!-- <div class="col col-5"><i class="fa-solid fa-key"></i> password</div> -->
           <div class="col col-8">
             <i class="fa fa-cog fa-spin fa-fw"></i> Action
           </div>
@@ -100,9 +100,9 @@
               {{ user.email }}
             </div>
             <!-- <div  class="col col-1" data-label="First name">{{user.title}}</div> -->
-            <div class="col col-1" data-label="First name">
+            <!-- <div class="col col-1" data-label="First name">
               {{ user.password }}
-            </div>
+            </div> -->
             <div class="col col-8 action-icon" data-label="Action">
               <a href="javascript:void(0)" @click="getuser(user.id)">
                 <i class="fa-solid fa-pen" @click="showModal = true"></i
@@ -742,7 +742,7 @@ li {
   flex-basis: 15%;
 }
 .col-8 {
-  flex-basis: 15%;
+  flex-basis: 20%;
 }
 
 @media all and (max-width: 767px) {

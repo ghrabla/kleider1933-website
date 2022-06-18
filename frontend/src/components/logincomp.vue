@@ -40,11 +40,11 @@ methods: {
         password: this.password
         
       });
-      console.log(respon);
+      console.log(respon.data.answer);
       
  
-        if (respon.data[0].status != false) {
-          Cookies.set('userId',respon.data[0].id);
+        if (respon.data.answer === true) {
+          Cookies.set('userId',respon.data.id);
           console.log(Cookies.get('userId'));
           this.$router.push('/productsshop')
         // alert("User exist");

@@ -42,9 +42,9 @@ methods: {
       console.log(respon);
       
 
-        if (respon.data[0].status != false) {
-          Cookies.set('adminId',respon.data[0].id);
-          Cookies.set('adminname',respon.data[0].fullname);
+        if (respon.data.answer === true) {
+          Cookies.set('adminId',respon.data.id);
+          Cookies.set('adminname',respon.data.fullname);
           console.log(Cookies.get('adminId'));
           console.log(Cookies.get('adminname'));
           this.$router.push('/productdashboard')
@@ -53,7 +53,7 @@ methods: {
         } else{
         // alert("");
         Swal.fire({
-                    title : 'User does not exist !',
+                    title : 'admin does not exist !',
                     type : 'warning'
                 })
         }

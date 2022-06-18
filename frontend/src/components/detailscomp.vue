@@ -61,6 +61,7 @@
     </div>
    </div>
   </div>
+    <div id="paypal-button-container" style="text-align:center; width:100%;"></div>
 <div class="close-div-update" v-if="showModal"  @click="showModal=false;"></div>
  <div class="popup-all"  
         v-if="showModal" >
@@ -86,7 +87,6 @@
     <input type="text" placeholder="Postale code" class="input-pop" v-model="order.postale">
     <button @click="addorder()" >send</button>
   </div>
-    <div id="paypal-button-container" style="text-align:center;"></div>
  </div>
 
 </template>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2022 at 12:48 AM
+-- Generation Time: Jun 18, 2022 at 10:10 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -39,13 +39,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `fullname`, `email`, `password`) VALUES
-(1, 'kamal rhrabla', 'kamalghrabla@gmail.com', 'hh190093'),
-(3, 'adnane elgotabi', 'adnane@gmail.com', 'hh170073'),
-(4, 'mohamed ait gaba', 'aitgaba@gmail.com', 'hh180083'),
-(5, 'abdelhak elachari', 'abdelhak@gmail.com', 'hh190093'),
-(6, 'amine hatim', 'aminehatim@gmail.com', 'hh170073'),
-(7, 'mouhssine Rhrabla', 'mouhssineRhrabla@gmail.com', 'hh140043'),
-(8, 'youssef Rhrabla', 'youssefRhrabla@gmail.com', 'hh170073');
+(9, 'kamal Rhrabla', 'kamalghrabla@gmail.com', '$2y$10$aPm0MYhpeeBMPX8BJMR/eulzeQW4D/0V0.PD0rNYCUvNN6QyxEui.');
 
 -- --------------------------------------------------------
 
@@ -75,8 +69,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `name`, `price`, `title`, `gender`, `type`, `image`, `fullname`, `phone`, `email`, `city`, `adresse`, `postale`, `quantity`) VALUES
-(73, 'rolex 1', '400', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa1.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 5),
-(74, 'rolex 1', '160', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa1.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 2);
+(77, 'jaketa 1', '150', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo1.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 3),
+(78, 'jaketa 1', '350', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo1.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 7),
+(79, 'jaketa 1', '140', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz1.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 2),
+(80, 'jaketa 2', '450', 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz2.png', 'kamal rhrabla', '625467800', 'kamalghrabla@gmail.com', 'safi', 'hanae', '54', 5);
 
 -- --------------------------------------------------------
 
@@ -104,7 +100,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `title`, `gender`, `type`, `image
 (2, 'rolex 2', 50, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'watch', 'wawo2.png', 10),
 (3, 'rolex 1', 40, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'watch', 'wawo1.png', 14),
 (4, 'jaketa 1', 80, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo2.png', 10),
-(5, 'jaketa 1', 50, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo1.png', 10),
+(5, 'jaketa 1', 50, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo1.png', 12),
 (6, 'jaketa 1', 90, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'blazzer', 'bzwo3.png', 10),
 (7, 'nike 1', 60, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'shoes', 'sowo3.png', 10),
 (8, 'puma 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'woman', 'shoes', 'sowo2.png', 10),
@@ -112,11 +108,11 @@ INSERT INTO `products` (`id`, `name`, `price`, `title`, `gender`, `type`, `image
 (10, 'kendrek 1', 50, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so1.png', 10),
 (11, 'adidass 2', 80, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so2.png', 10),
 (12, 'jordan 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so3.png', 10),
-(13, 'jaketa 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz1.png', 0),
-(14, 'jaketa 2', 90, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz2.png', 10),
+(13, 'jaketa 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz1.png', 10),
+(14, 'jaketa 2', 90, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz2.png', 5),
 (15, 'jaketa 2', 80, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'blazzer', 'bz4.png', 10),
 (16, 'rolex 1', 80, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa1.png', 3),
-(17, 'rolex 2', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa2.png', 0),
+(17, 'rolex 2', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa2.png', 12),
 (18, 'rolex 3', 90, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'watch', 'wa3.png', 10),
 (19, 'rolex 1', 90, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'kid', 'watch', 'kidwa2.png', 10),
 (20, 'rolex 2', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'kid', 'watch', 'kidwa1.png', 10),
@@ -137,7 +133,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `title`, `gender`, `type`, `image
 CREATE TABLE `shopcart` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `price` int(30) NOT NULL,
+  `price` int(11) NOT NULL,
   `title` varchar(90) NOT NULL,
   `gender` varchar(90) NOT NULL,
   `type` varchar(90) NOT NULL,
@@ -145,17 +141,6 @@ CREATE TABLE `shopcart` (
   `productId` int(11) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `shopcart`
---
-
-INSERT INTO `shopcart` (`id`, `name`, `price`, `title`, `gender`, `type`, `image`, `productId`, `userId`) VALUES
-(9, 'jordan 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so3.png', 12, 2),
-(61, 'jaketa 2', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'kid', 'blazzer', 'kibz2_1-removebg-preview.png', 23, 2),
-(92, 'jordan 1', 70, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so3.png', 12, 1),
-(93, 'adidass 2', 80, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so2.png', 11, 1),
-(94, 'kendrek 1', 50, 'lorem hcs fxusfs fgddrz rrzds bsnsu yss fsv', 'man', 'shoes', 'so1.png', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -175,8 +160,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `email`, `password`) VALUES
-(1, 'kamal rhrabla', 'kamalghrabla@gmail.com', 'hh190093'),
-(2, 'hamza ghrabla', 'hamzaghrabla@gmail.com', 'hh170073');
+(6, 'kamal Rhrabla', 'kamalghrabla@gmail.com', '$2y$10$iSmZSelYrtCyTWvyU7NUXeBXdzjOzza9SzePjv9o5OCqXmIlkzqXS');
 
 --
 -- Indexes for dumped tables
@@ -221,31 +205,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `shopcart`
 --
 ALTER TABLE `shopcart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -255,7 +239,7 @@ ALTER TABLE `users`
 -- Constraints for table `shopcart`
 --
 ALTER TABLE `shopcart`
-  ADD CONSTRAINT `shopcart_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `shopcart_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -24,11 +24,11 @@
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
-  
+  $passwordhash = password_hash($data->password,PASSWORD_BCRYPT);
 
   $admin->fullname = $data->fullname;
   $admin->email = $data->email;
-  $admin->password = $data->password;
+  $admin->password = $passwordhash;
  
   
 

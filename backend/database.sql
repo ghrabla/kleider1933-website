@@ -50,5 +50,5 @@ create table shopcart(
    image varchar(90) not null,
    productId int ,
    userId int ,
-   FOREIGN KEY (userId) REFERENCES users(id) 
+   FOREIGN KEY (userId) REFERENCES users(id) on delete cascade
 );

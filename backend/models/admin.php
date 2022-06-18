@@ -23,12 +23,12 @@ class admin
 
   public function login()
   {
-      $query = "SELECT * FROM admins WHERE email = :email AND password =:password";
+      $query = "SELECT * FROM admins WHERE email = :email ";
       $stmt = $this->conn->prepare($query);
 
 
       // Execute query
-      $stmt->execute(["email"=>$this->email,"password"=>$this->password]);
+      $stmt->execute(["email"=>$this->email]);
   
       return $stmt;
   }

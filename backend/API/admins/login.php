@@ -18,10 +18,13 @@ $db = $database->connect();
 // instansiation de login
 $login = new admin($db);
 
+
 $data = json_decode(file_get_contents("php://input"));
+
+
 $login->email = $data->email;
 $login->password = $data->password;
-$login->fullname = $data->fullname;
+// password_verify($data->password, $login->password);
 
 $result = $login->login();
 
@@ -29,29 +32,30 @@ $num = $result->rowCount();
 
 if ($num>0) {
 
-    $login_arr = array();
+    // $login_arr = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
-
-    $login_item = array(
-        // "response" => true,
-        'id' => $id,
-        'email' => $email,
-        'password' => $password,
-        'fullname' => $fullname,
-      );
+    if(password_verify($data->password, $password)){
+      echo json_encode(array('id' => $id,
+    "answer"=> true,"fullname"=>$fullname));
+  }
+    // $login_item = array(
+    //     // "response" => true,
+    //     'id' => $id,
+    //     // 'email' => $email,
+    //     // 'password' => $password,
+      // );
       
-      array_push($login_arr, $login_item);
+    //   array_push($login_arr, $login_item);
     }
     
       // Make JSON
-      echo json_encode($login_arr);
     //   echo json_encode(
     //     array("response" => true)
     // );
 } else {
     echo json_encode(
-        array("id" => false)
+        array("answer" => false)
     );
 }

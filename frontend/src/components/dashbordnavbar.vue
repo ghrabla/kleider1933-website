@@ -138,7 +138,6 @@ logout(){
             }
         },
             addproduct(){
-              // this.onFileChanged();
             if(this.product.name !== '' && this.product.price !== ''){
                 axios.post('http://localhost/kleider1933-website/backend/API/products/create.php',{
                     name : this.product.name,
@@ -177,6 +176,7 @@ logout(){
     Cookies.remove("image");
     Cookies.set("image",this.selectedFile.name);
     console.log(Cookies.get("image"))
+    // console.log(this.selectedFile)
   },
   },
 };

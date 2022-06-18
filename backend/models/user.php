@@ -24,13 +24,14 @@ class user
 
   public function login()
   {
-      $query = "SELECT * FROM users WHERE email = :email AND password =:password";
+      $query = "SELECT * FROM users WHERE email = :email ";
       $stmt = $this->conn->prepare($query);
 
 
       // Execute query
-      $stmt->execute(["email"=>$this->email,"password"=>$this->password]);
-  
+      $stmt->execute(["email"=>$this->email]);
+      // $user = $stmt->fetch(PDO::FETCH_OBJ);
+			// return $user;
       return $stmt;
   }
   public function read()
