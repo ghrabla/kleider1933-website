@@ -6,8 +6,8 @@
 				<li @click="currentType = 'blazzer'" data-filter="Blazer"><a href="#">Blazzer</a></li>
 				<li @click="currentType = 'watch'" data-filter="Watch"><a href="#">Watch</a></li>
 				<li @click="currentType = 'shoes'" data-filter="Shoes"><a href="#">Shoes</a></li>
-				<li @click="currentType = 'Mobile'" data-filter="Mobile"><a href="#">Mobiles</a></li>
-				<li @click="currentType = 'Accessories'" data-filter="Accessories"><a href="#">Accessories</a></li>
+				<li @click="currentType = 't-shirt'" data-filter="t-shirt"><a href="#">T-shirts</a></li>
+				<li @click="currentType = 'cap'" data-filter="cap"><a href="#">Cap</a></li>
 			</ul>
 			<div class="filter-condition">
 				<div class="span-select" style="display: flex; flex-direction: column;">

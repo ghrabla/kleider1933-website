@@ -199,12 +199,14 @@
       <option value="kid">kid</option>
     </select>
     <label for="">Type*</label>
-    <input
-      type="text"
-      placeholder="product Type"
-      class="input-pop"
-      v-model="product.type"
-    />
+      <select name="type" id="type" v-model="product.type">
+      <option value="" selected disabled>Please select a type</option>
+      <option value="blazzer">blazzer</option>
+      <option value="watch">watch</option>
+      <option value="shoes">shoes</option>
+      <option value="t-shirt">t-shirt</option>
+      <option value="cap">cap</option>
+    </select>
     <label for="">Price*</label>
     <input
       type="text"
@@ -421,6 +423,7 @@ export default {
     console.log(Cookies.get("image"))
   },
     updateproduct() {
+      if(this.product.image !== ''){
       axios
         .put(
           "http://localhost/kleider1933-website/backend/API/products/update.php",
@@ -441,6 +444,12 @@ export default {
           });
         })
         .catch((err) => console.log(err));
+    }else{
+      
+        Swal.fire({title : 'Please fill all the fields !',
+                    type : 'warning'})
+      
+    }
     },
     getproduct(id) {
       axios

@@ -47,7 +47,14 @@
   <option value="kid">kid</option>
 </select>
      <label for="">Type*</label>
-    <input type="text" placeholder="product Type" class="input-pop" v-model="product.type">
+    <select name="type" id="type" v-model="product.type">
+      <option value="" selected disabled>Please select a type</option>
+      <option value="blazzer">blazzer</option>
+      <option value="watch">watch</option>
+      <option value="shoes">shoes</option>
+      <option value="t-shirt">t-shirt</option>
+      <option value="cap">cap</option>
+    </select>
      <label for="">image*</label>
     <input type="file" @change="onFileChanged" class="image" >
     <button @click="addproduct()">valide</button>
@@ -203,6 +210,7 @@ select{
     margin-bottom: 10px;
     color: white;
     background-color: black;
+    width:100%;
 }
 option{
   padding: 10px;
